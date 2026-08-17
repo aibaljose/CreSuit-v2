@@ -969,23 +969,52 @@ html, body {
 }
 
 .ode-SimplePaletteItem {
-  background-color: v-white;
-  /* needed on Firefox */
-  padding: 13px 5px 5px 5px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  background-color: v-white !important;
+  cursor: grab !important;
+  padding: 7px 10px !important;
+  margin: 1px 0 !important;
+  width: 100% !important;
+  border-radius: 6px !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.15s ease, transform 0.1s ease !important;
+  border: none !important;
+}
+
+.ode-SimplePaletteItem:hover {
+  background-color: #f5f3ff !important;
+}
+
+.ode-SimplePaletteItem:active {
+  cursor: grabbing !important;
+  transform: scale(0.98);
 }
 
 .ode-SimplePaletteItem-Selected {
-  background-color: row-highlight !important;
+  background-color: #ede9fe !important;
+  border-left: 3px solid primary-color !important;
 }
 
 .ode-SimplePaletteItem-icon {
-  height: 20px;
-  width: 20px;
+  height: 18px !important;
+  width: 18px !important;
+  flex-shrink: 0 !important;
+  margin-right: 10px !important;
+  object-fit: contain !important;
+  filter: invert(18%) sepia(85%) saturate(3200%) hue-rotate(265deg) brightness(80%) contrast(115%) !important;
 }
 
 .ode-SimplePaletteItem-caption {
-  font-size: 14px;
-  color: gray-700;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #3b0764 !important;
+  flex: 1 !important;
+  letter-spacing: 0.1px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .gwt-SimplePanel {
@@ -1081,10 +1110,115 @@ select.ode-PropertyEditor[disabled] {
   background-color: gray-450;
 }
 
-.ode-MultipleChoicePropertyEditor {
-  background-color: v-white;
-  color: v-black;
-  border: 1px solid gray-500;
+.ode-MultipleChoicePropertyEditor,
+.ode-MultipleChoicePropertyEditor .popupContent {
+  min-width: 230px !important;
+  background-color: v-white !important;
+  color: v-black !important;
+  border: 1px solid gray-300 !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 9999 !important;
+  box-sizing: border-box !important;
+}
+
+.ode-MultipleChoicePropertyEditor .gwt-RadioButton {
+  display: flex !important;
+  align-items: center !important;
+  margin: 6px 0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: gray-700 !important;
+  cursor: pointer !important;
+}
+
+.ode-MultipleChoicePropertyEditor .gwt-RadioButton input[type="radio"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 8px 0 0 !important;
+  accent-color: primary-color !important;
+  cursor: pointer !important;
+}
+
+.ode-MultipleChoicePropertyEditor input.gwt-TextBox {
+  width: 70px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  border: 1px solid gray-400 !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  margin: 0 6px !important;
+  font-size: 13px !important;
+  color: gray-700 !important;
+  background-color: v-white !important;
+  text-align: center !important;
+  box-shadow: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
+}
+
+.ode-MultipleChoicePropertyEditor input.gwt-TextBox:focus {
+  border-color: primary-color !important;
+  box-shadow: 0 0 0 1px primary-color !important;
+}
+
+.ode-MultipleChoicePropertyEditor .ode-PixelsLabel {
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: gray-500 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.ode-MultipleChoicePropertyEditor table {
+  margin: 4px 0 !important;
+}
+
+.ode-MultipleChoicePropertyEditor table td {
+  vertical-align: middle !important;
+}
+
+/* Cancel and OK Action Buttons */
+.ode-MultipleChoicePropertyEditor button,
+.ode-MultipleChoicePropertyEditor .gwt-Button {
+  border-radius: 6px !important;
+  padding: 6px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+  min-width: 60px !important;
+  margin: 8px 4px 0 4px !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:first-child,
+.ode-MultipleChoicePropertyEditor .gwt-Button:first-child {
+  background-color: gray-100 !important;
+  color: gray-600 !important;
+  border: 1px solid gray-300 !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:first-child:hover,
+.ode-MultipleChoicePropertyEditor .gwt-Button:first-child:hover {
+  background-color: gray-200 !important;
+  color: gray-800 !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:last-child,
+.ode-MultipleChoicePropertyEditor .gwt-Button:last-child {
+  background-color: primary-color !important;
+  color: v-white !important;
+  border: 1px solid primary-color !important;
+  box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3) !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:last-child:hover,
+.ode-MultipleChoicePropertyEditor .gwt-Button:last-child:hover {
+  background-color: primary-color-hover !important;
+  border-color: primary-color-hover !important;
 }
 
 .ode-ColorChoicePropertyEditor:focus {
@@ -2261,31 +2395,39 @@ input[type="checkbox"]:focus {
   border-bottom: 1px solid gray-400;
 }
 
-.ode-CollapsablePanel .gwt-DisclosurePanel .header,
 .ode-PaletteCategoryHeader {
-  border-bottom: 1px solid gray-400;
-  border-top: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   cursor: pointer;
-  padding: 10px;
-  background: v-white;
-  font-size: 1.1em;
-  height: unset;
-}
-
-.ode-CollapsablePanel .gwt-DisclosurePanel .content,
-.ode-PaletteCategoryContentInner {
-  padding: 0px;
-  border: 0px;
-  margin-left: 0px;
-  background-color: v-white;
-  border: 1px solid gray-400;
-  border-bottom: 1px solid gray-400;
-}
-
-.ode-CollapsablePanel .gwt-DisclosurePanel .header td {
-  all: unset;
-  font-weight: normal;
+  user-select: none;
   color: gray-700;
+  font-size: 13.5px;
+  font-weight: 500;
+  height: auto;
+  min-height: 38px;
+  background-color: v-white;
+  border: none;
+  padding: 8px 12px;
+  margin: 2px 6px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.ode-PaletteCategoryHeader:hover {
+  background-color: gray-100;
+  color: v-black;
+}
+
+.ode-PaletteCategoryContentInner {
+  background-color: v-white;
+  border: none;
+  padding: 4px 6px 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .gwt-DisclosurePanel .header,

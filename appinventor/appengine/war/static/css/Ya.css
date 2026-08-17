@@ -1212,36 +1212,73 @@ div.StatusPanel {
   transition: background-position 0.1s linear;
 }
 
-/* Palette */
+/* ==========================================================================
+   Palette Box (Modern Purple Accent Design)
+   ========================================================================== */
+
+/* Left column width */
+.PaletteBox,
+.ode-Designer-LeftColumn,
+.ode-Box:has(.ode-PaletteCategory) {
+  min-width: 270px !important;
+  width: 270px !important;
+  background-color: #ffffff;
+}
 
 /* Category panel container */
 .ode-PaletteCategory {
   display: flex;
   flex-direction: column;
   width: 100%;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-/* Category header (acts as a button) */
+/* Category header (User Interface, Layout, Media, etc.) */
 .ode-PaletteCategoryHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
   user-select: none;
-  color: #555;
-  font-size: 1.1em;
-  height: 14px;
-  background-color: white;
-  border-top: 1px solid #d2d2d2;
-  border-bottom: 1px solid #d2d2d2;
-  padding: 8px 16px;
+  color: #334155;
+  font-size: 13.5px;
+  font-weight: 500;
+  height: auto;
+  min-height: 38px;
+  background-color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  margin: 2px 6px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.ode-PaletteCategoryHeader:hover {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Active / Expanded Category Header Pill Highlight */
+.ode-PaletteCategoryHeader:not(.ode-PaletteCategoryHeader-closed),
+.ode-PaletteCategory:not(.ode-PaletteCategory-closed) > .ode-PaletteCategoryHeader {
+  background-color: #ede9fe !important;
+  color: #4c1d95 !important;
+  font-weight: 600 !important;
+}
+
+.ode-PaletteCategoryText {
+  flex-grow: 1;
+  font-size: 13.5px;
+  line-height: 18px;
 }
 
 .ode-PaletteCategoryContent {
   max-height: 5000px;
   overflow: hidden;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #ffffff;
 }
 
 .ode-PaletteCategoryContent-closed {
@@ -1249,9 +1286,12 @@ div.StatusPanel {
 }
 
 .ode-PaletteCategoryContentInner {
-  background-color: white;
-  border: 1px solid #bbbbbb;
-  padding: 8px 4px 8px 8px;
+  background-color: #ffffff;
+  border: none;
+  padding: 4px 6px 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .gwt-StackPanelItem div {
@@ -1307,29 +1347,51 @@ div.StatusPanel {
   cursor: pointer;
 }
 
+/* Individual Component Item (Button, Checkbox, Date Picker, Label, Notifier, etc.) */
 .ode-SimplePaletteItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: white;
-  /* needed on Firefox */
-  cursor: pointer;
-  padding: 5px;
-  width: 100%;
-  box-sizing: border-box;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  background-color: #ffffff !important;
+  cursor: grab !important;
+  padding: 7px 10px !important;
+  margin: 1px 0 !important;
+  width: 100% !important;
+  border-radius: 6px !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.15s ease, transform 0.1s ease !important;
+  border: none !important;
 }
 
+.ode-SimplePaletteItem:hover {
+  background-color: #f5f3ff !important;
+}
+
+.ode-SimplePaletteItem:active {
+  cursor: grabbing !important;
+  transform: scale(0.98);
+}
+
+/* Component Icons (Purple tint & clean size) */
 .ode-SimplePaletteItem-icon {
-  height: 16px;
-  width: 16px;
-  flex-shrink: 0;
-  margin-right: 10px;
+  height: 18px !important;
+  width: 18px !important;
+  flex-shrink: 0 !important;
+  margin-right: 10px !important;
+  object-fit: contain !important;
+  filter: invert(18%) sepia(85%) saturate(3200%) hue-rotate(265deg) brightness(80%) contrast(115%) !important;
 }
 
+/* Component Caption (Purple/Indigo title text) */
 .ode-SimplePaletteItem-caption {
-  font-size: 12px;
-  color: #555;
-  flex: 1;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #3b0764 !important;
+  flex: 1 !important;
+  letter-spacing: 0.1px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 .ode-SimplePaletteItem-options {
@@ -1341,10 +1403,17 @@ div.StatusPanel {
 
 .ode-SimplePaletteItem-button {
   padding: 2px;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+.ode-SimplePaletteItem-button:hover {
+  opacity: 1;
 }
 
 .ode-SimplePaletteItem-Selected {
-  background-color: #d2e0a6;
+  background-color: #ede9fe !important;
+  border-left: 3px solid #7c3aed !important;
 }
 
 .gwt-SimplePanel {
@@ -1898,14 +1967,119 @@ select.ode-PropertyEditor[disabled] {
   background-color: #aaaaaa;
 }
 
-.ode-MultipleChoicePropertyEditor {
-  min-width: 150px;
-  background-color: white;
-  font-size: small;
-  color: black;
-  border: 1px solid gray;
-  padding: 2px;
-  z-index: 1000;
+/* ==========================================================================
+   MultipleChoicePropertyEditor Popup Dialog (Material Card Style)
+   ========================================================================== */
+
+.ode-MultipleChoicePropertyEditor,
+.ode-MultipleChoicePropertyEditor .popupContent {
+  min-width: 230px !important;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  z-index: 9999 !important;
+  box-sizing: border-box !important;
+}
+
+.ode-MultipleChoicePropertyEditor .gwt-RadioButton {
+  display: flex !important;
+  align-items: center !important;
+  margin: 6px 0 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #1e293b !important;
+  cursor: pointer !important;
+}
+
+.ode-MultipleChoicePropertyEditor .gwt-RadioButton input[type="radio"] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 8px 0 0 !important;
+  accent-color: #7c3aed !important;
+  cursor: pointer !important;
+}
+
+.ode-MultipleChoicePropertyEditor input.gwt-TextBox {
+  width: 70px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  border: 1px solid #94a3b8 !important;
+  border-radius: 6px !important;
+  padding: 4px 8px !important;
+  margin: 0 6px !important;
+  font-size: 13px !important;
+  color: #1e293b !important;
+  background-color: #ffffff !important;
+  text-align: center !important;
+  box-shadow: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
+}
+
+.ode-MultipleChoicePropertyEditor input.gwt-TextBox:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 1px #7c3aed !important;
+}
+
+.ode-MultipleChoicePropertyEditor .ode-PixelsLabel {
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.ode-MultipleChoicePropertyEditor table {
+  margin: 4px 0 !important;
+}
+
+.ode-MultipleChoicePropertyEditor table td {
+  vertical-align: middle !important;
+}
+
+/* Cancel and OK Action Buttons */
+.ode-MultipleChoicePropertyEditor button,
+.ode-MultipleChoicePropertyEditor .gwt-Button {
+  border-radius: 6px !important;
+  padding: 6px 14px !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  outline: none !important;
+  min-width: 60px !important;
+  margin: 8px 4px 0 4px !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:first-child,
+.ode-MultipleChoicePropertyEditor .gwt-Button:first-child {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:first-child:hover,
+.ode-MultipleChoicePropertyEditor .gwt-Button:first-child:hover {
+  background-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:last-child,
+.ode-MultipleChoicePropertyEditor .gwt-Button:last-child {
+  background-color: #7c3aed !important;
+  color: #ffffff !important;
+  border: 1px solid #7c3aed !important;
+  box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3) !important;
+}
+
+.ode-MultipleChoicePropertyEditor button:last-child:hover,
+.ode-MultipleChoicePropertyEditor .gwt-Button:last-child:hover {
+  background-color: #6d28d9 !important;
+  border-color: #6d28d9 !important;
 }
 
 .ode-ColorChoicePropertyEditor {
