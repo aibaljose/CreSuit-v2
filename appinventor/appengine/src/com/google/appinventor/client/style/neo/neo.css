@@ -647,7 +647,8 @@ html, body {
 }
 
 .ode-Designer-RightColumns {
-  width: 222px;
+  width: 280px;
+  min-width: 280px;
   flex-shrink: 0;
 }
 
@@ -705,32 +706,115 @@ html, body {
   background: v-white;
 }
 
-.gwt-Tree .gwt-TreeItem span img {
-  height: 20px;
-  width: 20px;
-}
-
-.gwt-Tree .gwt-TreeItem {
-  font-size: 14px;
-  color: gray-700;
-  display: flex !important;
-  align-items: center;
-  height: 30px;
-  cursor: pointer;
-}
-
-.gwt-Tree .gwt-TreeItem-selected span,
-.gwt-Tree .gwt-TreeItem-selected span:hover {
-  background-color: row-highlight !important;
-}
-
-.gwt-Tree .gwt-TreeItem span,
-.gwt-Tree .gwt-TreeItem span:hover {
+.ode-SourceScrollPanel {
+  width: 100%;
+  min-width: 190px;
+  height: 100%;
+  min-height: 380px;
   background-color: v-white;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
-.gwt-Tree .gwt-TreeItem span:hover {
-  color: text-highlight;
+.ode-SourceScrollPanel .gwt-Tree {
+  width: 100%;
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree-focused {
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table {
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  width: auto;
+  min-width: 100%;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td {
+  vertical-align: middle;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child {
+  width: 20px;
+  min-width: 20px;
+  padding-right: 4px;
+  text-align: center;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child img {
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  vertical-align: middle;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child img:hover {
+  opacity: 0.95;
+  transform: scale(1.1);
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem {
+  font-size: 13px;
+  color: gray-700;
+  cursor: default;
+  display: block !important;
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected {
+  background: none !important;
+}
+
+/* Individual Component Item Card */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: v-white;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 5px 12px 5px 10px;
+  margin: 2px 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: gray-700;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Selected Component Item (Screen1 purple card in reference image) */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected span,
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected > span,
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected span:hover {
+  background-color: #d8d0f8 !important;
+  border: 1.5px solid #8b5cf6 !important;
+  color: #4c1d95 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.18) !important;
+}
+
+/* Component Icons inside Card */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span img {
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  margin-left: 0;
+  vertical-align: middle;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 /* Young Android Toolbar */
@@ -2150,7 +2234,8 @@ input[type="checkbox"]:focus {
 }
 
 .ode-Designer-RightColumns {
-  min-width: 222px;
+  min-width: 280px;
+  width: 280px;
 }
 
 

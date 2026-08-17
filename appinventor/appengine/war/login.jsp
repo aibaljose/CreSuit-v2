@@ -55,6 +55,9 @@
     <meta HTTP-EQUIV="expires" CONTENT="0"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>CreSuit - Authentication</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+    <link rel="shortcut icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
     
     <!-- Tailwind CSS v3 CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -82,37 +85,32 @@
       }
     </style>
   </head>
-  <body class="min-h-screen bg-[#edf0f7] flex items-center justify-center p-3 sm:p-6 md:p-8 antialiased text-slate-800">
+  <body class="min-h-screen w-full bg-white antialiased text-slate-800 flex flex-col lg:flex-row overflow-x-hidden">
     
-    <!-- Outer Card Shell -->
-    <div class="w-full max-w-4xl bg-[#edf0f7] rounded-[24px] sm:rounded-[32px] border border-slate-200/60 p-2.5 sm:p-3 md:p-4 relative overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)]">
+    <!-- Left Column: Form & Branding (Full height, 50% width on desktop) -->
+    <div class="w-full lg:w-1/2 min-h-screen flex flex-col justify-between p-6 sm:p-10 lg:p-12 xl:p-16 bg-white relative z-10">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
-        
-        <!-- Left Panel: Form & Branding -->
-        <div class="lg:col-span-6 flex flex-col justify-between p-3 sm:p-6 lg:p-7 min-h-[520px]">
-          
-          <!-- Header Logo / Brand -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="switchView('login')">
-              <div class="w-8 h-8 rounded-full bg-[#3557ff] flex items-center justify-center shadow-sm shadow-blue-500/20">
-                <!-- Geometric Flower/Snowflake SVG Logo -->
-                <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="3"/>
-                  <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
-                </svg>
-              </div>
-              <span class="text-lg font-bold text-slate-900 tracking-tight">CreSuit</span>
-            </div>
-
-            <!-- View Badge -->
-            <span id="view-badge" class="text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200/60 px-2 py-0.5 rounded-full">
-              Sign In
-            </span>
+      <!-- Top Brand Header -->
+      <div class="flex items-center justify-between w-full max-w-md mx-auto">
+        <div class="flex items-center space-x-3 cursor-pointer select-none" onclick="switchView('login')">
+          <div class="w-9 h-9 rounded-xl bg-[#3557ff] flex items-center justify-center shadow-md shadow-blue-500/20">
+            <!-- Geometric Flower/Snowflake SVG Logo -->
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+            </svg>
           </div>
+          <span class="text-xl font-extrabold text-slate-900 tracking-tight">CreSuit</span>
+        </div>
 
-          <!-- Main Interactive Container -->
-          <div class="w-full max-w-sm mx-auto my-auto py-1">
+        <!-- View Badge -->
+        <span id="view-badge" class="text-[11px] font-bold uppercase tracking-wider text-[#3557ff] bg-blue-50 border border-blue-200/60 px-3 py-1 rounded-full shadow-xs">
+          Sign In
+        </span>
+      </div>
+
+      <!-- Main Interactive Container -->
+      <div class="w-full max-w-md mx-auto my-auto py-6">
             
             <!-- Global Dynamic Alert Banner -->
             <div id="dynamic-alert" class="hidden mb-4 p-3 rounded-xl border-l-4 shadow-xs transition duration-200">
@@ -447,29 +445,29 @@
 
           </div>
 
-          <!-- Left Footer -->
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-medium">
-            <span class="text-slate-400">CreSuit &copy; <%= java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) %></span>
-            
-            <div class="flex items-center space-x-2.5">
-              <!-- Language selector links -->
-              <div class="inline-flex items-center space-x-1 text-[10px]">
-                <a href="<%= new UriBuilder("/login").add("locale", "zh_CN").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
-                   class="<%= locale.equals("zh_CN") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">ZH</a>
-                <span>·</span>
-                <a href="<%= new UriBuilder("/login").add("locale", "pt").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
-                   class="<%= locale.equals("pt") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">PT</a>
-                <span>·</span>
-                <a href="<%= new UriBuilder("/login").add("locale", "en").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ng", newGalleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
-                   class="<%= locale.equals("en") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">EN</a>
-              </div>
-            </div>
+      <!-- Left Footer -->
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium w-full max-w-md mx-auto">
+        <span class="text-slate-400">CreSuit &copy; <%= java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) %></span>
+        
+        <div class="flex items-center space-x-3">
+          <!-- Language selector links -->
+          <div class="inline-flex items-center space-x-1.5 text-xs">
+            <a href="<%= new UriBuilder("/login").add("locale", "zh_CN").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
+               class="<%= locale.equals("zh_CN") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">ZH</a>
+            <span>·</span>
+            <a href="<%= new UriBuilder("/login").add("locale", "pt").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
+               class="<%= locale.equals("pt") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">PT</a>
+            <span>·</span>
+            <a href="<%= new UriBuilder("/login").add("locale", "en").add("repo", repo).add("autoload", autoload).add("galleryId", galleryId).add("ng", newGalleryId).add("ui", uiPreference).add("redirect", redirect).build() %>" 
+               class="<%= locale.equals("en") ? "font-bold text-slate-800" : "hover:text-slate-600" %>">EN</a>
           </div>
-
         </div>
+      </div>
 
-        <!-- Right Panel: Blue Hero Card -->
-        <div class="lg:col-span-6 bg-[#3557ff] rounded-[20px] sm:rounded-[24px] p-6 sm:p-8 text-white flex flex-col justify-between relative overflow-hidden min-h-[480px] lg:min-h-[520px]">
+    </div>
+
+    <!-- Right Column: Blue Hero Card (Full height, 50% width on desktop) -->
+    <div class="hidden lg:flex lg:w-1/2 min-h-screen bg-[#3557ff] bg-gradient-to-br from-[#3b5bfd] via-[#3557ff] to-[#1e3ecb] p-10 xl:p-16 text-white flex-col justify-between relative overflow-hidden">
           
           <!-- Background Abstract Circles & Grid Overlay -->
           <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full border-[30px] border-white/5 pointer-events-none"></div>
@@ -597,8 +595,13 @@
             </div>
           </div>
 
-        </div>
-
+      <!-- Right Footer: Feature badges -->
+      <div class="relative z-10 flex items-center justify-between text-xs text-blue-100/70 border-t border-white/10 pt-4">
+        <span>Real-time Live Sync</span>
+        <span>•</span>
+        <span>Visual Block Coding</span>
+        <span>•</span>
+        <span>AI Assisted</span>
       </div>
 
     </div>
@@ -976,15 +979,42 @@
 
           authAction
             .then((userCredential) => {
-              // If registration, dispatch email verification
-              if (isRegister && userCredential.user) {
-                userCredential.user.sendEmailVerification().catch((e) => console.warn("Email verification send warning:", e));
+              if (isRegister) {
+                // Registration: send verification email and transition to verification screen
+                if (userCredential.user) {
+                  return userCredential.user.sendEmailVerification()
+                    .catch((e) => console.warn("Email verification send warning:", e))
+                    .then(() => {
+                      return firebase.auth().signOut();
+                    })
+                    .then(() => {
+                      if (submitBtn) submitBtn.disabled = false;
+                      if (spinner) spinner.classList.add('hidden');
+                      if (submitBtnText) submitBtnText.innerText = "Register";
+                      switchView('verify', { email: email });
+                      showBannerAlert("Account created! A verification link has been sent to " + email + ". Please verify your email before logging in.", "success");
+                    });
+                }
+                return;
               }
-              return userCredential.user.getIdToken();
-            })
-            .then((idToken) => {
-              firebaseTokenInput.value = idToken;
-              document.getElementById('loginForm').submit();
+
+              // Login: check if email is verified
+              if (userCredential.user && !userCredential.user.emailVerified) {
+                userCredential.user.sendEmailVerification().catch(() => {});
+                return firebase.auth().signOut().then(() => {
+                  if (submitBtn) submitBtn.disabled = false;
+                  if (spinner) spinner.classList.add('hidden');
+                  if (submitBtnText) submitBtnText.innerText = "Log In";
+                  switchView('verify', { email: email });
+                  showBannerAlert("Please verify your email address before signing in. A verification link has been sent to " + email + ".", "info");
+                });
+              }
+
+              // Email is verified -> proceed with login
+              return userCredential.user.getIdToken().then((idToken) => {
+                firebaseTokenInput.value = idToken;
+                document.getElementById('loginForm').submit();
+              });
             })
             .catch((err) => {
               console.warn("Client Firebase Auth failed, falling back to server:", err);

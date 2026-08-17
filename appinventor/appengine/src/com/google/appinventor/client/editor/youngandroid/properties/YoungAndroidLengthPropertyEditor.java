@@ -56,6 +56,8 @@ public class YoungAndroidLengthPropertyEditor extends AdditionalChoicePropertyEd
    * @param includePercent  whether to include percent of screen option
    */
   public YoungAndroidLengthPropertyEditor(boolean includePercent) {
+    super(true);
+
     // The radio button group cannot be shared across all instances, so we append a unique id.
     int uniqueId = ++uniqueIdSeed;
     String radioButtonGroup = "LengthType-" + uniqueId;
@@ -138,6 +140,48 @@ public class YoungAndroidLengthPropertyEditor extends AdditionalChoicePropertyEd
     });
 
     initAdditionalChoicePanel(panel);
+
+    // Build compound widget: [ Text value (80px) | (Fit content icon) (Fill parent icon) ]
+    com.google.gwt.user.client.ui.FlowPanel lengthContainer = new com.google.gwt.user.client.ui.FlowPanel();
+    lengthContainer.setStylePrimaryName("ode-LengthPropertyEditor");
+
+    summary.setStyleName("ode-LengthSummary");
+    lengthContainer.add(summary);
+
+    com.google.gwt.user.client.ui.FlowPanel buttonsGroup = new com.google.gwt.user.client.ui.FlowPanel();
+    buttonsGroup.setStylePrimaryName("ode-LengthActionButtons");
+
+    // Button 1: Fit Content / Automatic
+    com.google.gwt.user.client.ui.Button autoButton = new com.google.gwt.user.client.ui.Button(
+        "<svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 4H4v3M17 4h3v3M4 17v3h3M20 17v3h-3\"/><circle cx=\"12\" cy=\"12\" r=\"2.5\" fill=\"currentColor\" stroke=\"none\"/></svg>");
+    autoButton.setTitle(MESSAGES.automaticCaption());
+    autoButton.setStylePrimaryName("ode-LengthActionButton");
+    autoButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        property.setValue(CONST_AUTOMATIC);
+        updateValue();
+      }
+    });
+
+    // Button 2: Fill Parent / Match Parent
+    com.google.gwt.user.client.ui.Button fillButton = new com.google.gwt.user.client.ui.Button(
+        "<svg viewBox=\"0 0 24 24\" width=\"15\" height=\"15\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 3H3v3M18 3h3v3M3 18v3h3M21 18v3h-3\"/></svg>");
+    fillButton.setTitle(MESSAGES.fillParentCaption());
+    fillButton.setStylePrimaryName("ode-LengthActionButton");
+    fillButton.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        property.setValue(CONST_FILL_PARENT);
+        updateValue();
+      }
+    });
+
+    buttonsGroup.add(autoButton);
+    buttonsGroup.add(fillButton);
+    lengthContainer.add(buttonsGroup);
+
+    initWidget(lengthContainer);
   }
 
   @Override
@@ -186,12 +230,16 @@ public class YoungAndroidLengthPropertyEditor extends AdditionalChoicePropertyEd
     } else if (lengthHint.equals(CONST_FILL_PARENT)) {
       return MESSAGES.fillParentCaption();
     } else {
-      int v = Integer.parseInt(lengthHint);
-      if (v <= MockVisibleComponent.LENGTH_PERCENT_TAG) {
-        v = (-v) + MockVisibleComponent.LENGTH_PERCENT_TAG;
-        return MESSAGES.percentSummary("" + v);
-      } else {
-        return MESSAGES.pixelsSummary(lengthHint);
+      try {
+        int v = Integer.parseInt(lengthHint);
+        if (v <= MockVisibleComponent.LENGTH_PERCENT_TAG) {
+          v = (-v) + MockVisibleComponent.LENGTH_PERCENT_TAG;
+          return v + "%";
+        } else {
+          return lengthHint + "px";
+        }
+      } catch (NumberFormatException e) {
+        return lengthHint;
       }
     }
   }

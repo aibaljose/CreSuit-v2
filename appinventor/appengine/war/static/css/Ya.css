@@ -610,13 +610,7 @@ div.StatusPanel {
   padding-right: 4px;
   padding-left: 4px;
   align-items: center;
-  background-color: #f2f2f2;
-  background-image: -moz-linear-gradient(top, #f2f2f2, #f3f3f3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#f3f3f3));
-  background-image: -webkit-linear-gradient(top, #f2f2f2, #f3f3f3);
-  background-image: -o-linear-gradient(top, #f2f2f2, #f3f3f3);
-  background-image: linear-gradient(to bottom, #f2f2f2, #f3f3f3);
-  background-repeat: repeat-x;
+  background-color: #ffffff;
   border: 1px solid #d4d4d4;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff2f2f2', GradientType=0);
   *zoom: 1;
@@ -815,9 +809,119 @@ div.StatusPanel {
   flex-flow: column;
 }
 
+/* ==========================================================================
+   SourceStructureExplorer / Components Tree Panel (Modern Card Design)
+   ========================================================================== */
+
 .ode-SourceScrollPanel {
-  width: 200px;
-  height: 480px;
+  width: 100%;
+  min-width: 190px;
+  height: 100%;
+  min-height: 380px;
+  background-color: #ffffff;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.ode-SourceScrollPanel .gwt-Tree {
+  width: 100%;
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree-focused {
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table {
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  width: auto;
+  min-width: 100%;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td {
+  vertical-align: middle;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child {
+  width: 20px;
+  min-width: 20px;
+  padding-right: 4px;
+  text-align: center;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child img {
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  vertical-align: middle;
+}
+
+.ode-SourceScrollPanel .gwt-Tree table td:first-child img:hover {
+  opacity: 0.95;
+  transform: scale(1.1);
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem {
+  font-size: 13px;
+  color: #334155;
+  cursor: default;
+  display: block !important;
+  outline: none !important;
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected {
+  background: none !important;
+}
+
+/* Individual Component Item Card (Card_View1, Label1, Clock1, Screen1, etc.) */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 5px 12px 5px 10px;
+  margin: 2px 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Selected Component Item (Screen1 purple card in the reference image) */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected span,
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected > span,
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem-selected span:hover {
+  background-color: #d8d0f8 !important;
+  border: 1.5px solid #8b5cf6 !important;
+  color: #4c1d95 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.18) !important;
+}
+
+/* Component Icons inside the Card */
+.ode-SourceScrollPanel .gwt-Tree .gwt-TreeItem span img {
+  width: 15px;
+  height: 15px;
+  margin-right: 7px;
+  margin-left: 0;
+  vertical-align: middle;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .ode-NavArrow {
@@ -1289,28 +1393,63 @@ div.StatusPanel {
   font-size: small;
 }
 
+/* ==========================================================================
+   Properties Panel (Outlined Material Card Design - Expanded & Polished)
+   ========================================================================== */
+
+/* Width expansion for the properties column */
+.PropertiesBox,
+.ode-Designer-RightColumns,
+.ode-Box-properties,
+.ode-Box:has(.ode-PropertiesPanelOuter) {
+  min-width: 280px !important;
+  width: 280px !important;
+}
+
 .ode-PropertiesPanelOuter {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100% !important;
+  min-width: 270px;
+  background-color: #ffffff;
+  padding: 14px 16px 24px 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.ode-PropertiesPanelOuter::-webkit-scrollbar {
+  width: 6px;
+}
+.ode-PropertiesPanelOuter::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ode-PropertiesPanelOuter::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
 }
 
 .ode-PropertiesPanel {
-  background-color: #f7f9f2;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100% !important;
   gap: 0;
 }
 
+/* Header title: "Screen1 Properties" */
 .ode-PropertiesComponentName {
-  background-color: #eef2e0;
-  color: #555;
-  font-size: 13px;
-  border-bottom: 1px solid #d2d2d2;
-  padding: 9px 9px 8px 10px;
+  background-color: transparent;
+  color: #1e293b;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  padding: 0 0 12px 0;
+  margin: 0;
+  letter-spacing: -0.2px;
 }
 
+/* Category Section: "Appearance", "Common properties", etc. */
 .ode-PropertyCategory {
   display: flex;
   flex-direction: column;
@@ -1322,36 +1461,38 @@ div.StatusPanel {
   flex-direction: row;
   align-items: center;
   gap: 6px;
-  min-height: 16px;
-  font-size: 14px;
-  padding: 8px 8px;
+  min-height: 20px;
+  padding: 10px 0 8px 0;
   background-color: transparent;
-  color: #555;
+  color: #581c87;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
   user-select: none;
-  border-top: 1px solid #d2d2d2;
-  border-bottom: 1px solid #d2d2d2;
+  border: none;
+  border-top: 1px solid #f1f5f9;
 }
 
 .ode-PropertyCategoryIcon {
-  width: 16px;
-  height: 16px;
-  margin-top: 3px;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
   flex-shrink: 0;
-  transition: transform 0.3s ease-out;
+  transition: transform 0.2s ease-out;
   transform: rotate(90deg);
-  /* Default: rotate right-pointing arrow to point down */
+  opacity: 0.8;
 }
 
 .ode-PropertyCategoryIcon-closed {
   transform: rotate(0deg);
-  /* Closed: no rotation, shows right arrow */
 }
 
 .ode-PropertyCategoryText {
   flex-grow: 1;
-  line-height: 16px;
+  line-height: 20px;
   font-size: 14px;
+  font-weight: 700;
+  color: #581c87;
 }
 
 .ode-PropertyCategoryContent {
@@ -1359,46 +1500,78 @@ div.StatusPanel {
   flex-direction: column;
   width: 100%;
   max-height: 5000px;
-  overflow: hidden;
+  overflow: visible;
   transition: max-height 0.3s ease-out;
 }
 
 .ode-PropertyCategoryContent-closed {
   max-height: 0;
+  overflow: hidden;
 }
 
 .ode-PropertyCategoryContentInner {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 4px 0px 4px 8px;
+  padding: 4px 0 12px 0;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
+/* Outlined Property Field Card / Row */
 .ode-PropertyRow {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
+  width: 100% !important;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+  overflow: visible;
 }
 
+/* Floating / Outlined Legend Label resting on the top border */
 .ode-PropertyHeader {
-  display: flex;
-  flex-direction: row;
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background-color: #ffffff;
+  padding: 0 6px;
+  z-index: 10;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 10px 2px 1px 2px;
-  width: 100%;
+  width: auto;
+  max-width: calc(100% - 20px);
+  height: 18px;
+  line-height: 18px;
+  pointer-events: none;
+  box-sizing: border-box;
 }
 
 .ode-PropertyLabel {
-  color: #555;
-  font-size: 13px;
-  flex-shrink: 0;
+  color: #1e293b;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+  line-height: 18px;
+  background-color: #ffffff;
 }
 
 .ode-PropertyHelpWidget {
+  pointer-events: auto;
   flex-shrink: 0;
   cursor: pointer;
+  margin-left: 2px;
+  width: 13px;
+  height: 13px;
+  opacity: 0.45;
+  transition: opacity 0.15s ease;
+}
+
+.ode-PropertyHelpWidget:hover {
+  opacity: 0.9;
 }
 
 .ode-ComponentHelpPopup-Body {
@@ -1407,50 +1580,318 @@ div.StatusPanel {
   gap: 8px;
 }
 
-.ode-PropertyEditor {
-  padding: 3px;
+/* Base style for ALL property editor controls (inputs, textareas, buttons, dropdowns) */
+.ode-PropertyRow input.ode-PropertyEditor,
+.ode-PropertyRow textarea.ode-PropertyEditor,
+.ode-PropertyRow select.ode-PropertyEditor,
+.ode-PropertyRow button.ode-PropertyEditor,
+.ode-PropertyRow div.ode-PropertyEditor:not(:has(table)),
+.ode-PropertyRow input.gwt-TextBox,
+.ode-PropertyRow textarea.gwt-TextArea,
+.ode-PropertyRow select.gwt-ListBox,
+.ode-PropertyRow .ode-ChoicePropertyEditor,
+.ode-PropertyRow .ode-ColorChoicePropertyEditor {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  border: 1px solid #71717a !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  padding: 10px 12px 6px 12px !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  font-size: 13px !important;
+  line-height: 22px !important;
+  font-weight: 400;
+  color: #1e293b !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+  margin: 0 !important;
+  vertical-align: middle;
+  text-align: left !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-.ode-PropertyEditor:hover {
-  cursor: auto;
+.ode-PropertyRow input.ode-PropertyEditor:focus,
+.ode-PropertyRow textarea.ode-PropertyEditor:focus,
+.ode-PropertyRow select.ode-PropertyEditor:focus,
+.ode-PropertyRow button.ode-PropertyEditor:focus,
+.ode-PropertyRow input.gwt-TextBox:focus,
+.ode-PropertyRow textarea.gwt-TextArea:focus,
+.ode-PropertyRow select.gwt-ListBox:focus,
+.ode-PropertyRow .ode-ChoicePropertyEditor:focus,
+.ode-PropertyRow .ode-ColorChoicePropertyEditor:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 1px #7c3aed !important;
 }
 
-.ode-ChoicePropertyEditor {
-  padding: 3px;
-  border: thin solid #CCCCCC;
-  border-radius: 3px;
+/* Text Area specific sizing (e.g. AboutScreen) */
+.ode-PropertyRow textarea.ode-PropertyEditor,
+.ode-PropertyRow textarea.gwt-TextArea {
+  height: auto !important;
+  min-height: 56px !important;
+  resize: vertical;
+  padding: 12px 12px 8px 12px !important;
+  line-height: 18px !important;
+  display: block !important;
+}
+
+/* DropDown Buttons (ChoicePropertyEditor: FontTypeface, AlignHorizontal, etc.) */
+.ode-PropertyRow .ode-ChoicePropertyEditor,
+.ode-PropertyRow button.ode-ChoicePropertyEditor {
+  cursor: pointer !important;
+  position: relative !important;
+  padding-right: 32px !important;
+  justify-content: flex-start !important;
+}
+
+.ode-PropertyRow .ode-ChoicePropertyEditor .html-face,
+.ode-PropertyRow .ode-ChoicePropertyEditor span {
+  font-size: 13px !important;
+  color: #1e293b !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  line-height: 22px !important;
+}
+
+/* Add dropdown arrow icon to ChoicePropertyEditor */
+.ode-PropertyRow .ode-ChoicePropertyEditor::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23334155' stroke-width='2.2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  pointer-events: none !important;
+}
+
+/* Native select dropdowns */
+.ode-PropertyRow select.ode-PropertyEditor,
+.ode-PropertyRow select.gwt-ListBox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23334155' stroke-width='2.2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 13px 13px !important;
+  padding-right: 32px !important;
   cursor: pointer;
-  background-color: #FFFFFF;
-
-  box-shadow: #D3D3D3;
-  color: #575757;
-  width: auto;
-  text-align: center;
-  display: inline-block;
-  white-space: nowrap;
-
-  -o-transition: color .2s ease-out, background-color .2s ease-in;
-  -ms-transition: color .2s ease-out, background-color .2s ease-in;
-  -moz-transition: color .2s ease-out, background-color .2s ease-in;
-  -webkit-transition: color .2s ease-out, background-color .2s ease-in;
-  /* ...and now override with proper CSS property */
-  transition: color .2s ease-out, background .2s ease-in;
 }
 
-.ode-ChoicePropertyEditor:hover {
-  background: #E6E6E6;
-  color: #5B5B5B;
+/* Color property editor (Circle dot + text) */
+.ode-PropertyRow .ode-ColorChoicePropertyEditor {
+  cursor: pointer !important;
+  justify-content: flex-start !important;
 }
 
-.ode-ChoicePropertyEditor:focus {
-  border-color: rgba(82, 168, 236, 0.8);
-  outline: 0;
-  outline: thin dotted \9;
-  /* IE6-9 */
+.ode-PropertyRow .ode-ColorChoicePropertyEditor .html-face {
+  display: flex !important;
+  align-items: center !important;
+  font-size: 13px !important;
+  color: #1e293b !important;
+  line-height: 22px !important;
+}
 
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #D3D3D3;
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #D3D3D3;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.07), 0 0 8px #D3D3D3;
+.ode-PropertyRow .ode-ColorChoicePropertyEditor span.color-circle,
+.ode-PropertyRow .ode-ColorChoicePropertyEditor span:first-child,
+.ode-PropertyRow .ode-ColorBox {
+  display: inline-block !important;
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  margin-right: 8px !important;
+  border: 1px solid #94a3b8 !important;
+  vertical-align: middle !important;
+  flex-shrink: 0 !important;
+}
+
+/* Compound Length Property Editor (Height & Width with quick Fit Content / Fill Parent buttons) */
+.ode-PropertyRow .ode-LengthPropertyEditor,
+.ode-LengthPropertyEditor {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 42px !important;
+  min-height: 42px !important;
+  box-sizing: border-box !important;
+  border: 1px solid #71717a !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.ode-PropertyRow .ode-LengthPropertyEditor:focus-within,
+.ode-LengthPropertyEditor:focus-within {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 1px #7c3aed !important;
+}
+
+.ode-PropertyRow .ode-LengthPropertyEditor .ode-LengthSummary,
+.ode-LengthPropertyEditor .ode-LengthSummary,
+.ode-LengthSummary {
+  flex-grow: 1 !important;
+  width: auto !important;
+  height: 100% !important;
+  min-height: 40px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 10px 12px 6px 12px !important;
+  font-size: 13px !important;
+  line-height: 22px !important;
+  color: #1e293b !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+
+.ode-PropertyRow .ode-LengthPropertyEditor .ode-LengthActionButtons,
+.ode-LengthPropertyEditor .ode-LengthActionButtons,
+.ode-LengthActionButtons {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  height: 100% !important;
+  border-left: 1px solid #71717a !important;
+  flex-shrink: 0 !important;
+}
+
+.ode-PropertyRow .ode-LengthPropertyEditor .ode-LengthActionButton,
+.ode-LengthPropertyEditor .ode-LengthActionButton,
+.ode-LengthActionButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 100% !important;
+  min-height: 40px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+  box-shadow: none !important;
+}
+
+.ode-LengthActionButton + .ode-LengthActionButton {
+  border-left: 1px solid #e2e8f0 !important;
+}
+
+.ode-LengthActionButton:hover {
+  background-color: #f1f5f9 !important;
+  color: #7c3aed !important;
+}
+
+.ode-LengthActionButton svg {
+  display: block !important;
+  width: 15px !important;
+  height: 15px !important;
+  pointer-events: none !important;
+}
+
+/* Additional Choice Property Editor table wrapper (Background Image with buttons) */
+.ode-PropertyRow div.ode-PropertyEditor:has(table),
+.ode-PropertyRow .ode-PropertyEditor table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid #71717a !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+  height: 42px !important;
+  box-sizing: border-box !important;
+}
+
+.ode-PropertyRow div.ode-PropertyEditor:has(table) {
+  border: none !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.ode-PropertyRow .ode-PropertyEditor table td {
+  vertical-align: middle !important;
+  padding: 0 !important;
+}
+
+.ode-PropertyRow .ode-PropertyEditor table td select,
+.ode-PropertyRow .ode-PropertyEditor table td input {
+  border: none !important;
+  border-radius: 0 !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  padding: 8px 10px 4px 10px !important;
+  box-shadow: none !important;
+}
+
+.ode-PropertyRow .ode-PropertyEditor table td button,
+.ode-PropertyRow .ode-PropertyEditor table td .gwt-Button {
+  border: none !important;
+  border-left: 1px solid #cbd5e1 !important;
+  border-radius: 0 !important;
+  background: #ffffff !important;
+  height: 40px !important;
+  min-width: 32px !important;
+  padding: 6px 8px !important;
+  cursor: pointer;
+}
+
+.ode-PropertyRow .ode-PropertyEditor table td button:hover,
+.ode-PropertyRow .ode-PropertyEditor table td .gwt-Button:hover {
+  background: #f8fafc !important;
+}
+
+/* Checkbox Property: Clean inline layout */
+.ode-PropertyRow .gwt-CheckBox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #1e293b !important;
+  margin: 4px 0 !important;
+  cursor: pointer !important;
+  user-select: none;
+  min-height: 24px;
+  border: none !important;
+  padding: 0 !important;
+  height: auto !important;
+  background: transparent !important;
+}
+
+.ode-PropertyRow .gwt-CheckBox input[type="checkbox"] {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  border: 1.5px solid #64748b !important;
+  accent-color: #7c3aed !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+/* Hide overlapping header on boolean checkbox rows */
+.ode-PropertyRow:has(.gwt-CheckBox) .ode-PropertyHeader {
+  display: none !important;
+}
+
+.ode-PropertyRow:has(.gwt-CheckBox) {
+  margin-top: 10px !important;
+  margin-bottom: 8px !important;
 }
 
 select.ode-PropertyEditor[disabled] {
@@ -3849,8 +4290,21 @@ div.dropdiv p {
 
 .components-tree-filter {
   margin-top: 1px;
-  margin-left: 1px;
-  font-size: 11px;
+  margin-left: 2px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 10px;
+  background-color: #ffffff;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
+}
+
+.components-tree-filter:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
 }
 
 .ode-UserSettingsDialog .dialogContent {

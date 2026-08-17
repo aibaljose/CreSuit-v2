@@ -50,6 +50,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=10">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+    <link rel="shortcut icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
     <!--meta name="gwt:property" content="locale=en_US"-->
     <!-- Title is set at runtime. -->
     <title> </title>

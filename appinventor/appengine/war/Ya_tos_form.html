@@ -1,26 +1,163 @@
-<html>
+<!doctype html>
+<html lang="en" class="h-full">
   <head>
-    <title>Terms of Service</title>
-    <link type="text/css" rel="stylesheet" href="static/css/Ya.css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache"/>
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate"/>
+    <meta HTTP-EQUIV="expires" CONTENT="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CreSuit - Terms of Service</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+    <link rel="shortcut icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+    
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- TOS Query Param Helper -->
     <script src="static/js/tos.js"></script>
+
+    <style>
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #f1f5f9;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f8fafc;
+        border-radius: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
   </head>
+  <body class="min-h-screen bg-slate-100 flex items-center justify-center p-4 sm:p-6 md:p-8 antialiased text-slate-800">
+    
+    <!-- Card Container -->
+    <div class="w-full max-w-2xl bg-white rounded-3xl border border-slate-200/80 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.07)] overflow-hidden flex flex-col">
+      
+      <!-- Top Brand Header -->
+      <div class="p-6 sm:p-8 border-b border-slate-100 flex items-center justify-between bg-gradient-to-r from-slate-50/80 via-white to-blue-50/30">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-[#3557ff] flex items-center justify-center shadow-md shadow-blue-500/20">
+            <!-- Geometric Flower/Snowflake SVG Logo -->
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+            </svg>
+          </div>
+          <div>
+            <span class="text-xl font-extrabold text-slate-900 tracking-tight block leading-tight">CreSuit</span>
+            <span class="text-[11px] font-medium text-slate-400">Visual App Development Platform</span>
+          </div>
+        </div>
 
-<body>
+        <span class="text-xs font-bold uppercase tracking-wider text-[#3557ff] bg-blue-50 border border-blue-200/60 px-3 py-1 rounded-full shadow-xs">
+          Legal Agreement
+        </span>
+      </div>
 
-<div class="floatingBox">
-    To use App Inventor for Android, you must accept the following terms of service.
+      <!-- Title & Intro -->
+      <div class="px-6 sm:px-8 pt-6 pb-2">
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">Terms of Service</h1>
+        <p class="text-slate-500 text-xs sm:text-sm mt-1 leading-relaxed">
+          Please review the following terms and conditions before accessing the CreSuit workspace.
+        </p>
+      </div>
 
-    <H1>Terms of Service</H1>
+      <!-- Terms Scroll Box -->
+      <div class="px-6 sm:px-8 py-4 flex-1">
+        <div class="h-64 sm:h-72 overflow-y-auto custom-scrollbar p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/70 text-xs text-slate-600 space-y-4 leading-relaxed">
+          
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm mb-1">1. Acceptance of Terms</h3>
+            <p>
+              By accessing, browsing, or utilizing the CreSuit development platform, you agree to comply with and be bound by these Terms of Service. If you do not agree to all terms and conditions, you must not access or use this service.
+            </p>
+          </div>
 
-    You agree to have lots of fun learning to use App Inventor and making apps for your Android device!
-    <br>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm mb-1">2. Purpose & Educational Use</h3>
+            <p>
+              CreSuit is provided to empower students, educators, and developers to build, test, and innovate software solutions for mobile and web platforms. You agree to utilize this environment responsibly and respectfully.
+            </p>
+          </div>
 
-    <p></p>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm mb-1">3. Permitted Conduct & Content Policy</h3>
+            <p>
+              You agree not to create, upload, or distribute applications or media containing malicious code, phishing content, abusive materials, unauthorized personal data, or components intended to breach security protocols.
+            </p>
+          </div>
 
-    <FORM action="/ode/accept_tos" method="post">
-        <INPUT type="submit" class="ode-textbutton" value="I accept the terms of service!">
-    </FORM>
-</div>
-</body>
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm mb-1">4. Intellectual Property & Ownership</h3>
+            <p>
+              You retain ownership of the original applications, project blocks, and code you create within your CreSuit workspace. CreSuit and its associated source code, design libraries, and tools remain the intellectual property of their respective creators and licensors.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-800 text-sm mb-1">5. Service Availability & Modifications</h3>
+            <p>
+              While we strive to ensure continuous availability, CreSuit is provided on an "as is" and "as available" basis. We reserve the right to modify, enhance, or discontinue features to maintain security and platform health.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Form & Action Footer -->
+      <div class="p-6 sm:p-8 pt-2 bg-slate-50/50 border-t border-slate-100">
+        <form action="/ode/accept_tos" method="post" id="tosForm" class="space-y-4" onsubmit="return validateAgreement()">
+          
+          <!-- Agreement Checkbox -->
+          <label class="flex items-start space-x-3 cursor-pointer select-none">
+            <input type="checkbox" id="agree-checkbox" required class="mt-0.5 w-4 h-4 rounded border-slate-300 text-[#3557ff] focus:ring-[#3557ff] cursor-pointer">
+            <span class="text-xs text-slate-600 font-medium leading-normal">
+              I have read, understood, and agree to the <span class="font-semibold text-slate-800">Terms of Service</span> and platform usage guidelines.
+            </span>
+          </label>
+
+          <!-- Buttons Row -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+            <a href="/login" class="w-full sm:w-auto px-5 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-600 text-center transition shadow-xs">
+              Decline & Sign Out
+            </a>
+
+            <button type="submit" id="accept-btn" class="w-full sm:w-auto px-6 py-2.5 bg-[#3557ff] hover:bg-[#2848ed] text-white font-bold rounded-xl shadow-md shadow-blue-500/20 text-xs transition duration-150 active:scale-[0.99] cursor-pointer flex items-center justify-center space-x-2">
+              <span>Accept Terms & Continue</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <script>
+      function validateAgreement() {
+        const checkbox = document.getElementById('agree-checkbox');
+        if (!checkbox.checked) {
+          alert('Please check the box to confirm you agree to the Terms of Service.');
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </body>
 </html>

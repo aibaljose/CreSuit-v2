@@ -648,6 +648,23 @@ public class LoginServlet extends HttpServlet {
       return;
     }
 
+    // Require email verification before allowing access
+    if (isRegister || !emailVerified) {
+      String uri = new UriBuilder("/login")
+        .add("view", "verify")
+        .add("status", "verification_sent")
+        .add("email", verifiedEmail)
+        .add("locale", locale)
+        .add("repo", repo)
+        .add("autoload", autoload)
+        .add("ng", newGalleryId)
+        .add("ui", uiPreference)
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
+      return;
+    }
+
     // Look up existing user or register new user in Datastore
     User user = storageIo.getUserFromEmail(verifiedEmail);
     if (user == null) {

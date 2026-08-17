@@ -32,7 +32,7 @@ public abstract class AdditionalChoicePropertyEditor extends PropertyEditor {
   private static final int ADDITIONAL_CHOICE_ONSCREEN_PADDING = 10;
 
   // UI elements
-  private final TextBox summary;
+  protected final TextBox summary;
   protected PopupPanel popup;
   private Button okButton;
 
@@ -40,6 +40,15 @@ public abstract class AdditionalChoicePropertyEditor extends PropertyEditor {
    * Creates a new additional choice dialog.
    */
   protected AdditionalChoicePropertyEditor() {
+    this(false);
+  }
+
+  /**
+   * Creates a new additional choice dialog with optional custom widget initialization.
+   *
+   * @param customWidget if true, subclass will call initWidget with its own compound widget
+   */
+  protected AdditionalChoicePropertyEditor(boolean customWidget) {
     summary = new TextBox();
     summary.setReadOnly(true);
     summary.addClickHandler(new ClickHandler() {
@@ -57,7 +66,9 @@ public abstract class AdditionalChoicePropertyEditor extends PropertyEditor {
       }
     });
 
-    initWidget(summary);
+    if (!customWidget) {
+      initWidget(summary);
+    }
   }
 
   /**
