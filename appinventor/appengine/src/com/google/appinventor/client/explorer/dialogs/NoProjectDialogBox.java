@@ -49,6 +49,8 @@ public class NoProjectDialogBox extends DialogBox {
   @UiField
   Button closeDialogBox;
   @UiField
+  Button topCloseButton;
+  @UiField
   Button goToPurr;
   @UiField
   Button goToChat;
@@ -78,6 +80,7 @@ public class NoProjectDialogBox extends DialogBox {
     Roles.getDialogRole().set(getElement());
     getElement().setAttribute("aria-modal", "false"); // Not truly modal (auto-hide enabled)
     getElement().setAttribute("aria-label", "Welcome to MIT App Inventor - Get Started");
+    topCloseButton.getElement().setAttribute("aria-label", "Close dialog");
 
     noDialogNewProject.setFocus(true);
     lastDialog = this;
@@ -85,6 +88,11 @@ public class NoProjectDialogBox extends DialogBox {
 
   @UiHandler("closeDialogBox")
   void handleClose(ClickEvent e) {
+    this.hide();
+  }
+
+  @UiHandler("topCloseButton")
+  void handleTopClose(ClickEvent e) {
     this.hide();
   }
 

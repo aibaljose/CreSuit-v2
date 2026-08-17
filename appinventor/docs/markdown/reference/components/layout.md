@@ -9,8 +9,10 @@ title: Layout
 Table of Contents:
 
 * [AbsoluteArrangement](#AbsoluteArrangement)
+* [CardView](#CardView)
 * [HorizontalArrangement](#HorizontalArrangement)
 * [HorizontalScrollArrangement](#HorizontalScrollArrangement)
+* [SpaceView](#SpaceView)
 * [TableArrangement](#TableArrangement)
 * [VerticalArrangement](#VerticalArrangement)
 * [VerticalScrollArrangement](#VerticalScrollArrangement)
@@ -67,6 +69,73 @@ None
 
 
 ### Methods  {#AbsoluteArrangement-Methods}
+
+{:.methods}
+None
+
+
+## CardView  {#CardView}
+
+A container for components that arranges them in a Material Design card
+ (elevation + rounded corners), backed by an AndroidX CardView.
+
+
+
+### Properties  {#CardView-Properties}
+
+{:.properties}
+
+{:id="CardView.AlignHorizontal" .number} *AlignHorizontal*
+: A number that encodes how contents of the CardView are aligned horizontally. The choices are: 1 = left aligned, 2 = right aligned, 3 = horizontally centered.  Alignment has no effect if the arrangement's width is automatic.
+
+{:id="CardView.AlignVertical" .number} *AlignVertical*
+: A number that encodes how the contents of the CardView are aligned vertically. The choices are: 1 = aligned at the top, 2 = vertically centered, 3 = aligned at the bottom.  Alignment has no effect if the arrangement's height is automatic.
+
+{:id="CardView.BackgroundColor" .color} *BackgroundColor*
+: Specifies the background color of the CardView. The background color will not be visible if an Image is being displayed.
+
+{:id="CardView.CornerRadius" .number} *CornerRadius*
+: Sets the card corner radius.
+
+{:id="CardView.Elevation" .number} *Elevation*
+: Sets the card elevation.
+
+{:id="CardView.Height" .number .bo} *Height*
+: Specifies the `CardView`'s vertical height, measured in pixels.
+
+{:id="CardView.HeightPercent" .number .wo .bo} *HeightPercent*
+: Specifies the `CardView`'s vertical height as a percentage
+ of the [`Screen`'s `Height`](userinterface.html#Screen.Height).
+
+{:id="CardView.Image" .text} *Image*
+: Specifies the path of the background image for the CardView.  If there is both an Image and a BackgroundColor, only the Image will be visible.
+
+{:id="CardView.Left" .number} *Left*
+: Specifies the position of the Left edge of the component relative to an
+ AbsoluteArrangement.
+
+{:id="CardView.Top" .number} *Top*
+: Specifies the position of the Top edge of the component relative to an
+ AbsoluteArrangement.
+
+{:id="CardView.Visible" .boolean} *Visible*
+: Specifies whether the `CardView` should be visible on the screen.  Value is `true`{:.logic.block}
+ if the `CardView` is showing and `false`{:.logic.block} if hidden.
+
+{:id="CardView.Width" .number .bo} *Width*
+: Specifies the horizontal width of the `CardView`, measured in pixels.
+
+{:id="CardView.WidthPercent" .number .wo .bo} *WidthPercent*
+: Specifies the horizontal width of the `CardView` as a percentage
+ of the [`Screen`'s `Width`](userinterface.html#Screen.Width).
+
+### Events  {#CardView-Events}
+
+{:.events}
+None
+
+
+### Methods  {#CardView-Methods}
 
 {:.methods}
 None
@@ -230,6 +299,54 @@ None
 
 
 ### Methods  {#HorizontalScrollArrangement-Methods}
+
+{:.methods}
+None
+
+
+## SpaceView  {#SpaceView}
+
+Component for SpaceView
+
+
+
+### Properties  {#SpaceView-Properties}
+
+{:.properties}
+
+{:id="SpaceView.Height" .number .bo} *Height*
+: Specifies the `SpaceView`'s vertical height, measured in pixels.
+
+{:id="SpaceView.HeightPercent" .number .wo .bo} *HeightPercent*
+: Specifies the `SpaceView`'s vertical height as a percentage
+ of the [`Screen`'s `Height`](userinterface.html#Screen.Height).
+
+{:id="SpaceView.Left" .number} *Left*
+: Specifies the position of the Left edge of the component relative to an
+ AbsoluteArrangement.
+
+{:id="SpaceView.Top" .number} *Top*
+: Specifies the position of the Top edge of the component relative to an
+ AbsoluteArrangement.
+
+{:id="SpaceView.Visible" .boolean} *Visible*
+: Specifies whether the `SpaceView` should be visible on the screen.  Value is `true`{:.logic.block}
+ if the `SpaceView` is showing and `false`{:.logic.block} if hidden.
+
+{:id="SpaceView.Width" .number .bo} *Width*
+: Specifies the horizontal width of the `SpaceView`, measured in pixels.
+
+{:id="SpaceView.WidthPercent" .number .wo .bo} *WidthPercent*
+: Specifies the horizontal width of the `SpaceView` as a percentage
+ of the [`Screen`'s `Width`](userinterface.html#Screen.Width).
+
+### Events  {#SpaceView-Events}
+
+{:.events}
+None
+
+
+### Methods  {#SpaceView-Methods}
 
 {:.methods}
 None

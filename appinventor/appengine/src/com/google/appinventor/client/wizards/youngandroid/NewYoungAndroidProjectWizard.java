@@ -64,6 +64,7 @@ public class NewYoungAndroidProjectWizard {
   @UiField protected Button addButton;
   @UiField protected Button cancelButton;
   @UiField protected LabeledTextBox projectNameTextBox;
+  @UiField protected LabeledTextBox packageNameTextBox;
   @UiField(provided = true) YoungAndroidThemeChoicePropertyEditor themeEditor;
   @UiField(provided = true) SubsetJSONPropertyEditor blockstoolkitEditor;
   @UiField protected FlowPanel horizontalThemePanel;
@@ -179,8 +180,10 @@ public class NewYoungAndroidProjectWizard {
   public void createProject(String projectName) {
     if (TextValidators.checkNewProjectName(projectName)
             == TextValidators.ProjectNameStatus.SUCCESS) {
-      String packageName = StringUtils.getProjectPackage(
-          Ode.getInstance().getUser().getUserEmail(), projectName);
+      String customPackage = packageNameTextBox != null ? packageNameTextBox.getText().trim() : "";
+      String packageName = !customPackage.isEmpty()
+          ? customPackage
+          : StringUtils.getProjectPackage(Ode.getInstance().getUser().getUserEmail(), projectName);
       NewYoungAndroidProjectParameters parameters = new NewYoungAndroidProjectParameters(
           packageName, theme.getValue(), toolkit.getValue());
       NewProjectWizard.NewProjectCommand callbackCommand = new NewProjectWizard.NewProjectCommand() {

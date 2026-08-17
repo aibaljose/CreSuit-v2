@@ -11,6 +11,7 @@ import com.google.appinventor.client.editor.simple.components.MockAbsoluteArrang
 import com.google.appinventor.client.editor.simple.components.MockBall;
 import com.google.appinventor.client.editor.simple.components.MockButton;
 import com.google.appinventor.client.editor.simple.components.MockCanvas;
+import com.google.appinventor.client.editor.simple.components.MockCardView;
 import com.google.appinventor.client.editor.simple.components.MockChart;
 import com.google.appinventor.client.editor.simple.components.MockChartData2D;
 import com.google.appinventor.client.editor.simple.components.MockChatBot;
@@ -48,6 +49,7 @@ import com.google.appinventor.client.editor.simple.components.MockRectangle;
 import com.google.appinventor.client.editor.simple.components.MockScrollHorizontalArrangement;
 import com.google.appinventor.client.editor.simple.components.MockScrollVerticalArrangement;
 import com.google.appinventor.client.editor.simple.components.MockSlider;
+import com.google.appinventor.client.editor.simple.components.MockSpaceView;
 import com.google.appinventor.client.editor.simple.components.MockSpinner;
 import com.google.appinventor.client.editor.simple.components.MockSpreadsheet;
 import com.google.appinventor.client.editor.simple.components.MockSwitch;
@@ -180,6 +182,8 @@ public class BaseComponentFactory implements ComponentFactory {
       return new MockTableArrangement(editor);
     } else if (name.equals(MockAbsoluteArrangement.TYPE)) {
       return new MockAbsoluteArrangement(editor);
+    } else if (name.equals(MockCardView.TYPE)) {
+      return new MockCardView(editor);
     } else if (name.equals(MockImageSprite.TYPE)) {
       return new MockImageSprite(editor);
     } else if (name.equals(MockBall.TYPE)) {
@@ -216,6 +220,8 @@ public class BaseComponentFactory implements ComponentFactory {
       return new MockLinearProgress(editor);
     } else if (name.equals(MockTrendline.TYPE)) {
       return new MockTrendline(editor);
+    } else if (name.equals(MockSpaceView.TYPE)) {
+      return new MockSpaceView(editor);
     } else {
       // TODO(user): add 3rd party mock component proxy here
       throw new UnsupportedOperationException("unknown component: " + name);

@@ -14,36 +14,21 @@ they get cut off in Windows.
 
 @external .*;
 
-body {
-  background: lightgrey;
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  background: rgb(255, 255, 255);
   font-family: Poppins, Helvetica, Arial, sans-serif;
 }
 
 .ode-Logo {
-    content: logo-image;
-    height: 37px;
-    width: 167px;
-    display: inline-block;
+  content: logo-image;
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+  display: inline-block;
 }
-
-.dyslexic * {
-  font-family: OpenDyslexic, Poppins, Helvetica, Arial, sans-serif;
-}
-
-/* For the TOS Form*/
-.floatingBox {
-  background-color: v-white;
-  box-shadow: 0 0 4px container-shadow;
-  border: 1px gray-800;
-}
-
-.ode-Root {
-  background: v-white;
-}
-
-/*
-   * Context menus
-   */
 
 .ode-ContextMenu {
   background-color: v-white;
@@ -51,7 +36,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
   padding: 6px;
-  overflow: hidden;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
 }
 
 .ode-ContextMenuItem,
@@ -100,6 +86,7 @@ body {
 .ode-Box-toolkit {
   /*all: unset;*/
 }
+
 .ode-Box-header {
   /* all: unset; */
   visibility: collapse;
@@ -111,15 +98,14 @@ body {
   /*all: unset;*/
 }
 
-.ode-Box-header-caption {
-}
+.ode-Box-header-caption {}
 
 .ode-Box-header-caption-highlighted {
-  color: v-red; /* too strong, but use red for now */
+  color: v-red;
+  /* too strong, but use red for now */
 }
 
-.ode-Box-body {
-}
+.ode-Box-body {}
 
 .ode-Box-body-padding {
   padding: unset;
@@ -132,70 +118,61 @@ body {
 /*
    * MessagesOutputBox
    */
-  .ode-MessagesOutput {
-    background-color: background-color;
-  }
+.ode-MessagesOutput {
+  background-color: background-color;
+}
 
-  /*
+/*
    * ProjectList and CopyYoungAndroidProjectCommand.CopyProjectDialog
    */
 .ode-ProjectListButton {
-  border: 1px solid;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 4px 10px;
-  transition: background 0.2s, opacity 0.1s;
-  color: gray-800;
-  font-family: "Poppins", Helvetica, sans-serif;
-  font-weight: 500;
-  font-size: 1.06em;
-  white-space: nowrap;
-  background-color: clr-primary;
-  border-color: gray-800;
-  box-shadow: 1px 1px;
-  cursor: pointer;
-  border-radius: 4px;
+  background-color: #ffffff !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  padding: 6px 16px !important;
+  color: #4527a0 !important;
+  font-family: "Poppins", "Inter", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.925rem !important;
+  box-shadow: none !important;
+  transition: all 0.15s ease-in-out !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin: 0 4px !important;
+}
+
+.ode-ProjectListButton:hover {
+  background-color: #f4effc !important;
+  border-color: #c7bee3 !important;
+  color: #311b92 !important;
+}
+
+.ode-ProjectListButton .material-icons {
+  font-size: 18px !important;
+  color: #4527a0 !important;
 }
 
 .ode-ProjectListButton .html-face {
   display: flex;
-  flex-grow: 1;
+  align-items: center;
+  gap: 6px;
 }
 
-.ode-ProjectListButton-up-hovering {
-  background-color: #7d9d36;
+.ode-ProjectListButton[name="Gallery"],
+.ode-ProjectListButton[name="Login to Gallery"],
+.ode-ProjectListButton[name="Send to Gallery"],
+.ode-ProjectListButton[name="ToggleConsole"] {
+  display: none !important;
 }
 
-.ode-ProjectListButton-down-hovering {
-  border: 1px inset;
-  box-shadow: inset 0 2px 4px button-shadow-color, 0 1px 2px v-black-shadow;
+.bleft, .bcenter, .bright {
+  border-radius: 8px !important;
+  border-width: 1px !important;
 }
 
-.ode-ProjectListButton-up-disabled,
-.ode-ProjectListButton-down-disabled {
-  opacity: 0.5;
-  box-shadow: none;
-  pointer-events: none;
-}
-
-.bleft {
-  border-radius: 4px 0 0 4px;
-  flex-basis: 0;
-}
-
-.bright {
-  border-radius: 0 4px 4px 0;
-}
-
-.bcenter {
-  border-radius: 0;
-  border-width: 1px 0;
-}
-
-.bcenter + .bcenter {
+.bcenter+.bcenter {
   border-left-width: 1px;
 }
 
@@ -259,57 +236,155 @@ body {
   cursor: pointer;
 }
 
+.ode-ProjectNameLabel {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  width: auto !important;
+  height: auto !important;
+}
+
 .ode-ProjectFieldLabel {
-  /* all: unset; */
   font-family: Poppins, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 1.1em;
-  color: v-black;
-  width: 200px;
-  height: 30px;
-  align-items: center;
-  display: inline-flex;
+  font-size: 0.825rem !important;
+  color: #64748b !important;
+  width: auto !important;
+  height: auto !important;
+  display: flex;
 }
 
 .ode-ProjectTable {
-  /*all: unset;*/
-  border: 1px solid gray-300;
-  border-radius: 4px;
-  overflow: auto;
-  height: auto;
-  width: auto;
-}
-
-.ode-ProjectRowHighlighted {
-  background-color: row-highlight !important;
-}
-
-.ode-ProjectRowUnHighlighted {
-  /*all: unset;*/
-  display: flex;
-  align-items: center;
-  height: 30px;
-  grid-gap: 10px;
-  border-radius: 4px;
-  background: v-white;
-}
-
-.ode-ProjectFolderList {
-  margin-left: 42px;
-  background-color: v-white;
+  border: none !important;
+  background: transparent !important;
+  padding: 16px 24px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .ode-ProjectHeaderRow {
-  /*all: unset;*/
+  display: none !important;
+}
+
+.ode-ProjectRowList {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 20px !important;
+  padding: 16px 0 !important;
+  width: 100% !important;
+}
+
+.ode-ProjectFolderHeader {
+  width: 100% !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+}
+
+.ode-GreenHeroContainer {
+  width: 100% !important;
+  height: 200px !important;
+  background-color: #a5cf47 !important;
+  border-radius: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  margin-bottom: 24px !important;
+  box-shadow: 0 4px 14px rgba(165, 207, 71, 0.3) !important;
+  box-sizing: border-box !important;
+}
+
+.ode-ProjectCard,
+.ode-ProjectRowUnHighlighted,
+.ode-ProjectRowHighlighted {
+  width: 320px;
+  min-height: 240px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.ode-ProjectCard:hover,
+.ode-ProjectRowUnHighlighted:hover,
+.ode-ProjectRowHighlighted:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 25px -5px rgba(69, 39, 160, 0.15) !important;
+  border-color: #c7bee3 !important;
+}
+
+.ode-ProjectRowHighlighted {
+  border-color: #4527a0 !important;
+  background: #f4effc !important;
+}
+
+.ode-ProjectCardBadgeCircle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4527a0, #673ab7);
+  color: #ffffff;
   display: flex;
   align-items: center;
-  height: 40px;
-  grid-gap: 10px;
-  border-bottom: 1px solid gray-300;
-  border-radius: 4px;
-  background: v-white;
-  font-weight: 600;
-  font-size: 1.15em;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 6px auto 10px auto;
+  box-shadow: 0 4px 10px rgba(69, 39, 160, 0.25);
+}
+
+.ode-ProjectCardDates {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.ode-ProjectCardDate {
+  font-size: 0.725rem !important;
+  color: #64748b !important;
+  text-align: center !important;
+}
+
+.ode-ProjectCardFooter {
+  width: 100%;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+.ode-ProjectCardFooterIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #64748b;
+}
+
+.ode-ProjectCardFooterIcons .material-icons {
+  font-size: 18px !important;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.ode-ProjectCardFooterIcons .material-icons:hover {
+  color: #4527a0 !important;
 }
 
 .ode-ProjectCheckBox {
@@ -327,7 +402,7 @@ body {
   width: 200px;
 }
 
-.ode-ProjectHeaderRow > div {
+.ode-ProjectHeaderRow>div {
   display: flex;
 }
 
@@ -388,17 +463,13 @@ body {
    */
 
 .ode-TopPanel {
-  /*all: unset;*/
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 4px 16px;
-  border-bottom: 1px solid gray-200;
-  grid-gap: 16px;
-  overflow: hidden;
+  border-bottom: 1px solid #e2e8f0;
   min-height: 52px;
-  background-color: v-white;
-  background-image: unset;
+  background-color: #ffffff !important;
 }
 
 
@@ -449,7 +520,7 @@ body {
 }
 
 .ode-TopPanelAccount a {
-  color: #669900;
+  color: #000000;
 }
 
 .ode-TopPanelAccount .linkdivider {
@@ -490,8 +561,7 @@ body {
   filter: drop-shadow(0px 0px 3px gray-700);
 }
 
-.ode-TopPanelIconButton:active {
-}
+.ode-TopPanelIconButton:active {}
 
 .ode-TopPanelButton,
 .ActionDropDown-Default,
@@ -572,14 +642,14 @@ body {
   background-color: darkgray;
 }
 
-  .ode-Designer-LeftColumn {
-    min-width: 265px;
-  }
+.ode-Designer-LeftColumn {
+  min-width: 265px;
+}
 
-  .ode-Designer-RightColumns {
-    width: 222px;
-    flex-shrink: 0;
-  }
+.ode-Designer-RightColumns {
+  width: 222px;
+  flex-shrink: 0;
+}
 
 .ode-WorkColumns {
   overflow: auto;
@@ -587,12 +657,13 @@ body {
   /*border-radius: 4px*/
 }
 
-.ode-WorkColumns > * {
+.ode-WorkColumns>* {
   overflow: auto;
   border-right: 1px solid gray-400;
 }
 
-/* StatusPanel */ .ode-StatusPanel {
+/* StatusPanel */
+.ode-StatusPanel {
   color: gray-550;
   background: url(../images/toolbarBG.png) repeat;
   border-bottom: 1px solid #bbccff;
@@ -689,6 +760,7 @@ body {
   padding-right: 20px;
   text-shadow: none;
 }
+
 .ode-TextButton,
 .gwt-Button {
   /* all: unset; */
@@ -813,7 +885,8 @@ body {
 }
 
 .ode-SimplePaletteItem {
-  background-color: v-white; /* needed on Firefox */
+  background-color: v-white;
+  /* needed on Firefox */
   padding: 13px 5px 5px 5px;
 }
 
@@ -877,7 +950,7 @@ body {
   font-size: 14px;
 }
 
-.ode-PropertiesPanel .gwt-DisclosurePanel > tbody > tr > td > a {
+.ode-PropertiesPanel .gwt-DisclosurePanel>tbody>tr>td>a {
   background-color: v-white;
   border: thin solid gray-300;
   padding-left: 5px;
@@ -967,6 +1040,7 @@ select.ode-PropertyEditor[disabled] {
   background-size: 100% 100%;
   padding: 15px 56px 12px 64px;
 }
+
 .ode-SimpleMockFormPhonePortraitTablet {
   background: phonePortraitTablet;
   background-repeat: no-repeat;
@@ -974,6 +1048,7 @@ select.ode-PropertyEditor[disabled] {
   background-size: 100% 100%;
   padding: 64px 13px 55px 13px;
 }
+
 .ode-SimpleMockFormPhoneLandscapeMonitor {
   background: phoneLandscapeMonitor;
   background-repeat: no-repeat;
@@ -1035,6 +1110,7 @@ select.ode-PropertyEditor[disabled] {
 .ode-SimpleMockFormNavigationBarPortrait {
   background-image: navigationbarPortrait;
 }
+
 .ode-SimpleMockFormNavigationBarLandscape {
   background-image: navigationbarLandscape;
 }
@@ -1099,6 +1175,7 @@ select.ode-PropertyEditor[disabled] {
 .ode-SimpleMockFormPhonePortrait .ode-SimpleMockForm {
   width: 320px;
 }
+
 .ode-DialogBox .gwt-Tree {
   /* all: unset; */
   margin: 0 20px 20px 20px;
@@ -1113,7 +1190,7 @@ select.ode-PropertyEditor[disabled] {
 }
 
 .ode-DialogBox .dialogContent td a {
-    color: selected-color;
+  color: selected-color;
 }
 
 .ode-DialogBox .download-button span {
@@ -1121,51 +1198,8 @@ select.ode-PropertyEditor[disabled] {
 }
 
 .ode-SimpleMockContainer {
-    border: 2px solid tab-bar-color;
-  }
-
-  .ode-SimpleMockContainer-selected {
-    border: 2px solid selected-color;
-  }
-
-  .ode-SimpleMockComponent-disabled {
-    color: gray-500;
-  }
-
-  .ode-SimpleMockComponent-selected {
-    border: 2px solid selected-color;
-  }
-
-  .ode-SimpleMockMapFeature-selected svg * {
-    stroke: selected-color;
-  }
-
-  path.ode-SimpleMockMapFeature-selected {
-    stroke: selected-color;
-  }
-
-  .ode-SimpleMockMapFeature-selected img {
-    border: 2px solid selected-color;
-  }
-
-  .ode-SimpleMockContainer .leaflet-container .leaflet-toolbar-icon {
-    color: Gray-700;
-  }
-
-  .ode-SimpleMockContainer .leaflet-container .leaflet-toolbar-icon:hover {
-    color: #0078A8;
-  }
-
-  .ode-SimpleMockButton {
-    background-color: #d6d7d7;
-    border-bottom: 2px gray-500 solid;
-    border-color: shadow-color;
-    border-radius: 0;
-  }
-
-  .spinnerComponentStyle {
-    outline: 1px solid lightgray;
-  }
+  border: 2px solid tab-bar-color;
+}
 
 .ode-SimpleMockContainer-selected {
   border: 2px solid selected-color;
@@ -1191,75 +1225,120 @@ path.ode-SimpleMockMapFeature-selected {
   border: 2px solid selected-color;
 }
 
-  .ode-DialogBox .dialogTop {
-    background-color: background-color;
-  }
-  
-  .ode-DialogBox .dialogContent {
-    color: context-menu-color;
-  }
-  
-  .ode-DialogBox .dialogContent td {
-    padding: 2px 5px;
-    color: context-menu-color;
-  }
+.ode-SimpleMockContainer .leaflet-container .leaflet-toolbar-icon {
+  color: Gray-700;
+}
 
-  .ode-DialogBox .settings-labeled-textbox td:first-child {
-    width: 60%;
-  }
-  
-  .ode-DialogBox .uploadDialogContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .ode-DialogBox .gwt-FileUpload {
-    padding: 2px 35px;
-    font-size: 12px;
-    color: context-menu-color;
-  }
-  
-  .ode-DialogBox .buttonRow {
-    padding: 10px;
-  }
-  
-  /* AI2 Extensions Styles */
-  
-  a.ode-ExtensionAnchor {
-    color: grey;
-  }
-  
-  a.ode-ExtensionAnchor:hover {
-    color: #5B5B5B;
-  }
-  
-  /* AndroidServlet */
-  
-  .ode-Android-caption {
-    background-color: #8fc202;
-    color: background-color;
-  }
-  
-  .ode-Android-footer {
-    background-color: #D6E9F8;
-    color: tab-bar-color;
-  }
-  
-  .gwt-ProgressBar-shell {
-    border: 2px solid #faf9f7;
-    border-right: 2px solid #848280;
-    border-bottom: 2px solid #848280;
-    background-color: #AAAAAA;
-  }
-  .gwt-ProgressBar-shell .gwt-ProgressBar-bar {
-    background-color: #8fc202;
-  }
-  .gwt-ProgressBar-shell .gwt-ProgressBar-text {
-    color: background-color;
-  }
-  
-  /*
+.ode-SimpleMockContainer .leaflet-container .leaflet-toolbar-icon:hover {
+  color: #0078A8;
+}
+
+.ode-SimpleMockButton {
+  background-color: #d6d7d7;
+  border-bottom: 2px gray-500 solid;
+  border-color: shadow-color;
+  border-radius: 0;
+}
+
+.spinnerComponentStyle {
+  outline: 1px solid lightgray;
+}
+
+.ode-SimpleMockContainer-selected {
+  border: 2px solid selected-color;
+}
+
+.ode-SimpleMockComponent-disabled {
+  color: gray-500;
+}
+
+.ode-SimpleMockComponent-selected {
+  border: 2px solid selected-color;
+}
+
+.ode-SimpleMockMapFeature-selected svg * {
+  stroke: selected-color;
+}
+
+path.ode-SimpleMockMapFeature-selected {
+  stroke: selected-color;
+}
+
+.ode-SimpleMockMapFeature-selected img {
+  border: 2px solid selected-color;
+}
+
+.ode-DialogBox .dialogTop {
+  background-color: background-color;
+}
+
+.ode-DialogBox .dialogContent {
+  color: context-menu-color;
+}
+
+.ode-DialogBox .dialogContent td {
+  padding: 2px 5px;
+  color: context-menu-color;
+}
+
+.ode-DialogBox .settings-labeled-textbox td:first-child {
+  width: 60%;
+}
+
+.ode-DialogBox .uploadDialogContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ode-DialogBox .gwt-FileUpload {
+  padding: 2px 35px;
+  font-size: 12px;
+  color: context-menu-color;
+}
+
+.ode-DialogBox .buttonRow {
+  padding: 10px;
+}
+
+/* AI2 Extensions Styles */
+
+a.ode-ExtensionAnchor {
+  color: grey;
+}
+
+a.ode-ExtensionAnchor:hover {
+  color: #5B5B5B;
+}
+
+/* AndroidServlet */
+
+.ode-Android-caption {
+  background-color: #8fc202;
+  color: background-color;
+}
+
+.ode-Android-footer {
+  background-color: #D6E9F8;
+  color: tab-bar-color;
+}
+
+.gwt-ProgressBar-shell {
+  border: 2px solid #faf9f7;
+  border-right: 2px solid #848280;
+  border-bottom: 2px solid #848280;
+  background-color: #AAAAAA;
+}
+
+.gwt-ProgressBar-shell .gwt-ProgressBar-bar {
+  background-color: #8fc202;
+}
+
+.gwt-ProgressBar-shell .gwt-ProgressBar-text {
+  color: background-color;
+}
+
+/*
 .ode-SimpleMockContainer .leaflet-container .leaflet-toolbar-icon {
   color: gray-550;
 }
@@ -1374,60 +1453,61 @@ path.ode-SimpleMockMapFeature-selected {
 
 /* Start of NoProjectsDialogBox. */
 .ode-noDialogDiv {
-    box-shadow: 0 0 10px gray-500;
-    background-color: v-white;
+  box-shadow: 0 0 10px gray-500;
+  background-color: v-white;
 }
 
 .ode-noDialogDivHeader {
-    background-color: selected-color;
-    border-bottom: 1px gray-200 solid;
+  background-color: selected-color;
+  border-bottom: 1px gray-200 solid;
 }
 
 .ode-headerTitle {
-    color: v-white;
+  color: v-white;
 }
 
 .ode-tutorialsTitle {
-    color: v-black;
+  color: v-black;
 }
 
 .ode-noDialogExampleDiv {
-    box-shadow: 0 0 2px gray-500;
+  box-shadow: 0 0 2px gray-500;
 }
 
 .ode-noDialogExampleDivs {
-    color: gray-700;
+  color: gray-700;
 }
 
 .ode-tutorialButton {
-    background-color: v-white;
-    border: 1px clr-primary solid;
-    color: clr-primary;
+  background-color: v-white;
+  border: 1px clr-primary solid;
+  color: clr-primary;
 }
 
 .ode-tutorialButton:hover {
-    background-color: clr-primary;
-    color: v-white;
+  background-color: clr-primary;
+  color: v-white;
 }
 
 .ode-closeDialogBox {
-    background-color: v-white;
-    border: 1px gray-700 solid;
-    color: gray-700;
+  background-color: v-white;
+  border: 1px gray-700 solid;
+  color: gray-700;
 }
 
 .ode-closeDialogBox:hover {
-    background-color: gray-200;
+  background-color: gray-200;
 }
+
 .ode-noDialogNewProject {
-    background-color: v-white;
-    border: 1px clr-primary solid;
-    color: clr-primary;
+  background-color: v-white;
+  border: 1px clr-primary solid;
+  color: clr-primary;
 }
 
 .ode-noDialogNewProject:hover {
-    background-color: clr-primary;
-    color: v-white;
+  background-color: clr-primary;
+  color: v-white;
 }
 
 /* End of NoProjectsDialogBox. */
@@ -1444,8 +1524,7 @@ path.ode-SimpleMockMapFeature-selected {
   overflow: hidden !important;
 }
 
-.DialogBox-message {
-}
+.DialogBox-message {}
 
 .ode-DialogBox .gwt-Label {
   padding-left: unset;
@@ -1531,9 +1610,11 @@ a.ode-ExtensionAnchor:hover {
   border-bottom: 2px solid gray-550;
   background-color: gray-450;
 }
+
 .gwt-ProgressBar-shell .gwt-ProgressBar-bar {
   background-color: selected-color;
 }
+
 .gwt-ProgressBar-shell .gwt-ProgressBar-text {
   color: v-white;
 }
@@ -1549,9 +1630,9 @@ a.ode-ExtensionAnchor:hover {
 }
 
 .gwt-PopupPanelGlass {
-    z-index: 1000;
-    background-color: v-black;
-    opacity: 0.3;
+  z-index: 1000;
+  background-color: v-black;
+  opacity: 0.3;
 }
 
 /*
@@ -1580,8 +1661,7 @@ input[type="color"],
 
 input,
 textarea,
-.uneditable-input {
-}
+.uneditable-input {}
 
 textarea,
 input[type="text"],
@@ -1605,6 +1685,7 @@ input[type="color"],
   transition: border linear 0.2s, box-shadow linear 0.2s;
   font-size: 10px;
 }
+
 /* delete? */
 textarea:focus,
 input[type="text"]:focus,
@@ -1656,6 +1737,7 @@ input[type="checkbox"]:focus {
   border-color: gray-300;
   box-shadow: inset 0 1px 2px v-black-shadow;
 }
+
 /*   warning
   input:-moz-placeholder,
   textarea:-moz-placeholder {
@@ -1717,9 +1799,11 @@ input[type="checkbox"]:focus {
 .ode-UserProfileWrapper .profile-textdisplay {
   color: gray-700;
 }
+
 .ode-UserProfileWrapper .profile-textlabel {
   color: gray-500;
 }
+
 .profile-textlabel-emaildescription {
   color: gray-500;
 }
@@ -1729,6 +1813,7 @@ input[type="checkbox"]:focus {
 .gallery .gwt-TabBar .gwt-TabBarItem {
   color: gray-500;
 }
+
 .gallery .gwt-TabBar .gwt-TabBarItem-selected {
   color: gray-900;
 }
@@ -1738,11 +1823,13 @@ input[type="checkbox"]:focus {
 .gallery-report-next .active {
   color: gray-500;
 }
+
 .gallery-nav-prev .disabled,
 .gallery-nav-next .disabled,
 .gallery-report-next .disabled {
   color: gray-300;
 }
+
 .gallery-nav-prev .active:hover,
 .gallery-nav-next .active:hover,
 .gallery-report-next .active:hover {
@@ -1760,6 +1847,7 @@ input[type="checkbox"]:focus {
     -ms-box-shadow: 0 2px 4px container-shadow;
     -webkit-box-shadow: 0 2px 4px container-shadow; */
 }
+
 .gallery-app-collection .gallery-card:hover,
 .gallery-app-showcase .gallery-card:hover {
   background-color: gray-200;
@@ -1770,16 +1858,16 @@ input[type="checkbox"]:focus {
 }
 
 .paragraph-end-block {
-  background: linear-gradient(
-    to right,
-    v-white,
-    v-white
-  );
+  background: linear-gradient(to right,
+      v-white,
+      v-white);
   /* filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#00ffffff',EndColorStr='#ffffff'); warning */
 }
+
 .gallery-card-content .gallery-subtitle {
   color: gray-500;
 }
+
 .gallery-meta {
   color: gray-500;
 }
@@ -1800,13 +1888,16 @@ input[type="checkbox"]:focus {
   border: 1px dashed gray-300 !important;
   background-color: v-white !important;
 }
+
 .gallery-editprompt {
   color: gray-900;
 }
+
 .gallery-showcase-desc,
 .gallery-showcase-title {
   color: #666;
 }
+
 .ode-Inbox .ActionButton,
 .gallery-app-details .app-action-button,
 .gallery-app-details .app-comments-submit,
@@ -1819,55 +1910,70 @@ input[type="checkbox"]:focus {
 .app-desc-textarea {
   color: gray-400;
 }
+
 .app-otherinfo-textdisplay {
   color: gray-700;
 }
+
 .app-otherinfo-textlink {
   color: #b3c833;
   border-bottom: 1px dotted #b3c833;
 }
+
 .app-otherinfo-textlink:hover {
   background-color: #b3c833;
   color: v-white;
 }
+
 .app-otherinfo-textlabel {
   color: gray-500;
 }
+
 .app-otherinfo-textbox {
   color: gray-400;
 }
+
 .app-otherinfo-textbox:focus {
   color: gray-800;
 }
+
 .gallery-app-details .app-comments-textarea:focus,
 .app-desc-textarea:focus {
   color: gray-800;
 }
+
 .gallery-app-details .app-username {
   color: #b3c833;
   border-bottom: 1px dotted #b3c833;
 }
+
 .gallery-app-details .app-username:hover {
   background-color: #b3c833;
   color: v-white;
 }
+
 .gallery-app-details .app-attributor-username {
   color: #b3c833;
   border-bottom: 1px dotted #b3c833;
 }
+
 .app-stats {
   color: gray-500;
 }
+
 .app-meta .gwt-Label {
   color: gray-500;
 }
+
 .app-meta .gwt-Label-auto {
   color: gray-500;
 }
+
 .gallery-app-details .app-tags .gwt-Label {
   background-color: gray-200;
   color: gray-500;
 }
+
 .gallery-app-details .app-tags .gwt-Label:hover {
   background-color: gray-500;
   color: v-white;
@@ -1879,6 +1985,7 @@ input[type="checkbox"]:focus {
 .gallery-app-single .gwt-TabBar .gwt-TabBarItem-selected {
   color: #b3c833;
 }
+
 .gallery-nav-return .gwt-Label,
 .app-description,
 .app-actions .gwt-TabPanelBottom .gwt-Label,
@@ -1886,15 +1993,18 @@ input[type="checkbox"]:focus {
 .app-actions .primary-prompt {
   color: #666;
 }
+
 .primary-link-small {
   color: #b3c833;
   border-bottom: 1px dotted #b3c833;
 }
+
 .primary-link,
 .moderator-link {
   color: #b3c833;
   border-bottom: 1px dotted #b3c833;
 }
+
 .ode-ProjectGalleryLink:hover,
 .primary-link:hover,
 .primary-link-small:hover,
@@ -1907,6 +2017,7 @@ input[type="checkbox"]:focus {
 .ode-ModerationTable .primary-link {
   color: v-black;
 }
+
 .seemore-link {
   color: #333399;
   border-bottom: 1px dotted #b3c833;
@@ -1929,10 +2040,10 @@ input[type="checkbox"]:focus {
 }
 
 .warningNav {
-    fill: gray-200;
-    stroke: blockly-indicator;
-    stroke-width: 1;
-    cursor: pointer;
+  fill: gray-200;
+  stroke: blockly-indicator;
+  stroke-width: 1;
+  cursor: pointer;
 }
 
 .ya-Toolbar .left {
@@ -1951,13 +2062,14 @@ input[type="checkbox"]:focus {
   display: flex;
 }
 
-.ya-Toolbar > div > div {
+.ya-Toolbar>div>div {
   margin: unset;
 }
 
 .download-barcode:before {
   background-color: gray-550;
 }
+
 /*   
   .listItem:nth-child(2n + 0) {
     background: rgba(200, 200, 200, 0.1);
@@ -1982,7 +2094,7 @@ input[type="checkbox"]:focus {
   box-shadow: unset;
   display: flex;
   flex-grow: 1;
-  margin:unset;
+  margin: unset;
   height: 100%;
   color: gray-700;
 }
@@ -2007,7 +2119,7 @@ input[type="checkbox"]:focus {
 
 
 .ode-ProjectRowList {
-display: contents;
+  display: contents;
 }
 
 .left-spacer {
@@ -2016,7 +2128,7 @@ display: contents;
 
 .ode-TopPanelIconButton:hover {
   /* -webkit-filter: drop-shadow(0px 0px 3px gray-900); */
-  filter:         drop-shadow(0px 0px 3px gray-900);
+  filter: drop-shadow(0px 0px 3px gray-900);
 }
 
 .ode-ProjectEditor {
@@ -2036,6 +2148,7 @@ display: contents;
 .ode-Designer-LeftColumn {
   min-width: 265px;
 }
+
 .ode-Designer-RightColumns {
   min-width: 222px;
 }
@@ -2090,7 +2203,9 @@ display: contents;
   color: gray-700;
 }
 
-.gwt-DisclosurePanel .header, .gwt-DisclosurePanel .header a, .gwt-DisclosurePanel .header td {
+.gwt-DisclosurePanel .header,
+.gwt-DisclosurePanel .header a,
+.gwt-DisclosurePanel .header td {
   color: v-black;
 }
 
@@ -2138,7 +2253,7 @@ display: contents;
 
 /* .ode-DialogBox .gwt-Tree {
   /* all: unset; */
-  /* margin: 0 20px 20px 20px;
+/* margin: 0 20px 20px 20px;
   border: 1px solid gray-300;
   border-radius: 5px;
   height: 200px;

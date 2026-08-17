@@ -1,0 +1,51 @@
+// -*- mode: java; c-basic-offset: 2; -*-
+// Copyright 2026 MIT, All rights reserved
+// Released under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+
+package com.google.appinventor.client.style.cresuit;
+
+import com.google.appinventor.client.TopPanel;
+import com.google.appinventor.client.widgets.DropDownButton;
+import com.google.appinventor.client.widgets.DropDownItem;
+import com.google.appinventor.client.widgets.TextButton;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Label;
+
+public class TopPanelCreSuit extends TopPanel {
+
+  @UiTemplate("TopPanelCreSuit.ui.xml")
+  interface TopPanelUiBinderCreSuit extends UiBinder<FlowPanel, TopPanelCreSuit> {}
+
+  @UiField TopToolbarCreSuit topToolbar;
+  @UiField ImageElement logo;
+  @UiField Label readOnly;
+  @UiField FlowPanel rightPanel;
+  @UiField DropDownButton languageDropDown;
+  @UiField DropDownButton accountButton;
+  @UiField DropDownItem deleteAccountItem;
+  @UiField FlowPanel links;
+  @UiField protected TextButton myProjects;
+  @UiField protected TextButton viewTrash;
+
+  @Override
+  public void bindUI() {
+    TopPanelUiBinderCreSuit uibinder = GWT.create(TopPanelUiBinderCreSuit.class);
+    initWidget(uibinder.createAndBindUi(this));
+    super.topToolbar = topToolbar;
+    super.logo = logo;
+    super.readOnly = readOnly;
+    super.rightPanel = rightPanel;
+    super.languageDropDown = languageDropDown;
+    super.accountButton = accountButton;
+    super.deleteAccountItem = deleteAccountItem;
+    super.links = links;
+    super.myProjects = myProjects;
+    super.viewTrash = viewTrash;
+  }
+}

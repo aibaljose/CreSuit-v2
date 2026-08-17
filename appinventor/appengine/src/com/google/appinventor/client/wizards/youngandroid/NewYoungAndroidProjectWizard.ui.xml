@@ -20,6 +20,9 @@
       <!--ProjectName-->
       <w:LabeledTextBox ui:field="projectNameTextBox" caption="{messages.projectNameLabel}"
                         stylePrimaryName="ode-LabeledTextBox"/>
+      <!--PackageName-->
+      <w:LabeledTextBox ui:field="packageNameTextBox" caption="Package Name (Optional, e.g. com.example.app)"
+                        stylePrimaryName="ode-LabeledTextBox"/>
       <!--Blocks-->
       <g:FlowPanel ui:field="horizontalBlocksPanel" styleName="contentRow">
         <g:Label text="{messages.blocksToolkitTitle}:" width="37%"/>

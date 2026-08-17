@@ -27,6 +27,8 @@ public final class YoungAndroidSettings extends Settings {
   public YoungAndroidSettings(Project project) {
     super(SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS);
 
+    addProperty(new EditableProperty(this, SettingsConstants.YOUNG_ANDROID_SETTINGS_PACKAGE_NAME,
+        "", EditableProperty.TYPE_INVISIBLE));
     addProperty(new EditableProperty(this, SettingsConstants.YOUNG_ANDROID_SETTINGS_ICON,
         "", EditableProperty.TYPE_INVISIBLE));
     addProperty(new EditableProperty(this,

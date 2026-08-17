@@ -21,6 +21,8 @@ to do that in the future. -->
     <g:FlowPanel>
       <w:LabeledTextBox ui:field="projectNameTextBox" caption="{messages.projectNameLabel}"
                         stylePrimaryName="ode-LabeledTextBox"/>
+      <w:LabeledTextBox ui:field="packageNameTextBox" caption="Package Name (Optional, e.g. com.example.app)"
+                        stylePrimaryName="ode-LabeledTextBox"/>
       <!--Blocks-->
       <g:FlowPanel ui:field="horizontalBlocksPanel" styleName="contentRow">
         <g:Label text="{messages.blocksToolkitTitle}:" width="37%"/>

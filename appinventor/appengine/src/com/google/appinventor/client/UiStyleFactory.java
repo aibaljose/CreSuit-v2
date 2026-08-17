@@ -23,9 +23,14 @@ public class UiStyleFactory {
   interface OdeUiBinder extends UiBinder<FlowPanel, Ode> {}
   @UiTemplate("style/neo/Ode.ui.xml")
   interface OdeUiBinderNeo extends UiBinder<FlowPanel, Ode> {}
+  @UiTemplate("style/cresuit/Ode.ui.xml")
+  interface OdeUiBinderCreSuit extends UiBinder<FlowPanel, Ode> {}
 
   public FlowPanel createOde(Ode target, String style) {
-    if (style.equals("modern")) {
+    if (style.equals("cresuit")) {
+      OdeUiBinderCreSuit uibinder = GWT.create(OdeUiBinderCreSuit.class);
+      return uibinder.createAndBindUi(target);
+    } else if (style.equals("modern")) {
       OdeUiBinderNeo uibinder = GWT.create(OdeUiBinderNeo.class);
       return uibinder.createAndBindUi(target);
     }

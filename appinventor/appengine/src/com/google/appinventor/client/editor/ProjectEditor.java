@@ -109,6 +109,14 @@ public abstract class ProjectEditor extends Composite {
     return uiFactory;
   }
 
+  public long getProjectId() {
+    return projectId;
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
   public final void setScreenCheckboxState(String screen, Boolean isChecked) {
     screenHashMap.put(screen, isChecked);
     changeProjectSettingsProperty(

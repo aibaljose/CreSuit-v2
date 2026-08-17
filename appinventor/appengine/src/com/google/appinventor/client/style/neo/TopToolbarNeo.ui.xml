@@ -17,8 +17,8 @@
     <!-- Projects Menu -->
     <ai:DropDownButton name="ProjectDesignOnly" caption="{messages.projectsTabName}" icon="folder" role="button"
                        ariaLabel="Project menu" ariaHaspopup="menu" ariaExpanded="false"
-                       styleName="ode-TopPanelButton" ui:field="fileDropDown" align="left">
-      <ai:DropDownItem name="MyProjects" caption="{messages.projectMenuItem}" visible="false">
+                       styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1" ui:field="fileDropDown" align="left">
+      <ai:DropDownItem name="MyProjects" caption="{messages.projectMenuItem}" visible="true">
         <actions:SwitchToProjectAction/>
       </ai:DropDownItem>
       <ai:DropDownItem name="New" caption="{messages.newProjectMenuItem}" visible="{isAvailable}">
@@ -54,7 +54,7 @@
     </ai:DropDownButton>
 
     <!-- Connect Menu -->
-    <ai:DropDownButton name="ConnectTo" caption="{messages.connectTabName}" styleName="ode-TopPanelButton"
+    <ai:DropDownButton name="ConnectTo" caption="{messages.connectTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
                        role="button" ariaLabel="Connect menu" ariaHaspopup="menu" ariaExpanded="false"
                        ui:field="connectDropDown" icon="devices" align="left">
       <ai:DropDownItem name="Wireless" caption="{messages.AICompanionMenuItem}">
@@ -91,7 +91,7 @@
     </ai:DropDownButton>
 
     <!-- Build Menu -->
-    <ai:DropDownButton name="Build" caption="{messages.buildTabName}" styleName="ode-TopPanelButton"
+    <ai:DropDownButton name="Build" caption="{messages.buildTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
                        role="button" ariaLabel="Build menu" ariaHaspopup="menu" ariaExpanded="false"
                        ui:field="buildDropDown" icon="rocket_launch" align="left"
                        visible="{hasWriteAccess}">
@@ -124,7 +124,7 @@
     </ai:DropDownButton>
 
     <!-- Settings Menu -->
-    <ai:DropDownButton name="Settings" styleName="ode-TopPanelButton"
+    <ai:DropDownButton name="Settings" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
         role="button" ariaLabel="Settings menu" ariaHaspopup="menu" ariaExpanded="false"
         ui:field="settingsDropDown" align="left" icon="settings" caption="{messages.settingsTabName}">
       <ai:DropDownItem name="UISettings" caption="{messages.uiSettings}">
@@ -157,7 +157,7 @@
     </ai:DropDownButton>
 
     <!-- Admin Menu -->
-    <ai:DropDownButton name="Admin" styleName="ode-TopPanelButton"
+    <ai:DropDownButton name="Admin" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
                        role="button" ariaLabel="Admin menu" ariaHaspopup="menu" ariaExpanded="false"
                        ui:field="adminDropDown" icon="shield" align="left">
 

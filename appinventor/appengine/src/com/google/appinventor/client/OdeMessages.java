@@ -396,7 +396,7 @@ public interface OdeMessages extends Messages, ComponentTranslations {
 
   // Used in Ode.java
 
-  @DefaultMessage("MIT App Inventor")
+  @DefaultMessage("CreSuit Creator Suit")
   @Description("Title for App Inventor")
   String titleYoungAndroid();
 
@@ -475,7 +475,7 @@ public interface OdeMessages extends Messages, ComponentTranslations {
   // Used in TopPanel.java
 
   //Project
-  @DefaultMessage("Projects")
+  @DefaultMessage("My Projects")
   @Description("Name of Projects tab")
   String projectsTabName();
 
@@ -976,7 +976,7 @@ public interface OdeMessages extends Messages, ComponentTranslations {
 
   // Used in boxes/ProjectListBox.java
 
-  @DefaultMessage("Projects")
+  @DefaultMessage("My Projects")
   @Description("Caption for project list box.")
   String projectListBoxCaption();
 

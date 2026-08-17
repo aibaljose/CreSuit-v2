@@ -46,6 +46,10 @@ import Foundation
     "AccelerometerSensor": [
       "Sensitivity": Sensitivity.fromUnderlyingValue(_:)
     ],
+    "CardView": [
+      "AlignHorizontal": HorizontalAlignment.fromUnderlyingValue(_:),
+      "AlignVertical": VerticalAlignment.fromUnderlyingValue(_:)
+    ],
     "Chart": [
       "Type": ChartType.fromUnderlyingValue(_:)
     ],

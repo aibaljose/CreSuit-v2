@@ -12,122 +12,78 @@
 
   <ui:with type="com.google.appinventor.client.Images" field="res"/>
 
-  <g:HTMLPanel>
+  <g:HTMLPanel styleName="ode-noDialogCard max-w-[480px] w-full bg-white rounded-[24px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] text-slate-800 font-sans overflow-hidden border border-slate-100">
     <g:Button ui:field='topInvisible' styleName="FocusTrap"/>
-    <div class="ode-noDialogDivHeader">
-      <div class="ode-noDialogDivInnerHeader">
-        <h3 class="ode-headerTitle">
-          <ui:msg key="welcome"
-                  description="Welcome text preceding the App Inventor logo">Welcome to
-          </ui:msg>
-        </h3>
 
-        <div id='ode-codiLogoDiv'>
-          <g:Image resource="{res.logo}" altText="MIT App Inventor" height="64px" width="120px"/>
-        </div>
-      </div>
-    </div>
-
-    <h3 class="ode-tutorialsTitle">
-      <ui:msg key="getStarted"
-              description="The header text instructing the new user to get started.">
-        Get started with some tutorials
-      </ui:msg>
-    </h3>
-
-    <div class="ode-noDialogExampleDivs">
-      <div class="ode-noDialogExampleDiv">
-        <div class='ode-noDialogUpperDiv'>
-          <h4 class="ode-noDialogExampleTitle">
-            <ui:msg key="helloPurrTitle"
-                    description="Title of the Hello Purr app">Hello Purr
-            </ui:msg>
-          </h4>
-          <div class="ode-noDialogExampleImage">
-            <g:Image resource="{res.wilson}" altText="Wilson Logo"/>
-          </div>
-          <p class="ode-noDialogExampleAbout">
-            <ui:msg key="helloPurrDescription" description="Description of the Hello Purr app">
-              HelloPurr is a simple app that you can build in a very short time.
-              You create a button that has a picture of a cat on it, and then
-              program the button so that when it is clicked a "meow" sound
-              plays.
-            </ui:msg>
-          </p>
-        </div>
-
-        <g:Button ui:field='goToPurr' styleName='ode-tutorialButton'>
-          <ui:msg key="startTutorialButton"
-                  description="Text of the button to open a tutorial">Go to Tutorial
-          </ui:msg>
-        </g:Button>
-      </div>
-
-      <div class="ode-noDialogExampleDiv">
-        <div class='ode-noDialogUpperDiv'>
-          <h4 class="ode-noDialogExampleTitle">
-            <ui:msg key="simpleChatbotTitle"
-                description="Title of the Chatbot app">Simple Chatbot
-            </ui:msg>
-          </h4>
-          <div class="ode-noDialogExampleImage">
-            <g:Image resource="{res.talkToMeLogo}" altText="Talk to Me Logo"/>
-          </div>
-
-          <p class="ode-noDialogExampleAbout">
-            <ui:msg key="simpleChatbotDescription" description="Description of the Simple Chatbot app">
-              Create your very own ChatGPT app that will allow you, wherever you are, to connect to ChatGPT, ask questions, and have a conversation.
-            </ui:msg>
-          </p>
-        </div>
-
-        <g:Button ui:field='goToChat' styleName='ode-tutorialButton'>
-          <ui:msg key="startTutorialButton">Go to Tutorial</ui:msg>
-        </g:Button>
-      </div>
-
-      <div class="ode-noDialogExampleDiv">
-        <div class='ode-noDialogUpperDiv'>
-          <h4 class="ode-noDialogExampleTitle">
-            <ui:msg key="translateAppTitle"
-                    description="Title of the Translate App">Translate App
-            </ui:msg>
-          </h4>
-          <div class="ode-noDialogExampleImage">
-            <g:Image resource="{res.YRLogo}" altText="YR Media Logo"/>
-          </div>
-          <p class="ode-noDialogExampleAbout">
-            <ui:msg key="translateAppDescription" description="Description of the Translate app">
-              Quickly translate English to Spanish (and other languages too!)
-              You're challenged with creating an app that could act as an aid
-              for immigrant parents who need a little extra help in
-              English-speaking situations. Inspired by YR Media story
-              <a href="https://yr.media/news/what-its-like-to-be-a-translator/" target="_blank"
-                 ui:ph="yrMediaLink">What It's Like to be a Translator</a>.
-            </ui:msg>
-          </p>
-        </div>
-
-        <g:Button ui:field='goToYR' styleName='ode-tutorialButton'>
-          <ui:msg key="startTutorialButton">Go to Tutorial</ui:msg>
-        </g:Button>
-      </div>
-    </div>
-
-    <div class="ode-bottomRow">
-      <g:Button ui:field='noDialogNewProject' styleName="ode-noDialogNewProject">
-        <ui:msg key="startProjectButton" description="Text of the button to start a new project"
-        >Start a blank project
-        </ui:msg>
+    <!-- Top Gradient Header Banner with Floating Overlapping App Tiles & Close Button -->
+    <div class="ode-noDialogBanner relative h-[200px] w-full bg-[radial-gradient(circle_at_50%_30%,_#87d2ff_0%,_#b8e7ff_55%,_#e8f6ff_100%)] flex items-center justify-center overflow-hidden">
+      <!-- Top-Right Close 'X' Button -->
+      <g:Button ui:field='topCloseButton' styleName="ode-noDialogCloseBtn absolute top-4 right-4 z-20 w-8 h-8 flex items-center justify-center rounded-full text-slate-600 hover:text-slate-900 hover:bg-white/40 active:bg-white/60 transition cursor-pointer text-xl font-light border-0 bg-transparent outline-none">
+        ✕
       </g:Button>
-      <g:Button ui:field='closeDialogBox' styleName='ode-closeDialogBox'>
-        <ui:msg key="closeButton" description="Text of the button to close the dialog box"
-        >Close
-        </ui:msg>
-      </g:Button>
+
+      <!-- Center Floating Overlapping White App Tiles -->
+      <div class="flex items-center justify-center relative z-10 pt-2">
+        <!-- Left Tile -->
+        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-white rounded-[20px] shadow-lg shadow-blue-900/10 border border-white/90 flex items-center justify-center p-2.5 z-0 -mr-4 transform -rotate-12 translate-y-1">
+          <g:Image resource="{res.talkToMeLogo}" altText="Talk To Me" height="32px"/>
+        </div>
+
+        <!-- Center Tile (Main App Inventor Logo) -->
+        <div class="w-20 h-20 sm:w-22 sm:h-22 bg-white rounded-[22px] shadow-xl shadow-blue-900/15 border border-white flex items-center justify-center p-3.5 z-10 transform -translate-y-1">
+          <g:Image resource="{res.logo}" altText="MIT App Inventor" height="42px"/>
+        </div>
+
+        <!-- Right Tile -->
+        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-white rounded-[20px] shadow-lg shadow-blue-900/10 border border-white/90 flex items-center justify-center p-2.5 z-0 -ml-4 transform rotate-12 translate-y-1">
+          <g:Image resource="{res.YRLogo}" altText="YR Media" height="32px"/>
+        </div>
+      </div>
     </div>
 
-  <g:Button ui:field='bottomInvisible' styleName="FocusTrap"/>
+    <!-- Main Content Section -->
+    <div class="p-7 sm:p-8 bg-white text-left">
+      <h3 class="text-xl sm:text-[22px] font-bold text-slate-900 tracking-tight leading-snug mb-2">
+        <ui:msg key="welcomeTitle" description="Welcome title">Welcome to CreSuit</ui:msg>
+      </h3>
+      <p class="text-sm text-slate-500 font-normal leading-relaxed mb-8">
+        <ui:msg key="helloPurrDescription" description="Description text">
+          You do not have any projects in your workspace. Start a blank project to begin creating your app, or close to explore.
+        </ui:msg>
+      </p>
+
+      <!-- Hidden elements for GWT UiBinder field binding compatibility -->
+      <div style="display:none;">
+        <ui:msg key="helloPurrTitle" description="Title">Hello Purr</ui:msg>
+        <ui:msg key="simpleChatbotTitle" description="Title">Simple Chatbot</ui:msg>
+        <ui:msg key="simpleChatbotDescription" description="Description">Create your very own ChatGPT app</ui:msg>
+        <ui:msg key="translateAppTitle" description="Title">Translate App</ui:msg>
+        <ui:msg key="welcome" description="Welcome text">Welcome to</ui:msg>
+        <ui:msg key="getStarted" description="Get started">Get started</ui:msg>
+        <g:Button ui:field='goToPurr'/>
+        <g:Button ui:field='goToChat'/>
+        <g:Button ui:field='goToYR'>
+          <ui:msg key="translateAppDescription" description="Description of the Translate app">
+            Quickly translate English to Spanish (and other languages too!)
+            <a href="https://yr.media/news/what-its-like-to-be-a-translator/" target="_blank"
+               ui:ph="yrMediaLink">What It's Like to be a Translator</a>.
+          </ui:msg>
+        </g:Button>
+      </div>
+
+      <!-- Action Bar (2 Buttons matching reference design) -->
+      <div class="flex items-center justify-end gap-3">
+        <g:Button ui:field='closeDialogBox' styleName='ode-noDialogBtnSecondary px-6 py-2.5 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-900 font-medium rounded-full text-sm border border-slate-300 transition shadow-2xs cursor-pointer text-center outline-none min-w-[95px]'>
+          <ui:msg key="closeButton" description="Text of the button to close the dialog box">Not now</ui:msg>
+        </g:Button>
+        <g:Button ui:field='noDialogNewProject' styleName="ode-noDialogBtnPrimary px-6 py-2.5 bg-black hover:bg-slate-800 active:bg-slate-900 text-white font-medium rounded-full text-sm transition shadow-sm cursor-pointer text-center outline-none border-0 min-w-[130px]">
+          <ui:msg key="startProjectButton" description="Text of the button to start a new project">Start a blank project</ui:msg>
+        </g:Button>
+      </div>
+
+    </div>
+
+    <g:Button ui:field='bottomInvisible' styleName="FocusTrap"/>
   </g:HTMLPanel>
 
 </ui:UiBinder>

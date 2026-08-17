@@ -47,6 +47,7 @@ import com.google.appinventor.client.settings.user.UserSettings;
 import com.google.appinventor.client.style.neo.ImagesNeo;
 import com.google.appinventor.client.style.neo.DarkModeImagesNeo;
 import com.google.appinventor.client.style.neo.UiFactoryNeo;
+import com.google.appinventor.client.style.cresuit.UiFactoryCreSuit;
 import com.google.appinventor.client.tracking.Tracking;
 import com.google.appinventor.client.utils.HTML5DragDrop;
 import com.google.appinventor.client.utils.PZAwarePositionCallback;
@@ -959,9 +960,28 @@ public class Ode implements EntryPoint {
 
   private Promise<Void> handleUiPreference() {
     return new Promise<>((ResolveCallback<Void> res, RejectCallback rej) -> {
-      useNeoStyle = Ode.getUserNewLayout();
+      String layoutTheme = Ode.getUserLayoutTheme();
       useDarkMode = Ode.getUserDarkThemeEnabled();
-      if (useNeoStyle) {
+      if ("cresuit".equals(layoutTheme)) {
+        GWT.runAsync(new RunAsyncCallback() {
+          @Override
+          public void onFailure(Throwable reason) {
+            rej.apply(new Promise.WrappedException(reason));
+          }
+
+          @Override
+          public void onSuccess() {
+            if (useDarkMode) {
+              IMAGES = GWT.create(DarkModeImagesNeo.class);
+            } else {
+              IMAGES = GWT.create(ImagesNeo.class);
+            }
+            RootPanel.get().addStyleName("cresuit");
+            uiFactory = new UiFactoryCreSuit();
+            res.apply(null);
+          }
+        });
+      } else if ("modern".equals(layoutTheme)) {
         GWT.runAsync(new RunAsyncCallback() {
           @Override
           public void onFailure(Throwable reason) {
@@ -1044,16 +1064,20 @@ public class Ode implements EntryPoint {
 
     // TODO: Tidy up user preference variable
     projectListbox = ProjectListBox.create(uiFactory);
-    String layout;
-    if (Ode.getUserNewLayout()) {
-      layout = "modern";
+    String layout = Ode.getUserLayoutTheme();
+    if ("cresuit".equals(layout)) {
+      if (Ode.getUserDarkThemeEnabled()) {
+        style = Resources.INSTANCE.stylemodernDark();
+      } else {
+        style = Resources.INSTANCE.stylemodernLight();
+      }
+    } else if ("modern".equals(layout)) {
       if (Ode.getUserDarkThemeEnabled()) {
         style = Resources.INSTANCE.stylemodernDark();
       } else {
         style = Resources.INSTANCE.stylemodernLight();
       }
     } else {
-      layout = "classic";
       if (Ode.getUserDarkThemeEnabled()) {
         style = Resources.INSTANCE.styleclassicDark();
       } else {
@@ -1450,30 +1474,36 @@ public class Ode implements EntryPoint {
    *
    * @return true if the user has opted to use the new UI, false otherwise
    */
-  public static boolean getUserNewLayout() {
+  public static String getUserLayoutTheme() {
     String override = Window.Location.getParameter("ui");
-    if (override != null && override.contains("classic")) {
-      return false;
-    } else if (override != null && override.contains("neo")) {
-      return true;
+    if (override != null) {
+      if (override.contains("classic")) return "classic";
+      if (override.contains("cresuit")) return "cresuit";
+      if (override.contains("neo") || override.contains("modern")) return "modern";
     }
     String value = userSettings.getSettings(SettingsConstants.USER_GENERAL_SETTINGS)
             .getPropertyValue(SettingsConstants.USER_NEW_LAYOUT);
-    if (value == null) {        // Default to NEO
-      return true;
+    if (value == null || "true".equals(value) || "modern".equals(value)) {
+      return "modern";
+    } else if ("cresuit".equals(value)) {
+      return "cresuit";
+    } else if ("false".equals(value) || "classic".equals(value)) {
+      return "classic";
     }
-    return Boolean.parseBoolean(value);
+    return value;
   }
 
-  /**
-   * Set user new layout usage setting.
-   *
-   * @param newLayout new value for the user's UI preference
-   */
-  public static void setUserNewLayout(boolean newLayout) {
+  public static void setUserLayoutTheme(String theme) {
     userSettings.getSettings(SettingsConstants.USER_GENERAL_SETTINGS)
-            .changePropertyValue(SettingsConstants.USER_NEW_LAYOUT,
-                    "" + newLayout);
+            .changePropertyValue(SettingsConstants.USER_NEW_LAYOUT, theme);
+  }
+
+  public static boolean getUserNewLayout() {
+    return !"classic".equals(getUserLayoutTheme());
+  }
+
+  public static void setUserNewLayout(boolean newLayout) {
+    setUserLayoutTheme(newLayout ? "modern" : "classic");
   }
 
   public static void setShowUIPicker(boolean value) {

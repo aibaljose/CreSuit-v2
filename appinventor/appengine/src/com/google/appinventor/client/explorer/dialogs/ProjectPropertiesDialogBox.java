@@ -7,10 +7,11 @@ package com.google.appinventor.client.explorer.dialogs;
 
 import static com.google.appinventor.client.Ode.MESSAGES;
 
+import com.google.appinventor.client.Ode;
 import com.google.appinventor.client.editor.simple.components.i18n.ComponentTranslationTable;
-
 import com.google.appinventor.client.editor.simple.components.MockForm;
 import com.google.appinventor.client.editor.youngandroid.YaProjectEditor;
+import com.google.appinventor.client.explorer.project.Project;
 import com.google.appinventor.client.widgets.properties.EditableProperties;
 import com.google.appinventor.client.widgets.properties.EditableProperty;
 import com.google.appinventor.client.widgets.properties.PropertyEditor;
@@ -168,31 +169,92 @@ public class ProjectPropertiesDialogBox {
 
     List<EditableProperty> properties = categoryToProperties.get(category);
 
-    for (EditableProperty property : properties) {
-      // container for displaing one editable property
-      FlowPanel propertyContainer = new FlowPanel();
-      propertyContainer.setStyleName("ode-propertyDialogPropertyContainer");
+    if (properties != null) {
+      for (EditableProperty property : properties) {
+        // container for displaing one editable property
+        FlowPanel propertyContainer = new FlowPanel();
+        propertyContainer.setStyleName("ode-propertyDialogPropertyContainer");
 
-      // name of the EditableProperty
-      Label name = new Label(ComponentTranslationTable.getPropertyName(property.getName()));
-      name.setStyleName("ode-propertyDialogPropertyTitle");
+        // name of the EditableProperty
+        Label name = new Label(ComponentTranslationTable.getPropertyName(property.getName()));
+        name.setStyleName("ode-propertyDialogPropertyTitle");
 
-      // Description of the property
-      HTML description = new HTML(ComponentTranslationTable.getPropertyDescription(property.getDescription()));
-      description.setStyleName("ode-propertyDialogPropertyDescription");
+        // Description of the property
+        HTML description = new HTML(ComponentTranslationTable.getPropertyDescription(property.getDescription()));
+        description.setStyleName("ode-propertyDialogPropertyDescription");
 
-      // editor of the editor
-      PropertyEditor editor = property.getEditor();
-      editor.setStyleName("ode-propertyDialogPropertyEditor");
+        // editor of the editor
+        PropertyEditor editor = property.getEditor();
+        editor.setStyleName("ode-propertyDialogPropertyEditor");
 
-      // add to the container
-      propertyContainer.add(name);
-      propertyContainer.add(description);
-      propertyContainer.add(editor);
+        // add to the container
+        propertyContainer.add(name);
+        propertyContainer.add(description);
+        propertyContainer.add(editor);
 
-      // add to the main container
-      propertiesContainer.add(propertyContainer);
-    }  
+        // add to the main container
+        propertiesContainer.add(propertyContainer);
+      }
+    }
+
+    if ("Publishing".equals(category)) {
+      FlowPanel pkgContainer = new FlowPanel();
+      pkgContainer.setStyleName("ode-propertyDialogPropertyContainer");
+
+      Label pkgName = new Label("Package Name");
+      pkgName.setStyleName("ode-propertyDialogPropertyTitle");
+
+      HTML pkgDesc = new HTML("The unique Android application package identifier (e.g. com.aibal.chatapp)");
+      pkgDesc.setStyleName("ode-propertyDialogPropertyDescription");
+
+      final com.google.gwt.user.client.ui.TextBox pkgBox = new com.google.gwt.user.client.ui.TextBox();
+      pkgBox.setStyleName("ode-propertyDialogPropertyEditor gwt-TextBox");
+
+      final Project project = (projectEditor != null) ? projectEditor.getProject() : null;
+      if (project != null) {
+        project.getSettings().loadSettings().then(settings -> {
+          com.google.appinventor.client.settings.Settings yaSettings =
+              settings.getSettings(com.google.appinventor.shared.settings.SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS);
+          if (yaSettings != null) {
+            String currentPkg = yaSettings.getPropertyValue(com.google.appinventor.shared.settings.SettingsConstants.YOUNG_ANDROID_SETTINGS_PACKAGE_NAME);
+            if (currentPkg != null && !currentPkg.trim().isEmpty()) {
+              pkgBox.setText(currentPkg.trim());
+            } else {
+              String userPrefix = "aibal";
+              if (com.google.appinventor.client.Ode.getInstance().getUser() != null) {
+                String email = com.google.appinventor.client.Ode.getInstance().getUser().getUserEmail();
+                if (email != null && email.contains("@")) {
+                  userPrefix = email.split("@")[0].toLowerCase().replaceAll("[^a-zA-Z0-9_]", "");
+                }
+              }
+              String cleanProjectName = project.getProjectName().toLowerCase().replaceAll("[^a-zA-Z0-9_]", "");
+              pkgBox.setText("com." + userPrefix + "." + cleanProjectName);
+            }
+          }
+          return null;
+        });
+      }
+
+      pkgBox.addChangeHandler(new ChangeHandler() {
+        @Override
+        public void onChange(ChangeEvent event) {
+          String newPkg = pkgBox.getText().trim();
+          if (project != null) {
+            com.google.appinventor.client.settings.Settings yaSettings =
+                project.getSettings().getSettings(com.google.appinventor.shared.settings.SettingsConstants.PROJECT_YOUNG_ANDROID_SETTINGS);
+            if (yaSettings != null) {
+              yaSettings.changePropertyValue(com.google.appinventor.shared.settings.SettingsConstants.YOUNG_ANDROID_SETTINGS_PACKAGE_NAME, newPkg);
+              project.getSettings().saveSettings(null);
+            }
+          }
+        }
+      });
+
+      pkgContainer.add(pkgName);
+      pkgContainer.add(pkgDesc);
+      pkgContainer.add(pkgBox);
+      propertiesContainer.add(pkgContainer);
+    }
     
     return propertiesContainer;
   }

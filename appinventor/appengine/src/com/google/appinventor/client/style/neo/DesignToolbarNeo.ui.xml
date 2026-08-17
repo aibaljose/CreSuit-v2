@@ -20,38 +20,41 @@
     </ai:ToolbarItem>
     <g:Label ui:field="projectNameLabel" styleName="ya-ProjectName"/>
 
-    <ai:ToolbarItem styleName="ya-ProjectName" caption="Screens: " align="center" enabled="false"/>
+    <!-- <ai:ToolbarItem styleName="ya-ProjectName" caption="Screens: " align="center" enabled="false"/> -->
     <ai:DropDownButton name="ScreensDropdown" caption="{messages.screensButton}"
                        ui:field="pickFormItem" align="center" styleName="ode-ProjectListButton inline bleft primary"/>
-    <ai:ToolbarItem name="AddForm" icon="add" ui:field="addFormItem"
+    <ai:ToolbarItem name="AddForm" ui:field="addFormItem" caption="Add Screen"
                     align="center" styleName="ode-ProjectListButton inline bcenter primary"
                     tooltip="{messages.addFormButton}">
       <ya:AddFormAction/>
     </ai:ToolbarItem>
-    <ai:ToolbarItem name="RemoveForm" icon="remove" ui:field="removeFormItem"
+    <ai:ToolbarItem name="RemoveForm"  ui:field="removeFormItem"
                     align="center" styleName="ode-ProjectListButton inline bright primary"
-                    tooltip="{messages.removeFormButton}">
+                    tooltip="{messages.removeFormButton}" caption="Remove Screen">
       <ya:RemoveFormAction/>
     </ai:ToolbarItem>
 
-    <ai:ToolbarItem name="TutorialToggle" icon="school" tooltip="{messages.toggleTutorialButton}"
+    <!-- <ai:ToolbarItem name="TutorialToggle" icon="school" tooltip="{messages.toggleTutorialButton}"
         visible="false" align="center" styleName="ode-ProjectListButton inline">
       <ya:ToggleTutorialAction/>
+    </ai:ToolbarItem> -->
+
+    
+
+
+
+
+
+
+
+    <ai:ToolbarItem name="Gallery" icon="public" tooltip="{messages.publishToGalleryButton}"
+                    ui:field="sendToGalleryItem" align="center" styleName="ode-ProjectListButton inline" visible="false">
+      <ca:SendToGalleryAction/>
     </ai:ToolbarItem>
 
     <ai:ToolbarItem name="ProjectPropertiesDialog" icon="manufacturing"
         tooltip="{messages.projectPropertiesText}" align="center" styleName="ode-ProjectListButton inline left-spacer">
       <ya:ProjectPropertiesAction />
-    </ai:ToolbarItem>
-
-    <ai:ToolbarItem name="Gallery" icon="public" tooltip="{messages.publishToGalleryButton}"
-                    ui:field="sendToGalleryItem" align="center"  styleName="ode-ProjectListButton inline">
-      <ca:SendToGalleryAction/>
-    </ai:ToolbarItem>
-
-    <ai:ToolbarItem name="ToggleConsole" icon="view_sidebar" 
-                    ui:field="toggleConsoleItem" align="right" styleName="ode-ProjectListButton bleft primary">
-      <ya:ToggleConsoleAction/>
     </ai:ToolbarItem>
 
     <ai:ToolbarItem name="switchToDesign" caption="{messages.switchToFormEditorButton}"

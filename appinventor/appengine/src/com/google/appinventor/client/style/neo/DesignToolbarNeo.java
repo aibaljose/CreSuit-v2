@@ -44,5 +44,18 @@ public class DesignToolbarNeo extends DesignToolbar {
     super.sendToGalleryItem = sendToGalleryItem;
     super.isAvailable = isAvailable;
     super.backArrow = backArrow;
+
+    if (sendToGalleryItem != null) {
+      super.setVisibleItem(sendToGalleryItem, false);
+    }
+  }
+
+  @Override
+  protected void setVisibleItem(ToolbarItem item, boolean visible) {
+    if (item == sendToGalleryItem || (item != null && "Gallery".equals(item.getName()))) {
+      super.setVisibleItem(item, false);
+      return;
+    }
+    super.setVisibleItem(item, visible);
   }
 }

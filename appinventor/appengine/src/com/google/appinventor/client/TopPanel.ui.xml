@@ -10,32 +10,41 @@
              ui:generatedKeys="com.google.gwt.i18n.server.keygen.MethodNameKeyGenerator"
              ui:generateLocales="default">
   <ui:with field="messages" type="com.google.appinventor.client.OdeMessages"/>
-  <g:FlowPanel styleName="ode-TopPanel" ui:field="header">
-    <g:HTML>
-      <img srcset="" class="ode-Logo" ui:field="logo" />
-    </g:HTML>
-    <ode:TopToolbar ui:field="topToolbar"/>
-    <g:FlowPanel ui:field="rightPanel">
-      <g:FlowPanel styleName="ode-TopPanelAccount">
-        <g:FlowPanel styleName="ode-TopPanelLinks" ui:field="links">
-          <g:Label text="{messages.readOnlyMode}" styleName="ode-TopPanelWarningLabel"
+  <g:FlowPanel styleName="ode-TopPanel flex items-center justify-between px-4 py-2 bg-white border-b border-slate-200/80 shadow-2xs w-full text-slate-800 font-sans h-14" ui:field="header">
+    <!-- Left Brand Logo & Toolbar Links -->
+    <g:FlowPanel styleName="flex items-center gap-6">
+      <g:HTML styleName="flex items-center">
+        <img srcset="" class="ode-Logo h-7 w-auto cursor-pointer transition hover:opacity-90" ui:field="logo" />
+      </g:HTML>
+      <ode:TopToolbar ui:field="topToolbar"/>
+    </g:FlowPanel>
+
+    <!-- Right Navigation Links & Account Dropdowns -->
+    <g:FlowPanel ui:field="rightPanel" styleName="flex items-center gap-3">
+      <g:FlowPanel styleName="ode-TopPanelAccount flex items-center gap-2">
+        <g:FlowPanel styleName="ode-TopPanelLinks flex items-center gap-1" ui:field="links">
+          <g:Label text="{messages.readOnlyMode}" styleName="ode-TopPanelWarningLabel text-xs text-red-600 font-semibold px-2.5 py-1 bg-red-50 rounded-full border border-red-200/80"
                    ui:field="readOnly"/>
-          <ai:TextButton text="{messages.myProjectsTabName}" styleName="ode-TopPanelButton" ui:field="myProjects">
+          <ai:TextButton text="{messages.myProjectsTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-xs font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/70 transition cursor-pointer border-0 bg-transparent" ui:field="myProjects">
             <actions:SwitchToProjectAction/>
           </ai:TextButton>
-          <ai:TextButton text="{messages.viewTrashTabName}" styleName="ode-TopPanelButton" ui:field="viewTrash">
+          <ai:TextButton text="{messages.viewTrashTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-xs font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/70 transition cursor-pointer border-0 bg-transparent" ui:field="viewTrash">
             <actions:TrashAction/>
           </ai:TextButton>
-          <ai:TextButton text="{messages.guideTabName}" styleName="ode-TopPanelButton">
+          <ai:TextButton text="{messages.guideTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-xs font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/70 transition cursor-pointer border-0 bg-transparent">
             <actions:OpenGuideAction/>
           </ai:TextButton>
-          <ai:TextButton text="{messages.feedbackTabName}" styleName="ode-TopPanelButton">
+          <ai:TextButton text="{messages.feedbackTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-xs font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/70 transition cursor-pointer border-0 bg-transparent">
             <actions:OpenFeedbackAction/>
           </ai:TextButton>
         </g:FlowPanel>
-        <ai:DropDownButton styleName="ode-TopPanelButton" rightAlign="true"
+
+        <!-- Language Selector Pill -->
+        <ai:DropDownButton styleName="ode-TopPanelButton px-3 py-1.5 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-[#4f46e5] text-xs font-medium transition cursor-pointer shadow-2xs" rightAlign="true"
                            ui:field="languageDropDown"/>
-        <ai:DropDownButton styleName="ode-TopPanelButton" rightAlign="true"
+
+        <!-- Account Profile Dropdown -->
+        <ai:DropDownButton styleName="ode-TopPanelButton p-2 rounded-full border border-indigo-100 bg-indigo-50/60 hover:bg-indigo-100/80 text-[#4f46e5] transition cursor-pointer" rightAlign="true"
                            ui:field="accountButton">
           <ai:DropDownItem name="Signout" caption="{messages.signOutLink}">
             <actions:SignOutAction/>

@@ -8,7 +8,7 @@
              ui:generatedKeys="com.google.gwt.i18n.server.keygen.MethodNameKeyGenerator"
              ui:generateLocales="default">
   <ui:with field="messages" type="com.google.appinventor.client.OdeMessages"/>
-  <g:FlowPanel styleName='ode-ProjectTable'>
+  <g:FlowPanel styleName='ode-ProjectTable w-full p-4'>
     <g:FlowPanel styleName='ode-ProjectHeaderRow'>
       <g:CheckBox ui:field='selectAllCheckBox' styleName="ode-ProjectCheckBox gwt-CheckBox"/>
       <g:FocusPanel ui:field='nameFocusPanel' styleName='ode-NameFocusPanel'>
@@ -42,7 +42,7 @@
         </g:FlowPanel>
       </g:FocusPanel>
     </g:FlowPanel>
-    <g:FlowPanel styleName="ode-ProjectRowList ode-Project-FlexColumn" ui:field='container'>
+    <g:FlowPanel styleName="ode-ProjectRowList grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 w-full p-2" ui:field='container'>
 
     </g:FlowPanel>
   </g:FlowPanel>

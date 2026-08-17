@@ -53,6 +53,15 @@
     <!--meta name="gwt:property" content="locale=en_US"-->
     <!-- Title is set at runtime. -->
     <title> </title>
+    <!-- Tailwind CSS v3 CDN (preflight disabled to preserve existing Ya.css styles) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        corePlugins: {
+          preflight: false,
+        }
+      }
+    </script>
     <% if (!gatag.isEmpty()) { %>
     <!-- Google Analytics. -->
     <!-- Google tag (gtag.js) -->

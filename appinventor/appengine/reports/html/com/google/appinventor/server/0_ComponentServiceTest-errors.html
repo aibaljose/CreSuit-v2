@@ -1,0 +1,393 @@
+<html xmlns:string="xalan://java.lang.String" xmlns:lxslt="http://xml.apache.org/xslt">
+    <head>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Unit Test Results: com.google.appinventor.server.ComponentServiceTest</title>
+        <link rel="stylesheet" type="text/css" title="Style" href="../../../../stylesheet.css">
+        <script type="text/javascript" language="JavaScript">
+        var TestCases = new Array();
+        var cur;
+        
+    cur = TestCases['com.google.appinventor.server.ComponentServiceTest'] = new Array();
+    
+        cur['AiServerLib-class.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\classes\\AiServerLib';
+    
+        cur['AiSharedLib-class.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\classes\\AiSharedLib';
+    
+        cur['ant.core.lib'] = 'C:\\apache\\apache-ant-1.10.17\\lib\\ant.jar';
+    
+        cur['ant.file'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build.xml';
+    
+        cur['ant.file.appengine'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build.xml';
+    
+        cur['ant.file.CommonDefinitions'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\build-common.xml';
+    
+        cur['ant.file.type'] = 'file';
+    
+        cur['ant.file.type.appengine'] = 'file';
+    
+        cur['ant.file.type.CommonDefinitions'] = 'file';
+    
+        cur['ant.home'] = 'C:\\apache\\apache-ant-1.10.17';
+    
+        cur['ant.java.version'] = '21';
+    
+        cur['ant.library.dir'] = 'C:\\apache\\apache-ant-1.10.17\\lib';
+    
+        cur['ant.project.default-target'] = 'all';
+    
+        cur['ant.project.invoked-targets'] = 'AiServerLibTests';
+    
+        cur['ant.project.name'] = 'appengine';
+    
+        cur['ant.version'] = 'Apache Ant(TM) version 1.10.17 compiled on April 6 2026';
+    
+        cur['appengine.sdk'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine';
+    
+        cur['appinventor.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor';
+    
+        cur['appinventor.pkg'] = 'com/google/appinventor';
+    
+        cur['attach'] = 'false';
+    
+        cur['basedir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine';
+    
+        cur['build.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\build';
+    
+        cur['build.extra.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\extra';
+    
+        cur['build.static.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\static';
+    
+        cur['build.war.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war';
+    
+        cur['class.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\classes';
+    
+        cur['client.flags'] = '-style pretty';
+    
+        cur['client.module'] = 'com.google.appinventor.YaClient-dev';
+    
+        cur['debug'] = 'true';
+    
+        cur['debug.compile'] = 'true';
+    
+        cur['docs.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\docs';
+    
+        cur['file.encoding'] = 'UTF-8';
+    
+        cur['file.separator'] = '\\';
+    
+        cur['force.builddocs'] = 'false';
+    
+        cur['gwt.args'] = '-devMode -logLevel WARN -war E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build/build/war';
+    
+        cur['gwt.sdk'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gwt\\2.8.1-patched';
+    
+        cur['intellij.os.virtualization'] = 'none';
+    
+        cur['java.awt.headless'] = 'true';
+    
+        cur['java.class.path'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\AiServerLib.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\AiSharedLib.jar;E:\\mainproject\\appinventor-sources\\appinventor\\build\\common\\CommonUtils.jar;E:\\mainproject\\appinventor-sources\\appinventor\\build\\common\\CommonTestUtils.jar;E:\\mainproject\\appinventor-sources\\appinventor\\build\\common\\CommonVersion.jar;E:\\mainproject\\appinventor-sources\\appinventor\\build\\components\\CommonConstants.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\guava\\guava-20.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\guava\\error_prone_annotations-2.0.12.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\guava\\j2objc-annotations-1.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\json\\json.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\junit\\junit-4.13.2.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\junit-addons\\junit-addons-1.4.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\keyczar\\KeyczarTool.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\objectify-3.1\\objectify-3.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\byte-buddy-1.10.14.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\byte-buddy-agent-1.10.14.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\cglib-nodep-3.2.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\easymock-4.0.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\hamcrest-core-1.3.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\javassist-3.27.0-GA.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\objenesis-3.0.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-api-easymock-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-api-support-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-core-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-module-junit4-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-module-junit4-common-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\powermock\\powermock-reflect-2.0.9.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\responder-iq\\responderiq-test.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\appengine-gcs-client-0.6.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\jackson-core-2.1.3.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-api-client-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-api-client-appengine-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-http-client-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-http-client-appengine-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-http-client-jackson-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-http-client-jackson2-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\google-api-services-storage-v1-rev91-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\httpclient-4.0.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gcs\\joda-time-2.6.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\protobuf\\protobuf-java-4.28.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gwt\\2.8.1-patched\\gwt-servlet.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\gwt\\2.8.1-patched\\gwt-user.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\appengine-api-1.0-sdk-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\appengine-testing-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\appengine-api-stubs-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\appengine-tools-sdk-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\appengine-remote-api-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\lib\\appengine\\geronimo-jpa_3.0_spec-1.1.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\AiSharedLib.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\CommonConstants.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\CommonUtils.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\CommonVersion.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\appengine-api-1.0-sdk-2.0.19.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\appengine-gcs-client-0.6.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\bcpkix-jdk15to18-166.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\bcprov-jdk15to18-166.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\commons-codec-1.7.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\commons-fileupload-1.2.2.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\commons-io-2.0.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\commons-lang3-3.10.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\dd-plist.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\firebase-token-generator-2.0.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\geronimo-jpa_3.0_spec-1.1.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-api-client-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-api-client-appengine-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-api-client-jackson2-1.20.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-api-services-storage-v1-rev91-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-http-client-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-http-client-appengine-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-http-client-jackson-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\google-http-client-jackson2-1.22.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\gson-2.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\guava-20.0.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\gwt-servlet-deps.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\gwt-servlet.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\httpclient-4.0.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\jackson-core-2.1.3.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\joda-time-2.6.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\json.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\jsr305.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\keyczar-0.66-080111-java-1.6.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\log4j-1.2.16.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\objectify-3.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\owasp-java-html-sanitizer-20160628.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\war\\WEB-INF\\lib\\protobuf-java-4.28.1.jar;E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build\\AiServerLibTests.jar;C:\\apache\\apache-ant-1.10.17\\lib\\ant-launcher.jar;C:\\apache\\apache-ant-1.10.17\\lib\\ant.jar;C:\\apache\\apache-ant-1.10.17\\lib\\ant-junit.jar;C:\\apache\\apache-ant-1.10.17\\lib\\ant-junit4.jar';
+    
+        cur['java.class.version'] = '65.0';
+    
+        cur['java.home'] = 'C:\\Program Files\\Android\\Android Studio\\jbr';
+    
+        cur['java.io.tmpdir'] = 'C:\\Users\\aibal\\AppData\\Local\\Temp\\';
+    
+        cur['java.library.path'] = 'C:\\Program Files\\Android\\Android Studio\\jbr\\bin;C:\\WINDOWS\\Sun\\Java\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:/Users/aibal/.gemini/antigravity-ide/bin;C:\\app\\aibal\\product\\21c\\dbhomeXE\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\dotnet\\;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;E:\\AppDev2023\\flutter\\bin;C:\\apache-maven-3.9.11\\bin;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\platform-tools;C:\\Program Files\\GitHub CLI\\;C:\\apache\\apache-ant-1.10.17\\bin;C:\\Users\\aibal\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\;C:\\Users\\aibal\\AppData\\Local\\Programs\\Python\\Python311\\;C:\\Users\\aibal\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;D:\\AppDev2023\\flutter\\bin;C:\\Users\\aibal\\AppData\\Local\\Programs\\cursor\\resources\\app\\bin;C:\\Users\\aibal\\.dotnet\\tools;C:\\Users\\aibal\\AppData\\Roaming\\npm;C:\\Program Files\\Android\\Android Studio\\jbr\\bin;C:\\Program Files\\MongoDB\\Server\\8.2\\bin;C:\\Program Files\\mongosh\\;C:\\Users\\aibal\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Program Files (x86)\\Nmap;C:\\Users\\aibal\\AppData\\Local\\Programs\\Antigravity\\bin;C:\\Users\\aibal\\AppData\\Local\\Python\\bin;C:\\Users\\aibal\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\aibal\\AppData\\Local\\Programs\\Antigravity IDE\\bin;C:\\Users\\aibal\\AppData\\Local\\Google\\Cloud SDK\\google-cloud-sdk\\bin;.';
+    
+        cur['java.runtime.name'] = 'OpenJDK Runtime Environment';
+    
+        cur['java.runtime.version'] = '21.0.6+-13391695-b895.109';
+    
+        cur['java.specification.name'] = 'Java Platform API Specification';
+    
+        cur['java.specification.vendor'] = 'Oracle Corporation';
+    
+        cur['java.specification.version'] = '21';
+    
+        cur['java.vendor'] = 'JetBrains s.r.o.';
+    
+        cur['java.vendor.url'] = 'https://openjdk.org/';
+    
+        cur['java.vendor.url.bug'] = 'https://bugreport.java.com/bugreport/';
+    
+        cur['java.version'] = '21.0.6';
+    
+        cur['java.version.date'] = '2025-01-21';
+    
+        cur['java.vm.compressedOopsMode'] = '32-bit';
+    
+        cur['java.vm.info'] = 'mixed mode';
+    
+        cur['java.vm.name'] = 'OpenJDK 64-Bit Server VM';
+    
+        cur['java.vm.specification.name'] = 'Java Virtual Machine Specification';
+    
+        cur['java.vm.specification.vendor'] = 'Oracle Corporation';
+    
+        cur['java.vm.specification.version'] = '21';
+    
+        cur['java.vm.vendor'] = 'JetBrains s.r.o.';
+    
+        cur['java.vm.version'] = '21.0.6+-13391695-b895.109';
+    
+        cur['jbr.virtualization.information'] = 'Hyper-V role';
+    
+        cur['jdk.debug'] = 'release';
+    
+        cur['keystore.present'] = 'true';
+    
+        cur['lang.version'] = '21';
+    
+        cur['lib.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\lib';
+    
+        cur['line.separator'] = '\r\n';
+    
+        cur['local.build.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\build';
+    
+        cur['local.services'] = 'false';
+    
+        cur['native.encoding'] = 'Cp1252';
+    
+        cur['os.arch'] = 'amd64';
+    
+        cur['os.name'] = 'Windows 11';
+    
+        cur['os.version'] = '10.0';
+    
+        cur['path.separator'] = ';';
+    
+        cur['public.build.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\build\\appengine';
+    
+        cur['release'] = 'false';
+    
+        cur['reports.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\reports';
+    
+        cur['robolectric.dependency.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\lib/robolectric';
+    
+        cur['robolectric.offline'] = 'true';
+    
+        cur['sourceMaps'] = 'false';
+    
+        cur['src.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\src';
+    
+        cur['stderr.encoding'] = 'Cp1252';
+    
+        cur['stdout.encoding'] = 'Cp1252';
+    
+        cur['sun.arch.data.model'] = '64';
+    
+        cur['sun.boot.library.path'] = 'C:\\Program Files\\Android\\Android Studio\\jbr\\bin';
+    
+        cur['sun.cpu.endian'] = 'little';
+    
+        cur['sun.cpu.isalist'] = 'amd64';
+    
+        cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
+    
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner testsfile=E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\junittestcases1438238221634162757.properties skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\reports\\raw\\IGNORETHIS.xml crashfile=E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\junitvmwatcher14185288686035914826.properties propsfile=E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\junit10189026769096577251.properties';
+    
+        cur['sun.java.launcher'] = 'SUN_STANDARD';
+    
+        cur['sun.jnu.encoding'] = 'Cp1252';
+    
+        cur['sun.management.compiler'] = 'HotSpot 64-Bit Tiered Compilers';
+    
+        cur['sun.os.patch.level'] = '';
+    
+        cur['test_name.class'] = '${test_name}';
+    
+        cur['tests.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine\\tests';
+    
+        cur['user.country'] = 'IN';
+    
+        cur['user.dir'] = 'E:\\mainproject\\appinventor-sources\\appinventor\\appengine';
+    
+        cur['user.home'] = 'C:\\Users\\aibal';
+    
+        cur['user.language'] = 'en';
+    
+        cur['user.name'] = 'aibal';
+    
+        cur['user.script'] = '';
+    
+        cur['user.variant'] = '';
+    
+        cur['XstartOnFirstThread'] = '';
+    </script><script type="text/javascript" language="JavaScript">
+        function displayProperties (name) {
+          var win = window.open('','JUnitSystemProperties','scrollbars=1,resizable=1');
+          var doc = win.document;
+          doc.open();
+          doc.write("<html><head><title>Properties of " + name + "</title>");
+          doc.write("<style type=\"text/css\">");
+          doc.write("body {font:normal 68% verdana,arial,helvetica; color:#000000; }");
+          doc.write("table tr td, table tr th { font-size: 68%; }");
+          doc.write("table.properties { border-collapse:collapse; border-left:solid 1 #cccccc; border-top:solid 1 #cccccc; padding:5px; }");
+          doc.write("table.properties th { text-align:left; border-right:solid 1 #cccccc; border-bottom:solid 1 #cccccc; background-color:#eeeeee; }");
+          doc.write("table.properties td { font:normal; text-align:left; border-right:solid 1 #cccccc; border-bottom:solid 1 #cccccc; background-color:#fffffff; }");
+          doc.write("h3 { margin-bottom: 0.5em; font: bold 115% verdana,arial,helvetica }");
+          doc.write("</style>");
+          doc.write("</head><body>");
+          doc.write("<h3>Properties of " + name + "</h3>");
+          doc.write("<div align=\"right\"><a href=\"javascript:window.close();\">Close</a></div>");
+          doc.write("<table class='properties'>");
+          doc.write("<tr><th>Name</th><th>Value</th></tr>");
+          for (prop in TestCases[name]) {
+            doc.write("<tr><th>" + prop + "</th><td>" + TestCases[name][prop] + "</td></tr>");
+          }
+          doc.write("</table>");
+          doc.write("</body></html>");
+          doc.close();
+          win.focus();
+        }
+      
+      </script>
+    </head>
+    <body>
+        <h1>Unit Test Results</h1>
+        <table width="100%">
+            <tr>
+                <td align="left"></td><td align="right">Designed for use with <a href="https://www.junit.org/">JUnit</a> and <a href="https://ant.apache.org/">Ant</a>.</td>
+            </tr>
+        </table>
+        <hr size="1">
+        <h3>Class com.google.appinventor.server.ComponentServiceTest</h3>
+        <table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+            <tr valign="top">
+                <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th>Skipped</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
+            </tr>
+            <tr valign="top" class="Error">
+                <td><a title="Display all tests" href="0_ComponentServiceTest.html">ComponentServiceTest</a></td><td><a title="Display all tests" href="0_ComponentServiceTest.html">20</a></td><td><a title="Display only errors" href="0_ComponentServiceTest-errors.html">4</a></td><td><a title="Display only failures" href="0_ComponentServiceTest-fails.html">11</a></td><td>0</td><td>6.806</td><td>2026-08-17T04:08:01</td><td>UTC-123-TUF</td>
+            </tr>
+        </table>
+        <h2>Errors</h2>
+        <table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+            <tr valign="top">
+                <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
+            </tr>
+            <tr valign="top" class="Error">
+                <td><a name="testUpgradeExtensionSingleToTransition"></a>testUpgradeExtensionSingleToTransition</td><td>Error</td><td>Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                    <br>
+                    <br>
+                    <code>java.lang.IllegalArgumentException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI.create(Unknown Source)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.importProject(ComponentServiceTest.java:291)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.testUpgradeExtensionSingleToTransition(ComponentServiceTest.java:114)
+                        <br>
+                        	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+                        <br>
+                        Caused by: java.net.URISyntaxException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI$Parser.fail(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseAuthority(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseHierarchical(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parse(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI.&lt;init&gt;(Unknown Source)
+                        <br>
+                    </code></td><td>0.020</td>
+            </tr>
+            <tr valign="top" class="Error">
+                <td><a name="testUpgradeExtensionSingleToBundle"></a>testUpgradeExtensionSingleToBundle</td><td>Error</td><td>Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                    <br>
+                    <br>
+                    <code>java.lang.IllegalArgumentException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI.create(Unknown Source)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.importProject(ComponentServiceTest.java:291)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.testUpgradeExtensionSingleToBundle(ComponentServiceTest.java:127)
+                        <br>
+                        	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+                        <br>
+                        Caused by: java.net.URISyntaxException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI$Parser.fail(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseAuthority(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseHierarchical(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parse(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI.&lt;init&gt;(Unknown Source)
+                        <br>
+                    </code></td><td>0.029</td>
+            </tr>
+            <tr valign="top" class="Error">
+                <td><a name="testUpgradeExtensionSingleToSingle"></a>testUpgradeExtensionSingleToSingle</td><td>Error</td><td>Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                    <br>
+                    <br>
+                    <code>java.lang.IllegalArgumentException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI.create(Unknown Source)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.importProject(ComponentServiceTest.java:291)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.testUpgradeExtensionSingleToSingle(ComponentServiceTest.java:101)
+                        <br>
+                        	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+                        <br>
+                        Caused by: java.net.URISyntaxException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/OldExtensionTest.aia
+                        <br>
+                        	at java.base/java.net.URI$Parser.fail(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseAuthority(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseHierarchical(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parse(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI.&lt;init&gt;(Unknown Source)
+                        <br>
+                    </code></td><td>0.021</td>
+            </tr>
+            <tr valign="top" class="Error">
+                <td><a name="testUpgradeIfProjectMissingComponentsJson"></a>testUpgradeIfProjectMissingComponentsJson</td><td>Error</td><td>Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/CorruptExtensionTestMissingDescriptors.aia
+                    <br>
+                    <br>
+                    <code>java.lang.IllegalArgumentException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/CorruptExtensionTestMissingDescriptors.aia
+                        <br>
+                        	at java.base/java.net.URI.create(Unknown Source)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.importProject(ComponentServiceTest.java:291)
+                        <br>
+                        	at com.google.appinventor.server.ComponentServiceTest.testUpgradeIfProjectMissingComponentsJson(ComponentServiceTest.java:196)
+                        <br>
+                        	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+                        <br>
+                        Caused by: java.net.URISyntaxException: Illegal character in authority at index 9: file://E:\mainproject\appinventor-sources\appinventor/appengine/tests/com/google/appinventor/server/CorruptExtensionTestMissingDescriptors.aia
+                        <br>
+                        	at java.base/java.net.URI$Parser.fail(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseAuthority(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parseHierarchical(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI$Parser.parse(Unknown Source)
+                        <br>
+                        	at java.base/java.net.URI.&lt;init&gt;(Unknown Source)
+                        <br>
+                    </code></td><td>0.019</td>
+            </tr>
+        </table>
+        <div class="Properties">
+            <a href="javascript:displayProperties('com.google.appinventor.server.ComponentServiceTest');">
+                    Properties &raquo;
+                </a>
+        </div>
+        <div class="Properties">
+            <a href="./0_ComponentServiceTest-err.html">
+                        System.err &raquo;
+                    </a>
+        </div>
+    </body>
+</html>

@@ -9,7 +9,7 @@
              ui:generateLocales="default">
   <ui:with field="messages" type="com.google.appinventor.client.OdeMessages"/>
   <g:FlowPanel styleName="ode-ProjectRowList">
-    <g:FlowPanel ui:field="container" styleName="ode-ProjectRowUnHighlighted">
+    <g:FlowPanel ui:field="container" styleName="ode-ProjectFolderHeader">
       <g:CheckBox ui:field='checkBox' styleName='gwt-CheckBox ode-ProjectCheckBox'/>
       <g:FocusPanel ui:field='expandbuttonFocusPanel' styleName='ode-ExpandButtonFocusPanel' >
         <g:FlowPanel addStyleNames="ode-ProjectFieldSpan">

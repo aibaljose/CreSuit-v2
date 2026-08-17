@@ -41,6 +41,18 @@
             <g:Label text="{messages.enableNewLayout}" />
           </label>
         </div>
+        <div class="image-radio">
+          <label class="image-label">
+            <input type="radio" class="hidden-radio" name="UI" value="cresuit"
+                   ui:field="cresuitRadioButton" />
+            <div>
+            <img class="light" src="/static/images/ai2-neo-style.png" />
+            <img class="dark" src="/static/images/ai2-neo-dark-style.png" />
+            </div>
+            <br/>
+            <g:Label text="Enable CreSuit Theme" />
+          </label>
+        </div>
       </g:HTMLPanel>
     </g:FlowPanel>
     <g:FlowPanel styleName="ode-DialogRow">

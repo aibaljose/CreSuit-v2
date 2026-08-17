@@ -44,14 +44,14 @@
         <actions:ExportAllProjectsAction/>
       </ai:DropDownItem>
     </ai:DropDownButton>
-    <ai:ToolbarItem name="Login to Gallery" caption="{messages.galleryTabName}" icon='key' align="center"
+    <!-- <ai:ToolbarItem name="Login to Gallery" caption="{messages.galleryTabName}" icon='key' align="center"
         styleName="ode-ProjectListButton inline bright" tooltip="{messages.loginToGallery}" visible="false">
       <actions:LoginToGalleryAction/>
-    </ai:ToolbarItem>
-    <ai:ToolbarItem name="Send to Gallery" caption="{messages.publishButton}" icon='public' align="center"
+    </ai:ToolbarItem> -->
+    <!-- <ai:ToolbarItem name="Send to Gallery" caption="{messages.publishButton}" icon='public' align="center"
         styleName="ode-ProjectListButton inline bright" tooltip="{messages.publishToGalleryButton}" visible="false">
       <actions:SendToGalleryAction/>
-    </ai:ToolbarItem>
+    </ai:ToolbarItem> -->
     <ai:ToolbarItem name="Restore" icon="restore" tooltip="{messages.restoreProjectButton}" align="right"
                     styleName="ode-ProjectListButton inline bleft">
       <actions:RestoreProjectAction/>

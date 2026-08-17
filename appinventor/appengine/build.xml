@@ -657,12 +657,14 @@
           depends="common_CommonUtils,common_CommonVersion,components_CommonConstants,AiClientLib,AiRebindLib,CheckYaClientApp"
           unless="YaClientApp.uptodate">
     <mkdir dir="${build.extra.dir}" />
+    <mkdir dir="${build.dir}/tmp" />
     <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
       <classpath>
         <path refid="YaClientApp.classpath" />
       </classpath>
-      <jvmarg value="-Xss4M"/>  <!-- increase if you see a StackOverflowError -->
-      <jvmarg value="-Xmx6G"/>
+      <jvmarg value="-Xss16M"/>  <!-- increase if you see a StackOverflowError -->
+      <jvmarg value="-Xmx8G"/>
+      <jvmarg value="-Djava.io.tmpdir=${build.dir}/tmp"/>
       <jvmarg line="${XstartOnFirstThread}"/>
       <jvmarg value="-Dfile.encoding=UTF-8" />
       <arg value="-war"/>

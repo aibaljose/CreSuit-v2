@@ -312,6 +312,12 @@ public interface Images extends Resources {
   ImageResource progressbar();
 
   /**
+   * Designer palette item: space component
+   */
+  @Source("com/google/appinventor/images/space.png")
+  ImageResource space();
+
+  /**
    * Designer palette item: radiobutton component
    */
   @Source("com/google/appinventor/images/radiobutton.png")

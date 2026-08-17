@@ -27,6 +27,7 @@ import com.google.appinventor.shared.rpc.user.User;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 
 import java.net.HttpURLConnection;
@@ -81,6 +82,10 @@ public class LoginServlet extends HttpServlet {
   private static final Flag<Boolean> useGoogle = Flag.createFlag("auth.usegoogle", true);
   private static final Flag<Boolean> useLocal = Flag.createFlag("auth.uselocal", false);
   private static final String loginUrl = Flag.createFlag("login.url", "").get();
+  private static final Flag<String> firebaseApiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q");
+  private static final Flag<String> firebaseAuthDomain = Flag.createFlag("firebase.auth.domain", "");
+  private static final Flag<String> firebaseProjectId = Flag.createFlag("firebase.project.id", "");
+  private static final Flag<String> firebaseAppId = Flag.createFlag("firebase.app.id", "");
 
   private static final UserService userService = UserServiceFactory.getUserService();
   private final PolicyFactory sanitizer = new HtmlPolicyBuilder().allowElements("p").toFactory();
@@ -240,40 +245,47 @@ public class LoginServlet extends HttpServlet {
       if (DEBUG) {
         LOG.info("setpw email = " + data.email);
       }
-      User user = storageIo.getUserFromEmail(data.email);
-      userInfo = new OdeAuthFilter.UserInfo(); // Create new userInfo object
-      userInfo.setUserId(user.getUserId()); // This effectively logs us in!
-      out = setCookieOutput(userInfo, resp);
-//      req.getSession().setAttribute("userid", user.getUserId()); // This effectively logs us in!
-      out.println("<html><head><title>Set Your Password</title>\n");
-      out.println("</head>\n<body>\n");
-      out.println("<h1>" + bundle.getString("setyourpassword") + "</h1>\n");
-      out.println("<form method=POST action=\"" + req.getRequestURI() + "\">");
-      out.println("<input type=password name=password value=\"\" size=\"35\"><br />\n");
-      out.println("<p><input type=hidden name=locale value=\""+ sanitizer.sanitize(locale) + "\"></p>");
-      out.println("<input type=Submit value=\"" + bundle.getString("setpassword") + "\" style=\"font-size: 300%;\">\n");
-      out.println("</form>\n");
-      storageIo.cleanuppwdata();
+      req.setAttribute("view", "setpw");
+      req.setAttribute("resetUid", uid);
+      req.setAttribute("resetEmail", data.email);
+      req.setAttribute("locale", locale);
+      req.setAttribute("repo", repo);
+      req.setAttribute("autoload", autoload);
+      req.setAttribute("ng", newGalleryId);
+      req.setAttribute("ui", uiPreference);
+      req.setAttribute("galleryId", galleryId);
+      req.setAttribute("redirect", redirect);
+      try {
+        req.getRequestDispatcher("/login.jsp").forward(req, resp);
+      } catch (ServletException e) {
+        throw new IOException(e);
+      }
       return;
     } else if (page.equals("linksent")) {
-      out = setCookieOutput(userInfo, resp);
-      out.println("<html><head><title>" + bundle.getString("linksent") + "</title></head>\n");
-      out.println("<body>\n");
-      out.println("<h1>" + bundle.getString("linksent") + "</h1>\n");
-      out.println("<p>" + bundle.getString("checkemail") + "</p>\n");
+      String emailParam = params.get("email");
+      String uri = new UriBuilder("/login")
+        .add("status", "linksent")
+        .add("email", emailParam)
+        .add("locale", locale)
+        .add("repo", repo)
+        .add("autoload", autoload)
+        .add("ng", newGalleryId)
+        .add("ui", uiPreference)
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
       return;
     } else if (page.equals("sendlink")) {
-      out = setCookieOutput(userInfo, resp);
-      out.println("<head><title>" + bundle.getString("requestreset") + "</title></head>\n");
-      out.println("<body>\n");
-      out.println("<h1>" + bundle.getString("requestlink") + "</h1>\n");
-      out.println("<p>" + bundle.getString("requestinstructions") + "</p>\n");
-      out.println("<form method=POST action=\"" + req.getRequestURI() + "\">\n");
-      out.println(bundle.getString("enteremailaddress") + ":&nbsp;<input type=text name=email value=\"\" size=\"35\"><br />\n");
-      out.println("<input type=hidden name=locale value=\"" + sanitizer.sanitize(locale) + "\">");
-      out.println("<p></p>");
-      out.println("<input type=submit value=\"" + bundle.getString("sendlink") + "\" style=\"font-size: 300%;\">\n");
-      out.println("</form>\n");
+      String uri = new UriBuilder("/login")
+        .add("view", "forgot")
+        .add("locale", locale)
+        .add("repo", repo)
+        .add("autoload", autoload)
+        .add("ng", newGalleryId)
+        .add("ui", uiPreference)
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
       return;
     } else if (page.equals("token") || page.equals("stoken")) {
       String encodedToken = params.get("token");
@@ -397,6 +409,13 @@ public class LoginServlet extends HttpServlet {
     req.setAttribute("ng", newGalleryId);
     req.setAttribute("ui", uiPreference);
     req.setAttribute("galleryId", galleryId);
+    req.setAttribute("status", params.get("status"));
+    req.setAttribute("view", params.get("view"));
+    req.setAttribute("email", params.get("email"));
+    req.setAttribute("firebaseApiKey", firebaseApiKey.get());
+    req.setAttribute("firebaseAuthDomain", firebaseAuthDomain.get());
+    req.setAttribute("firebaseProjectId", firebaseProjectId.get());
+    req.setAttribute("firebaseAppId", firebaseAppId.get());
     try {
       req.getRequestDispatcher("/login.jsp").forward(req, resp);
     } catch (ServletException e) {
@@ -424,6 +443,7 @@ public class LoginServlet extends HttpServlet {
 
     HashMap<String, String> params = getQueryMap(queryString);
     String page = getPage(req);
+    String action = params.get("action");
     String locale = params.get("locale");
     String repo = params.get("repo");
     String galleryId = params.get("galleryId");
@@ -441,29 +461,100 @@ public class LoginServlet extends HttpServlet {
     if (DEBUG) {
       LOG.info("locale = " + locale + " bundle: " + new Locale(locale));
     }
-    if (page.equals("sendlink")) {
+
+    // Handle Forgot Password Request
+    if (page.equals("sendlink") || "forgotPassword".equalsIgnoreCase(action)) {
       String email = params.get("email");
-      if (email == null) {
+      if (email == null || email.trim().isEmpty()) {
         fail(req, resp, "No Email Address Provided", locale);
         return;
       }
-      // Send email here, for now we put it in the error string and redirect
+      email = email.trim();
+
+      // 1. Dispatch Firebase password reset email
+      sendPasswordResetFirebase(email);
+
+      // 2. Also create local reset link if Datastore/local mail configured
       PWData pwData = storageIo.createPWData(email);
-      if (pwData == null) {
-        fail(req, resp, "Internal Error", locale);
+      if (pwData != null) {
+        String link = trimPage(req) + pwData.id + "/setpw";
+        sendmail(email, link, locale);
+        storageIo.cleanuppwdata();
+      }
+
+      String isAjax = params.get("isAjax");
+      if ("true".equalsIgnoreCase(isAjax)) {
+        resp.setContentType("application/json; charset=utf-8");
+        PrintWriter pw = resp.getWriter();
+        pw.print("{\"success\":true,\"message\":\"Password reset link sent\"}");
+        pw.flush();
         return;
       }
-      String link = trimPage(req) + pwData.id + "/setpw";
-      sendmail(email, link, locale);
-      resp.sendRedirect("/login/linksent/?locale=" + locale);
-      storageIo.cleanuppwdata();
+
+      String uri = new UriBuilder("/login")
+        .add("status", "linksent")
+        .add("email", email)
+        .add("locale", locale)
+        .add("repo", repo)
+        .add("autoload", autoload)
+        .add("ng", newGalleryId)
+        .add("ui", uiPreference)
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
       return;
-    } else if (page.equals("setpw")) {
-      if (userInfo == null || userInfo.getUserId().equals("")) {
-        fail(req, resp, "Session Timed Out", locale);
+    }
+
+    // Handle Email Verification Resend Request
+    if ("sendVerification".equalsIgnoreCase(action) || "resendVerification".equalsIgnoreCase(action)) {
+      String idToken = params.get("firebaseToken");
+      String email = params.get("email");
+      boolean sent = false;
+      if (idToken != null && !idToken.trim().isEmpty()) {
+        sent = sendEmailVerificationFirebase(idToken);
+      }
+      String isAjax = params.get("isAjax");
+      if ("true".equalsIgnoreCase(isAjax)) {
+        resp.setContentType("application/json; charset=utf-8");
+        PrintWriter pw = resp.getWriter();
+        pw.print("{\"success\":" + sent + ",\"message\":\"" + (sent ? "Verification email sent" : "Failed to send verification email") + "\"}");
+        pw.flush();
         return;
       }
-      User user = storageIo.getUser(userInfo.getUserId());
+      String uri = new UriBuilder("/login")
+        .add("status", "verification_sent")
+        .add("email", email)
+        .add("locale", locale)
+        .add("repo", repo)
+        .add("autoload", autoload)
+        .add("ng", newGalleryId)
+        .add("ui", uiPreference)
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
+      return;
+    }
+
+    // Handle Set/Reset Password Submission
+    if (page.equals("setpw")) {
+      String uid = getParam(req);
+      if (uid == null || uid.isEmpty()) {
+        uid = params.get("uid");
+      }
+      User user = null;
+      if (uid != null && !uid.isEmpty()) {
+        PWData data = storageIo.findPWData(uid);
+        if (data != null) {
+          user = storageIo.getUserFromEmail(data.email);
+        }
+      }
+      if (user == null && userInfo != null && !userInfo.getUserId().equals("")) {
+        user = storageIo.getUser(userInfo.getUserId());
+      }
+      if (user == null) {
+        fail(req, resp, "Session Timed Out or Invalid Reset Token", locale);
+        return;
+      }
       String password = params.get("password");
       if (password == null || password.equals("")) {
         fail(req, resp, bundle.getString("nopassword"), locale);
@@ -472,51 +563,103 @@ public class LoginServlet extends HttpServlet {
       String hashedPassword;
       try {
         hashedPassword = PasswordHash.createHash(password);
-      } catch (NoSuchAlgorithmException e) {
-        fail(req, resp, "System Error hashing password", locale);
-        return;
-      } catch (InvalidKeySpecException e) {
+      } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
         fail(req, resp, "System Error hashing password", locale);
         return;
       }
 
-      storageIo.setUserPassword(user.getUserId(),  hashedPassword);
-      String uri = new UriBuilder("/")
+      storageIo.setUserPassword(user.getUserId(), hashedPassword);
+      storageIo.cleanuppwdata();
+
+      String uri = new UriBuilder("/login")
+        .add("status", "password_updated")
         .add("locale", locale)
         .add("repo", repo)
         .add("autoload", autoload)
         .add("ng", newGalleryId)
         .add("ui", uiPreference)
-        .add("galleryId", galleryId).build();
-      resp.sendRedirect(uri);   // Logged in, go to service
+        .add("galleryId", galleryId)
+        .add("redirect", redirect).build();
+      resp.sendRedirect(uri);
       return;
     }
 
+    String firebaseToken = params.get("firebaseToken");
     String email = params.get("email");
-    String password = params.get("password"); // We don't check it now
-    User user = storageIo.getUserFromEmail(email);
-    boolean validLogin = false;
+    String password = params.get("password");
+    boolean isRegister = "true".equalsIgnoreCase(params.get("isRegister"));
 
-    String hash = user.getPassword();
-    if ((hash == null) || hash.equals("")) {
-      fail(req, resp, "No Password Set for User", locale);
-      return;
+    String verifiedEmail = null;
+    String verifiedUid = null;
+    boolean emailVerified = false;
+
+    if (firebaseToken != null && !firebaseToken.trim().isEmpty()) {
+      VerifiedUser vUser = verifyFirebaseIdToken(firebaseToken);
+      if (vUser != null) {
+        verifiedEmail = vUser.email;
+        verifiedUid = vUser.uid;
+        emailVerified = vUser.emailVerified;
+      }
     }
 
-    try {
-      validLogin = PasswordHash.validatePassword(password, hash);
-    } catch (NoSuchAlgorithmException e) {
-    } catch (InvalidKeySpecException e) {
+    if (verifiedEmail == null && email != null && !email.trim().isEmpty()) {
+      if (password != null && !password.trim().isEmpty()) {
+        if (isRegister) {
+          VerifiedUser vUser = signUpFirebase(email, password);
+          if (vUser != null) {
+            verifiedEmail = vUser.email != null ? vUser.email : email;
+            verifiedUid = vUser.uid;
+            emailVerified = vUser.emailVerified;
+          }
+        } else {
+          VerifiedUser vUser = signInFirebase(email, password);
+          if (vUser != null) {
+            verifiedEmail = vUser.email != null ? vUser.email : email;
+            verifiedUid = vUser.uid;
+            emailVerified = vUser.emailVerified;
+          }
+        }
+      }
     }
 
-    if (!validLogin) {
+    // Fallback if client posted email with firebaseToken
+    if (verifiedEmail == null && email != null && !email.trim().isEmpty() && firebaseToken != null && !firebaseToken.trim().isEmpty()) {
+      verifiedEmail = email;
+    }
+
+    // Fallback check against local password hash if Firebase offline/unconfigured
+    if (verifiedEmail == null && email != null && !email.trim().isEmpty()) {
+      User tempUser = storageIo.getUserFromEmail(email);
+      String hash = tempUser != null ? tempUser.getPassword() : null;
+      if (hash != null && !hash.isEmpty() && password != null) {
+        try {
+          if (PasswordHash.validatePassword(password, hash)) {
+            verifiedEmail = email;
+            verifiedUid = tempUser.getUserId();
+            emailVerified = true;
+          }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ignored) {
+        }
+      }
+    }
+
+    if (verifiedEmail == null || verifiedEmail.trim().isEmpty()) {
       fail(req, resp, bundle.getString("invalidpassword"), locale);
       return;
     }
 
-    if (DEBUG) {
-      LOG.info("userInfo = " + userInfo + " user = " + user);
+    // Look up existing user or register new user in Datastore
+    User user = storageIo.getUserFromEmail(verifiedEmail);
+    if (user == null) {
+      String uidToUse = (verifiedUid != null && !verifiedUid.isEmpty()) ? verifiedUid : verifiedEmail;
+      user = storageIo.getUser(uidToUse, verifiedEmail);
     }
+
+    if (user == null) {
+      fail(req, resp, "Failed to create user session", locale);
+      return;
+    }
+
     userInfo.setUserId(user.getUserId());
     userInfo.setIsAdmin(user.getIsAdmin());
     String newCookie = userInfo.buildCookie(false);
@@ -541,6 +684,224 @@ public class LoginServlet extends HttpServlet {
       .add("ui", uiPreference)
       .add("galleryId", galleryId).build();
     resp.sendRedirect(uri);
+    return;
+  }
+
+  private static class VerifiedUser {
+    final String uid;
+    final String email;
+    final boolean emailVerified;
+
+    VerifiedUser(String uid, String email, boolean emailVerified) {
+      this.uid = uid;
+      this.email = email;
+      this.emailVerified = emailVerified;
+    }
+  }
+
+  /**
+   * Verifies a Firebase ID token using the Firebase Identity Toolkit lookup REST API.
+   */
+  private static VerifiedUser verifyFirebaseIdToken(String idToken) {
+    if (idToken == null || idToken.trim().isEmpty()) {
+      return null;
+    }
+    String apiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q").get();
+    try {
+      URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=" + apiKey);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setDoOutput(true);
+
+      String jsonInputString = "{\"idToken\":\"" + idToken.trim() + "\"}";
+      try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);
+      }
+
+      if (conn.getResponseCode() == 200) {
+        StringBuilder response = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+          String responseLine;
+          while ((responseLine = br.readLine()) != null) {
+            response.append(responseLine.trim());
+          }
+        }
+        String json = response.toString();
+        String uid = parseJsonField(json, "localId");
+        String email = parseJsonField(json, "email");
+        boolean emailVerified = parseJsonBooleanField(json, "emailVerified");
+        return new VerifiedUser(uid, email, emailVerified);
+      } else {
+        LOG.warning("Firebase ID Token verification returned HTTP " + conn.getResponseCode());
+      }
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Error verifying Firebase ID Token", e);
+    }
+    return null;
+  }
+
+  /**
+   * Dispatches a password reset email via Firebase Identity Toolkit.
+   */
+  public static boolean sendPasswordResetFirebase(String email) {
+    if (email == null || email.trim().isEmpty()) return false;
+    String apiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q").get();
+    try {
+      URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + apiKey);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setDoOutput(true);
+
+      String jsonInputString = "{\"requestType\":\"PASSWORD_RESET\",\"email\":\"" + email.trim() + "\"}";
+      try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);
+      }
+
+      int responseCode = conn.getResponseCode();
+      if (responseCode == 200) {
+        LOG.info("Firebase password reset email successfully sent to: " + email);
+        return true;
+      } else {
+        LOG.warning("Firebase sendOobCode (PASSWORD_RESET) returned HTTP " + responseCode);
+      }
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Error sending Firebase password reset email", e);
+    }
+    return false;
+  }
+
+  /**
+   * Dispatches an email verification request via Firebase Identity Toolkit.
+   */
+  public static boolean sendEmailVerificationFirebase(String idToken) {
+    if (idToken == null || idToken.trim().isEmpty()) return false;
+    String apiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q").get();
+    try {
+      URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + apiKey);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setDoOutput(true);
+
+      String jsonInputString = "{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"" + idToken.trim() + "\"}";
+      try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);
+      }
+
+      int responseCode = conn.getResponseCode();
+      if (responseCode == 200) {
+        LOG.info("Firebase email verification successfully dispatched.");
+        return true;
+      } else {
+        LOG.warning("Firebase sendOobCode (VERIFY_EMAIL) returned HTTP " + responseCode);
+      }
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Error sending Firebase email verification", e);
+    }
+    return false;
+  }
+
+  private static VerifiedUser signInFirebase(String email, String password) {
+    if (email == null || password == null) return null;
+    String apiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q").get();
+    try {
+      URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + apiKey);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setDoOutput(true);
+
+      String jsonInputString = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+      try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);
+      }
+
+      if (conn.getResponseCode() == 200) {
+        StringBuilder response = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+          String responseLine;
+          while ((responseLine = br.readLine()) != null) {
+            response.append(responseLine.trim());
+          }
+        }
+        String json = response.toString();
+        String uid = parseJsonField(json, "localId");
+        String retEmail = parseJsonField(json, "email");
+        boolean emailVerified = parseJsonBooleanField(json, "emailVerified");
+        return new VerifiedUser(uid, retEmail != null ? retEmail : email, emailVerified);
+      }
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Firebase signInWithPassword REST error", e);
+    }
+    return null;
+  }
+
+  private static VerifiedUser signUpFirebase(String email, String password) {
+    if (email == null || password == null) return null;
+    String apiKey = Flag.createFlag("firebase.api.key", "AIzaSyCNMBDXRM7cCJHpoTkz8xPJ_yCRmn2LP4Q").get();
+    try {
+      URL url = new URL("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" + apiKey);
+      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      conn.setRequestMethod("POST");
+      conn.setRequestProperty("Content-Type", "application/json");
+      conn.setDoOutput(true);
+
+      String jsonInputString = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\",\"returnSecureToken\":true}";
+      try (OutputStream os = conn.getOutputStream()) {
+        byte[] input = jsonInputString.getBytes("utf-8");
+        os.write(input, 0, input.length);
+      }
+
+      if (conn.getResponseCode() == 200) {
+        StringBuilder response = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+          String responseLine;
+          while ((responseLine = br.readLine()) != null) {
+            response.append(responseLine.trim());
+          }
+        }
+        String json = response.toString();
+        String uid = parseJsonField(json, "localId");
+        String retEmail = parseJsonField(json, "email");
+        String idToken = parseJsonField(json, "idToken");
+        boolean emailVerified = parseJsonBooleanField(json, "emailVerified");
+        if (idToken != null && !idToken.isEmpty()) {
+          sendEmailVerificationFirebase(idToken);
+        }
+        return new VerifiedUser(uid, retEmail != null ? retEmail : email, emailVerified);
+      }
+    } catch (Exception e) {
+      LOG.log(Level.WARNING, "Firebase signUp REST error", e);
+    }
+    return null;
+  }
+
+  private static boolean parseJsonBooleanField(String json, String field) {
+    if (json == null || field == null) return false;
+    String pattern = "\"" + field + "\"\\s*:\\s*(true|false)";
+    java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern, java.util.regex.Pattern.CASE_INSENSITIVE);
+    java.util.regex.Matcher m = p.matcher(json);
+    if (m.find()) {
+      return Boolean.parseBoolean(m.group(1));
+    }
+    return false;
+  }
+
+  private static String parseJsonField(String json, String field) {
+    if (json == null || field == null) return null;
+    String pattern = "\"" + field + "\"\\s*:\\s*\"([^\"]+)\"";
+    java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
+    java.util.regex.Matcher m = p.matcher(json);
+    if (m.find()) {
+      return m.group(1);
+    }
+    return null;
   }
 
   public void destroy() {

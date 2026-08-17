@@ -38,6 +38,7 @@ public class UISettingsWizard {
   @UiField protected Button bottomInvisible;
   @UiField protected InputElement classicRadioButton;
   @UiField protected InputElement modernRadioButton;
+  @UiField protected InputElement cresuitRadioButton;
   @UiField protected ListBox themeSelector;
   boolean userLayoutPreference;
   boolean firstUIChoice = false;
@@ -54,7 +55,10 @@ public class UISettingsWizard {
     bindUI();
     firstUIChoice = intro;
     userLayoutPreference = Ode.getUserNewLayout();
-    if (intro || userLayoutPreference) {
+    String currentLayoutTheme = Ode.getUserLayoutTheme();
+    if ("cresuit".equals(currentLayoutTheme)) {
+      cresuitRadioButton.setChecked(true);
+    } else if (intro || "modern".equals(currentLayoutTheme)) {
       modernRadioButton.setChecked(true);
     } else {
       classicRadioButton.setChecked(true);
@@ -99,10 +103,24 @@ public class UISettingsWizard {
     if (firstUIChoice) {
       Ode.setShowUIPicker(false);
     }
-    Ode.setUserNewLayout(modernRadioButton.isChecked());
-    Ode.setUserDarkThemeEnabled("dark".equals(themeSelector.getSelectedValue()));
+    String selectedTheme = "classic";
+    if (cresuitRadioButton.isChecked()) {
+      selectedTheme = "cresuit";
+    } else if (modernRadioButton.isChecked()) {
+      selectedTheme = "modern";
+    }
+
+    boolean isDark = "dark".equals(themeSelector.getSelectedValue());
+    boolean changedTheme = !selectedTheme.equals(Ode.getUserLayoutTheme()) || (isDark != Ode.getUserDarkThemeEnabled());
+
+    Ode.setUserLayoutTheme(selectedTheme);
+    Ode.setUserDarkThemeEnabled(isDark);
     Ode.saveUserDesignSettings();
     hide();
+
+    if (changedTheme) {
+      Window.Location.reload();
+    }
   }
 
   @UiHandler("topInvisible")

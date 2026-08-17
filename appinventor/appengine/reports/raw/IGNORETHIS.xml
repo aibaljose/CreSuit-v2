@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="1" failures="0" hostname="UTC-123-TUF" name="com.google.appinventor.server.util.Batch-With-Multiple-Tests" skipped="0" tests="1" time="0.0" timestamp="2026-08-17T04:08:09">
+  <properties>
+    <property name="ant.library.dir" value="C:\apache\apache-ant-1.10.17\lib" />
+    <property name="java.specification.version" value="21" />
+    <property name="ant.project.name" value="appengine" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="release" value="false" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.vendor.url" value="https://openjdk.org/" />
+    <property name="client.flags" value="-style pretty" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Android\Android Studio\jbr\bin" />
+    <property name="sun.java.command" value="org.apache.tools.ant.launch.Launcher AiServerLibTests" />
+    <property name="jdk.debug" value="release" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="appinventor.dir" value="E:\mainproject\appinventor-sources\appinventor" />
+    <property name="java.version.date" value="2025-01-21" />
+    <property name="java.home" value="C:\Program Files\Android\Android Studio\jbr" />
+    <property name="AiServerLib-class.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\classes\AiServerLib" />
+    <property name="basedir" value="E:\mainproject\appinventor-sources\appinventor\appengine" />
+    <property name="file.separator" value="\" />
+    <property name="java.vm.compressedOopsMode" value="Zero based" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="intellij.os.virtualization" value="none" />
+    <property name="jbr.virtualization.information" value="Hyper-V role" />
+    <property name="build.war.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\war" />
+    <property name="appengine.sdk" value="E:\mainproject\appinventor-sources\appinventor\lib\appengine" />
+    <property name="user.script" value="" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="build.extra.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\extra" />
+    <property name="ant.file.CommonDefinitions" value="E:\mainproject\appinventor-sources\appinventor\build-common.xml" />
+    <property name="java.runtime.version" value="21.0.6+-13391695-b895.109" />
+    <property name="user.name" value="aibal" />
+    <property name="class.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\classes" />
+    <property name="ant.file.type.appengine" value="file" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="attach" value="false" />
+    <property name="test_name.class" value="${test_name}" />
+    <property name="build.dir" value="E:\mainproject\appinventor-sources\appinventor\build" />
+    <property name="java.io.tmpdir" value="C:\Users\aibal\AppData\Local\Temp\" />
+    <property name="java.version" value="21.0.6" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.home" value="C:\apache\apache-ant-1.10.17" />
+    <property name="lib.dir" value="E:\mainproject\appinventor-sources\appinventor\lib" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="native.encoding" value="Cp1252" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.17 compiled on April 6 2026" />
+    <property name="java.library.path" value="C:\Program Files\Android\Android Studio\jbr\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/aibal/.gemini/antigravity-ide/bin;C:\app\aibal\product\21c\dbhomeXE\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;E:\AppDev2023\flutter\bin;C:\apache-maven-3.9.11\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\platform-tools;C:\Program Files\GitHub CLI\;C:\apache\apache-ant-1.10.17\bin;C:\Users\aibal\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\aibal\AppData\Local\Programs\Python\Python311\;C:\Users\aibal\AppData\Local\Programs\Microsoft VS Code\bin;D:\AppDev2023\flutter\bin;C:\Users\aibal\AppData\Local\Programs\cursor\resources\app\bin;C:\Users\aibal\.dotnet\tools;C:\Users\aibal\AppData\Roaming\npm;C:\Program Files\Android\Android Studio\jbr\bin;C:\Program Files\MongoDB\Server\8.2\bin;C:\Program Files\mongosh\;C:\Users\aibal\AppData\Roaming\Composer\vendor\bin;C:\Program Files (x86)\Nmap;C:\Users\aibal\AppData\Local\Programs\Antigravity\bin;C:\Users\aibal\AppData\Local\Python\bin;C:\Users\aibal\AppData\Local\Microsoft\WindowsApps;C:\Users\aibal\AppData\Local\Programs\Antigravity IDE\bin;C:\Users\aibal\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;." />
+    <property name="java.vendor" value="JetBrains s.r.o." />
+    <property name="stderr.encoding" value="Cp1252" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="docs.dir" value="E:\mainproject\appinventor-sources\appinventor\docs" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.class.path" value="C:\apache\apache-ant-1.10.17\lib\ant-launcher.jar;C:\apache\apache-ant-1.10.17\lib\ant-antlr.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-bcel.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-bsf.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-log4j.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-oro.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-regexp.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-resolver.jar;C:\apache\apache-ant-1.10.17\lib\ant-apache-xalan2.jar;C:\apache\apache-ant-1.10.17\lib\ant-commons-logging.jar;C:\apache\apache-ant-1.10.17\lib\ant-commons-net.jar;C:\apache\apache-ant-1.10.17\lib\ant-imageio.jar;C:\apache\apache-ant-1.10.17\lib\ant-jai.jar;C:\apache\apache-ant-1.10.17\lib\ant-jakartamail.jar;C:\apache\apache-ant-1.10.17\lib\ant-javamail.jar;C:\apache\apache-ant-1.10.17\lib\ant-jdepend.jar;C:\apache\apache-ant-1.10.17\lib\ant-jmf.jar;C:\apache\apache-ant-1.10.17\lib\ant-jsch.jar;C:\apache\apache-ant-1.10.17\lib\ant-junit.jar;C:\apache\apache-ant-1.10.17\lib\ant-junit4.jar;C:\apache\apache-ant-1.10.17\lib\ant-junitlauncher.jar;C:\apache\apache-ant-1.10.17\lib\ant-launcher.jar;C:\apache\apache-ant-1.10.17\lib\ant-netrexx.jar;C:\apache\apache-ant-1.10.17\lib\ant-swing.jar;C:\apache\apache-ant-1.10.17\lib\ant-testutil.jar;C:\apache\apache-ant-1.10.17\lib\ant-xz.jar;C:\apache\apache-ant-1.10.17\lib\ant.jar" />
+    <property name="java.vm.vendor" value="JetBrains s.r.o." />
+    <property name="client.module" value="com.google.appinventor.YaClient-dev" />
+    <property name="user.variant" value="" />
+    <property name="os.name" value="Windows 11" />
+    <property name="java.vm.specification.version" value="21" />
+    <property name="reports.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\reports" />
+    <property name="local.build.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="user.country" value="IN" />
+    <property name="ant.file.appengine" value="E:\mainproject\appinventor-sources\appinventor\appengine\build.xml" />
+    <property name="debug.compile" value="true" />
+    <property name="XstartOnFirstThread" value="" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="user.home" value="C:\Users\aibal" />
+    <property name="user.language" value="en" />
+    <property name="ant.file.type.CommonDefinitions" value="file" />
+    <property name="ant.java.version" value="21" />
+    <property name="build.static.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\war\static" />
+    <property name="local.services" value="false" />
+    <property name="keystore.present" value="true" />
+    <property name="lang.version" value="21" />
+    <property name="ant.file" value="E:\mainproject\appinventor-sources\appinventor\appengine\build.xml" />
+    <property name="stdout.encoding" value="Cp1252" />
+    <property name="path.separator" value=";" />
+    <property name="os.version" value="10.0" />
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
+    <property name="AiSharedLib-class.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\build\classes\AiSharedLib" />
+    <property name="ant.project.invoked-targets" value="AiServerLibTests" />
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
+    <property name="ant.core.lib" value="C:\apache\apache-ant-1.10.17\lib\ant.jar" />
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/" />
+    <property name="tests.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\tests" />
+    <property name="debug" value="true" />
+    <property name="user.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine" />
+    <property name="os.arch" value="amd64" />
+    <property name="appinventor.pkg" value="com/google/appinventor" />
+    <property name="sourceMaps" value="false" />
+    <property name="force.builddocs" value="false" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="java.vm.version" value="21.0.6+-13391695-b895.109" />
+    <property name="gwt.sdk" value="E:\mainproject\appinventor-sources\appinventor\lib\gwt\2.8.1-patched" />
+    <property name="java.class.version" value="65.0" />
+    <property name="public.build.dir" value="E:\mainproject\appinventor-sources\appinventor\build\appengine" />
+    <property name="src.dir" value="E:\mainproject\appinventor-sources\appinventor\appengine\src" />
+    <property name="ant.project.default-target" value="all" />
+  </properties>
+  <testcase classname="com.google.appinventor.server.util.Batch-With-Multiple-Tests" name="testDownloadProjectSourceZipWithNonExistingProject" time="0.001">
+    <error message="Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.util.Vector.forEach(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+</error>
+  </testcase>
+</testsuite>

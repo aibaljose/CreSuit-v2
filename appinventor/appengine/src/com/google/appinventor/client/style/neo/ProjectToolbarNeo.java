@@ -22,9 +22,24 @@ public class ProjectToolbarNeo extends ProjectToolbar {
   @UiField Label projectLabel;
   @UiField Label trashLabel;
 
+  public ProjectToolbarNeo() {
+    super();
+    setButtonVisible("Login to Gallery", false);
+    setButtonVisible("Send to Gallery", false);
+  }
+
   public void bindProjectToolbar() {
     populateToolbar(uibinder.createAndBindUi(this));
     super.projectLabel = projectLabel;
     super.trashLabel = trashLabel;
+    setButtonVisible("Login to Gallery", false);
+    setButtonVisible("Send to Gallery", false);
+  }
+
+  @Override
+  public void setProjectTabButtonsVisible(boolean visible) {
+    super.setProjectTabButtonsVisible(visible);
+    setButtonVisible("Login to Gallery", false);
+    setButtonVisible("Send to Gallery", false);
   }
 }
