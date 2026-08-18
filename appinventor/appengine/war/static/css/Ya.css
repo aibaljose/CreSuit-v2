@@ -681,6 +681,24 @@ div.StatusPanel {
   pointer-events: none;
 }
 
+.ode-CompanionIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ode-CompanionIndicator:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+.ode-CompanionIndicator:active {
+  transform: translateY(0);
+}
+
 .ode-TopPanelLabel {
   color: #888;
   font-size: 15px;

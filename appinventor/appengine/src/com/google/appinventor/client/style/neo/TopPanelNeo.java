@@ -33,8 +33,9 @@ public class TopPanelNeo extends TopPanel {
   DropDownButton accountButton;
   @UiField
   DropDownItem deleteAccountItem;
-  @UiField
-  FlowPanel links;
+  @UiField FlowPanel links;
+  @UiField protected TextButton myProjects;
+  @UiField protected TextButton viewTrash;
   @UiField FlowPanel companionIndicator;
   @UiField com.google.gwt.user.client.ui.HTML companionStatusHtml;
 

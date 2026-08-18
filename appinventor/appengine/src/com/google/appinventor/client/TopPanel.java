@@ -58,18 +58,18 @@ public class TopPanel extends Composite {
   public static final String WINDOW_OPEN_FEATURES = "menubar=yes,location=yes,resizable=yes,scrollbars=yes,status=yes";
   public static final String WINDOW_OPEN_LOCATION = "_ai2";
 
-  @UiField protected TopToolbar topToolbar;
-  @UiField protected ImageElement logo;
-  @UiField protected Label readOnly;
-  @UiField protected FlowPanel rightPanel;
-  @UiField protected DropDownButton languageDropDown;
-  @UiField protected DropDownButton accountButton;
-  @UiField protected DropDownItem deleteAccountItem;
-  @UiField protected FlowPanel links;
-  @UiField protected TextButton myProjects;
-  @UiField protected TextButton viewTrash;
-  @UiField(provided = false) protected FlowPanel companionIndicator;
-  @UiField(provided = false) protected HTML companionStatusHtml;
+  @UiField public TopToolbar topToolbar;
+  @UiField public ImageElement logo;
+  @UiField public Label readOnly;
+  @UiField public FlowPanel rightPanel;
+  @UiField public DropDownButton languageDropDown;
+  @UiField public DropDownButton accountButton;
+  @UiField public DropDownItem deleteAccountItem;
+  @UiField public FlowPanel links;
+  @UiField public TextButton myProjects;
+  @UiField public TextButton viewTrash;
+  @UiField(provided = false) public FlowPanel companionIndicator;
+  @UiField(provided = false) public HTML companionStatusHtml;
 
   final Ode ode = Ode.getInstance();
 
