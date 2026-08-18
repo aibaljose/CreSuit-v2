@@ -103,10 +103,15 @@
           <span class="text-xl font-extrabold text-slate-900 tracking-tight">CreSuit</span>
         </div>
 
-        <!-- View Badge -->
-        <span id="view-badge" class="text-[11px] font-bold uppercase tracking-wider text-[#3557ff] bg-blue-50 border border-blue-200/60 px-3 py-1 rounded-full shadow-xs">
-          Sign In
-        </span>
+        <div class="flex items-center space-x-2">
+          <a href="/landing.jsp" class="text-xs font-semibold text-slate-500 hover:text-[#3557ff] transition px-2.5 py-1 rounded-lg hover:bg-slate-100 flex items-center space-x-1">
+            <span>← Home</span>
+          </a>
+          <!-- View Badge -->
+          <span id="view-badge" class="text-[11px] font-bold uppercase tracking-wider text-[#3557ff] bg-blue-50 border border-blue-200/60 px-3 py-1 rounded-full shadow-xs">
+            Sign In
+          </span>
+        </div>
       </div>
 
       <!-- Main Interactive Container -->

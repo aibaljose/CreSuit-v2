@@ -27,6 +27,12 @@
     <include path="/ode/**.java" expiration="0s" />
     <include path="/ode/cdnok.js" expiration="3600s" />
     <include path="/index.html" expiration="0s" />
+    <include path="/landing.html" expiration="0s" />
+    <include path="/landing" expiration="0s" />
+    <include path="/landing.jsp" expiration="0s" />
+    <include path="/CreSuit_Companion.apk" expiration="1d" />
+    <include path="/*.html" expiration="0s" />
+    <include path="/*.apk" expiration="1d" />
 
     <include path="/ode/**.cache.*" expiration="365d" />
     <exclude path="/ode/**.gwt.rpc" />

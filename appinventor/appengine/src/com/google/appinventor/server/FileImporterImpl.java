@@ -103,7 +103,7 @@ public final class FileImporterImpl implements FileImporter {
         }
 
         if (!entry.isDirectory()) {
-          String fileName = entry.getName();
+          String fileName = entry.getName().replace('\\', '/');
 
           if (fileName.equals(YoungAndroidProjectService.PROJECT_PROPERTIES_FILE_NAME)) {
             // The content for the youngandroidproject/project.properties file must be regenerated

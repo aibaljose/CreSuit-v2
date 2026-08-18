@@ -1,0 +1,2141 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreSuit AI — Next-Gen AI No-Code App Builder & Native Mobile Platform</title>
+  <meta name="description"
+    content="Build full-stack native Android & iOS mobile apps using generative AI and visual logic. Zero boilerplate, native hardware access, multi-model AI integrations, and instant live companion testing.">
+  <meta name="keywords"
+    content="AI no code, app builder, visual programming, mobile app creator, App Inventor, CreSuit, generative AI mobile app, native android builder">
+  <meta name="author" content="CreSuit Team">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+  <link rel="shortcut icon" type="image/png" href="https://aibaljose.github.io/CreSuit/img/play_store_512.png">
+
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              accent: '#3557ff',
+              accentHover: '#2544e6',
+              cyan: '#0284c7',
+              violet: '#7c3aed',
+              emerald: '#059669'
+            },
+            sleek: {
+              bg: '#f8fafc',
+              card: '#ffffff',
+              border: '#e2e8f0',
+              borderLight: '#f1f5f9',
+              textMain: '#0f172a',
+              textMuted: '#475569',
+              textSub: '#64748b'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02)',
+            'hover': '0 20px 40px -15px rgba(53, 87, 255, 0.12), 0 0 0 1px rgba(53, 87, 255, 0.1)',
+            'glow-blue': '0 0 35px -5px rgba(53, 87, 255, 0.25)',
+            'phone': '0 25px 60px -15px rgba(15, 23, 42, 0.2), 0 0 0 1px rgba(15, 23, 42, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f8fafc;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Sleek Background Pattern */
+    .sleek-grid-bg {
+      background-color: #f8fafc;
+      background-image:
+        radial-gradient(at 50% 0%, rgba(53, 87, 255, 0.08) 0px, transparent 60%),
+        radial-gradient(at 100% 25%, rgba(124, 58, 237, 0.05) 0px, transparent 50%),
+        radial-gradient(at 0% 35%, rgba(2, 132, 199, 0.05) 0px, transparent 50%),
+        linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* Frosted Navbar */
+    .frosted-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* Sleek Card with soft lift */
+    .sleek-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .sleek-card:hover {
+      border-color: rgba(53, 87, 255, 0.3);
+      box-shadow: 0 20px 40px -15px rgba(53, 87, 255, 0.12);
+      transform: translateY(-3px);
+    }
+
+    /* Ambient Canvas */
+    #ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Code Block Syntax Styling */
+    .syntax-keyword {
+      color: #e11d48;
+      font-weight: 600;
+    }
+
+    .syntax-func {
+      color: #0284c7;
+    }
+
+    .syntax-str {
+      color: #059669;
+    }
+
+    .syntax-comment {
+      color: #94a3b8;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body
+  class="bg-[#f8fafc] text-slate-800 font-sans antialiased overflow-x-hidden relative selection:bg-[#3557ff] selection:text-white">
+
+  <!-- Interactive Ambient Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 frosted-nav" id="main-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center space-x-3 group select-none">
+          <div
+            class="w-10 h-10 rounded-xl bg-[#3557ff] flex items-center justify-center shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform duration-200">
+            <!-- Snowflake Logo Icon -->
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center space-x-2">
+              <span class="text-xl font-extrabold text-slate-900 tracking-tight">CreSuit</span>
+              <span
+                class="text-[10px] uppercase font-extrabold tracking-wider px-2 py-0.5 rounded-full bg-blue-50 text-[#3557ff] border border-blue-200">AI
+                2.0</span>
+            </div>
+            <span class="text-[10px] text-slate-400 font-semibold tracking-wide">Next-Gen No-Code Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-sm font-semibold text-slate-600">
+          <a href="#ai-studio"
+            class="px-3.5 py-2 rounded-xl hover:text-slate-900 hover:bg-slate-100 transition-colors">AI Studio</a>
+          <a href="#features"
+            class="px-3.5 py-2 rounded-xl hover:text-slate-900 hover:bg-slate-100 transition-colors">Capabilities</a>
+          <a href="#comparator"
+            class="px-3.5 py-2 rounded-xl hover:text-slate-900 hover:bg-slate-100 transition-colors">Visual Logic</a>
+          <a href="#companion"
+            class="px-3.5 py-2 rounded-xl hover:text-slate-900 hover:bg-slate-100 transition-colors flex items-center space-x-1.5">
+            <span>Companion App</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          </a>
+
+        </nav>
+
+        <!-- Navbar Actions -->
+        <div class="hidden sm:flex items-center space-x-3">
+          <a href="/login"
+            class="px-4 py-2 text-sm font-bold text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition duration-150">
+            Sign In
+          </a>
+          <a href="/login"
+            class="px-5 py-2.5 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-sm font-bold shadow-md shadow-blue-500/20 transition-all duration-150 hover:shadow-blue-500/35 active:scale-95 flex items-center space-x-2">
+            <span>Launch Studio</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <div class="flex md:hidden">
+          <button id="mobile-menu-btn" type="button"
+            class="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+            aria-label="Open menu">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobile-menu"
+      class="hidden md:hidden bg-white/95 backdrop-blur-2xl border-b border-slate-200 px-6 py-5 space-y-3 shadow-lg">
+      <a href="#ai-studio" class="block py-2 text-base font-semibold text-slate-700 hover:text-slate-900">AI Studio</a>
+      <a href="#features"
+        class="block py-2 text-base font-semibold text-slate-700 hover:text-slate-900">Capabilities</a>
+      <a href="#comparator" class="block py-2 text-base font-semibold text-slate-700 hover:text-slate-900">Visual
+        Logic</a>
+      <a href="#companion" class="block py-2 text-base font-semibold text-slate-700 hover:text-slate-900">Companion
+        App</a>
+
+      <div class="pt-4 border-t border-slate-200 flex flex-col space-y-2">
+        <a href="/login"
+          class="w-full text-center py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Sign In</a>
+        <a href="/login"
+          class="w-full text-center py-3 bg-[#3557ff] text-white font-bold rounded-xl shadow-md text-sm">Launch
+          Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 sleek-grid-bg overflow-hidden">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+
+      <!-- Announcement Pill Badge -->
+      <div
+        class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-sm mb-8 hover:border-blue-300 transition-all duration-200 group cursor-pointer"
+        onclick="scrollToSection('ai-studio')">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="text-xs font-bold text-slate-800">CreSuit 2.0 Released</span>
+        <span class="text-slate-300">•</span>
+        <span class="text-xs font-semibold text-[#3557ff] group-hover:text-blue-700 flex items-center space-x-1">
+          <span>AI Prompt-to-App Generator</span>
+          <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1
+        class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-950 max-w-5xl mx-auto leading-[1.12]">
+        Build Full-Stack Native Mobile Apps with
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#3557ff] via-indigo-600 to-violet-600">AI &
+          Visual Logic</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
+        Describe your application in plain language or compose event-driven visual blocks. CreSuit compiles native
+        Android & iOS apps with multi-model AI, hardware sensors, and zero-latency live companion testing.
+      </p>
+
+      <!-- Primary CTAs -->
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+        <a href="/login"
+          class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#3557ff] hover:bg-[#2544e6] text-white font-extrabold text-base shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-150 hover:scale-[1.02] active:scale-95 flex items-center justify-center space-x-3">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span>Launch CreSuit Studio</span>
+        </a>
+
+        <button onclick="openCompanionModal()"
+          class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-bold text-base border border-slate-200/90 shadow-sm transition-all duration-150 hover:border-slate-300 active:scale-95 flex items-center justify-center space-x-3">
+          <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          <span>Get Companion APK</span>
+          <span
+            class="text-[11px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">Live
+            Test</span>
+        </button>
+      </div>
+
+      <!-- Trust Metrics & Stats -->
+      <div class="mt-16 pt-10 border-t border-slate-200 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        <div class="flex flex-col items-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">500,000+</span>
+          <span class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Apps Synthesized</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-[#3557ff] tracking-tight">0 Lines</span>
+          <span class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Boilerplate Code</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-emerald-600 tracking-tight">60 FPS</span>
+          <span class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Native Hardware Speed</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-indigo-600 tracking-tight">1-Click</span>
+          <span class="text-xs sm:text-sm text-slate-500 font-medium mt-1">Export to APK & AAB</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE AI STUDIO PLAYGROUND ==================== -->
+  <section id="ai-studio" class="py-20 bg-white border-y border-slate-200 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span
+          class="text-xs font-extrabold uppercase tracking-widest text-[#3557ff] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+          Live Interactive Simulator
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-4">
+          Experience <span class="text-[#3557ff]">Prompt-to-App</span> in Real-Time
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+          Select an AI prompt preset or enter your custom app concept. Watch the compiler generate UI layouts, visual
+          logic blocks, and an interactive phone preview live.
+        </p>
+      </div>
+
+      <!-- Playground Main Card -->
+      <div class="sleek-card rounded-3xl p-5 sm:p-9 shadow-soft border border-slate-200 bg-slate-50/50">
+
+        <!-- Prompt Input & Selector Pills -->
+        <div class="mb-8 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <label
+            class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2.5 flex items-center justify-between">
+            <span>Natural Language App Prompt</span>
+            <span class="text-[#3557ff] font-mono text-[11px]">Neural Engine: CreSuit Multi-Model v2</span>
+          </label>
+
+          <div class="relative flex flex-col sm:flex-row items-stretch gap-3">
+            <div class="relative flex-1">
+              <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#3557ff]">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <input id="prompt-input" type="text"
+                value="Build DocSpot: Doctor booking app with AI triage chatbot and schedule picker"
+                class="w-full pl-12 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-[#3557ff] transition duration-150">
+            </div>
+
+            <button id="generate-btn" onclick="runAiSynthesis()"
+              class="px-7 py-3.5 bg-[#3557ff] hover:bg-[#2544e6] text-white font-extrabold rounded-2xl text-sm shadow-md shadow-blue-500/20 transition duration-150 flex items-center justify-center space-x-2 shrink-0 cursor-pointer">
+              <span id="gen-btn-text">Generate App</span>
+              <svg id="gen-btn-icon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Prompt Preset Pills -->
+          <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-1 scrollbar-none">
+            <span class="text-xs text-slate-500 font-semibold shrink-0">Try preset:</span>
+            <button onclick="setPrompt('docspot')"
+              class="prompt-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-blue-50 hover:text-[#3557ff] hover:border-blue-200 text-slate-700 border border-slate-200 shrink-0 transition">
+              🩺 DocSpot AI Doctor Booking
+            </button>
+            <button onclick="setPrompt('omnibot')"
+              class="prompt-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-blue-50 hover:text-[#3557ff] hover:border-blue-200 text-slate-700 border border-slate-200 shrink-0 transition">
+              🤖 Multi-Model Vision ChatBot
+            </button>
+            <button onclick="setPrompt('smarthome')"
+              class="prompt-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-blue-50 hover:text-[#3557ff] hover:border-blue-200 text-slate-700 border border-slate-200 shrink-0 transition">
+              ⚡ IoT BLE Telemetry Dashboard
+            </button>
+            <button onclick="setPrompt('translate')"
+              class="prompt-pill px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-blue-50 hover:text-[#3557ff] hover:border-blue-200 text-slate-700 border border-slate-200 shrink-0 transition">
+              🌍 Real-Time Speech Translator
+            </button>
+          </div>
+        </div>
+
+        <!-- Playground Dual Grid (Left: Synthesis Pipeline & Visual Blocks, Right: Live Phone Simulation) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+          <!-- Left Column: Compilation Steps & Visual Blocks Preview (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+
+            <!-- Live Synthesis Pipeline Bar -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center space-x-2">
+                  <span id="pipeline-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span id="pipeline-status-text">Ready for Synthesis</span>
+                </span>
+                <span id="pipeline-timer" class="text-xs font-mono text-[#3557ff] font-semibold">Latency: 0.18s</span>
+              </div>
+
+              <!-- Pipeline Progress Bar -->
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div id="pipeline-progress"
+                  class="bg-gradient-to-r from-blue-500 to-indigo-600 h-full w-full transition-all duration-700 ease-out">
+                </div>
+              </div>
+
+              <!-- Step Indicators -->
+              <div class="grid grid-cols-4 gap-2 mt-3 text-[11px] font-semibold text-slate-500 text-center">
+                <div id="step-1" class="text-emerald-600">1. UI Layout</div>
+                <div id="step-2" class="text-emerald-600">2. Block Logic</div>
+                <div id="step-3" class="text-emerald-600">3. Cloud & AI API</div>
+                <div id="step-4" class="text-emerald-600">4. Live Native</div>
+              </div>
+            </div>
+
+            <!-- Visual Block Logic Studio Simulation -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                <div class="flex items-center space-x-2">
+                  <div class="flex space-x-1.5">
+                    <div class="w-3 h-3 rounded-full bg-rose-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                  </div>
+                  <span class="text-xs font-mono font-semibold text-slate-700 ml-2">VisualBlocklyCompiler.bky</span>
+                </div>
+                <span
+                  class="text-[10px] font-mono font-bold uppercase bg-blue-50 text-[#3557ff] px-2 py-0.5 rounded border border-blue-200">Auto-Generated
+                  Logic</span>
+              </div>
+
+              <!-- Interactive Simulated Blockly Blocks (Light Theme) -->
+              <div id="blockly-container" class="mt-4 space-y-3 font-mono text-xs select-none">
+
+                <!-- Block 1: Event Handler Block -->
+                <div class="p-3.5 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900 shadow-xs">
+                  <div class="flex items-center space-x-2">
+                    <span
+                      class="font-bold uppercase tracking-wider text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded">WHEN</span>
+                    <span class="font-bold text-slate-900">Button_BookAppointment .Click</span>
+                    <span class="text-amber-700 font-semibold">do</span>
+                  </div>
+
+                  <!-- Nested Block inside Event Handler -->
+                  <div
+                    class="mt-2.5 ml-4 p-3 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-lg text-blue-900 space-y-2 shadow-xs">
+                    <div class="flex items-center space-x-2">
+                      <span
+                        class="font-bold uppercase tracking-wider text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">CALL</span>
+                      <span class="font-bold text-[#3557ff]">ChatBot_AI .GenerateConsultationSummary</span>
+                    </div>
+                    <div class="ml-4 text-[11px] text-slate-700 space-y-1 font-medium">
+                      <div><span class="text-slate-400">patient_id :</span> <span
+                          class="text-emerald-700 font-bold">UserAuth.CurrentUID</span></div>
+                      <div><span class="text-slate-400">doctor_spec :</span> <span
+                          class="text-emerald-700 font-bold">"Cardiologist"</span></div>
+                      <div><span class="text-slate-400">symptoms :</span> <span
+                          class="text-emerald-700 font-bold">TextBox_Symptoms.Text</span></div>
+                    </div>
+                  </div>
+
+                  <!-- Second Nested Block: CloudDB Sync -->
+                  <div
+                    class="mt-2.5 ml-4 p-2.5 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg text-emerald-900 shadow-xs">
+                    <div class="flex items-center space-x-2">
+                      <span
+                        class="font-bold uppercase tracking-wider text-[10px] bg-emerald-200 text-emerald-900 px-1.5 py-0.5 rounded">CALL</span>
+                      <span class="font-bold text-slate-900">FirebaseDB .StoreValue</span>
+                      <span class="text-xs text-slate-500">( tag: <span
+                          class="text-amber-700 font-bold">"Appointments"</span> )</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Block 2: AI Response Receiver Block -->
+                <div class="p-3.5 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-xl text-blue-900 shadow-xs">
+                  <div class="flex items-center space-x-2">
+                    <span
+                      class="font-bold uppercase tracking-wider text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">WHEN</span>
+                    <span class="font-bold text-slate-900">ChatBot_AI .GotResponse</span>
+                    <span class="text-[#3557ff] font-semibold">( responseText )</span>
+                    <span class="text-blue-700 font-semibold">do</span>
+                  </div>
+                  <div class="mt-2.5 ml-4 p-2.5 bg-slate-100 border-l-4 border-slate-400 rounded-r-lg text-slate-800">
+                    <span class="font-bold text-[10px] text-[#3557ff]">SET</span> Label_AITriageSummary.Text <span
+                      class="text-slate-500">to</span> <span class="text-[#3557ff] font-bold">get responseText</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Component Dependency Badges -->
+              <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-wrap gap-2 text-[11px]">
+                <span class="text-slate-500 font-bold">Active Components:</span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-blue-50 text-[#3557ff] border border-blue-200 font-semibold">ChatBot
+                  (Gemini 1.5)</span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200 font-semibold">FirebaseAuth</span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold">FirebaseDB</span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-violet-50 text-violet-700 border border-violet-200 font-semibold">Notifier</span>
+                <span
+                  class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-semibold">DatePicker</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Interactive Live Simulated Phone (5 cols) -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+
+            <div class="text-center mb-3">
+              <span class="text-[11px] font-extrabold uppercase tracking-widest text-slate-500">
+                Live Companion Simulation
+              </span>
+            </div>
+
+            <!-- Sleek Phone Frame -->
+            <div
+              class="relative w-[320px] sm:w-[340px] h-[660px] bg-slate-900 rounded-[48px] p-3.5 border-4 border-slate-300 shadow-phone">
+
+              <!-- Dynamic Island -->
+              <div
+                class="absolute top-6 left-1/2 -translate-x-1/2 w-28 h-5 bg-slate-950 rounded-full z-30 flex items-center justify-between px-3 border border-slate-800">
+                <div class="w-2.5 h-2.5 rounded-full bg-slate-900"></div>
+                <div class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+              </div>
+
+              <!-- Phone Screen (Pure white clean app canvas) -->
+              <div
+                class="w-full h-full bg-white rounded-[38px] overflow-hidden flex flex-col pt-8 pb-4 px-4 text-slate-800 relative select-none">
+
+                <!-- Phone Status Bar -->
+                <div class="flex items-center justify-between text-[11px] text-slate-600 px-2 mb-3">
+                  <span class="font-bold text-slate-900">9:41</span>
+                  <div class="flex items-center space-x-1.5">
+                    <svg class="w-3.5 h-3.5 text-slate-800" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zm6-4a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zm6-3a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+                    </svg>
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M17.778 8.222c-4.296-4.296-11.26-4.296-15.556 0A1 1 0 01.808 6.808c5.076-5.077 13.308-5.077 18.384 0a1 1 0 01-1.414 1.414zM14.95 11.05a7 7 0 00-9.9 0 1 1 0 01-1.414-1.414 9 9 0 0112.728 0 1 1 0 01-1.414 1.414zM12.12 13.88a3 3 0 00-4.24 0 1 1 0 01-1.42-1.42 5 5 0 017.08 0 1 1 0 01-1.42 1.42zM9 16a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                        clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-[10px] font-bold text-emerald-600">100%</span>
+                  </div>
+                </div>
+
+                <!-- App View 1: DocSpot Healthcare (Default) -->
+                <div id="phone-app-docspot" class="flex-1 flex flex-col justify-between overflow-y-auto scrollbar-none">
+
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <div>
+                        <span class="text-[10px] text-[#3557ff] font-bold uppercase tracking-wider">Welcome back</span>
+                        <h3 class="text-base font-extrabold text-slate-900">Find Your Doctor</h3>
+                      </div>
+                      <div
+                        class="w-8 h-8 rounded-full bg-[#3557ff] flex items-center justify-center text-white font-bold text-xs shadow-sm">
+                        AJ
+                      </div>
+                    </div>
+
+                    <!-- AI Triage Banner -->
+                    <div class="p-3 rounded-2xl bg-blue-50/80 border border-blue-200/80 mb-3 text-slate-800">
+                      <div class="flex items-center space-x-1.5 text-[#3557ff] text-xs font-bold mb-1">
+                        <svg class="w-4 h-4 text-[#3557ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span>AI Triage Assistant</span>
+                      </div>
+                      <p id="phone-triage-text" class="text-[11px] text-slate-700 leading-snug font-medium">
+                        "Mild chest tightness detected. Recommend scheduling with Dr. Sarah Jenkins (Cardiology)."
+                      </p>
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none text-[11px]">
+                      <button
+                        class="px-2.5 py-1 rounded-xl bg-[#3557ff] text-white font-bold shrink-0 shadow-xs">Cardiology</button>
+                      <button
+                        class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-700 font-semibold shrink-0">Neurology</button>
+                      <button
+                        class="px-2.5 py-1 rounded-xl bg-slate-100 text-slate-700 font-semibold shrink-0">Dental</button>
+                    </div>
+
+                    <!-- Doctor Card 1 -->
+                    <div class="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 shadow-xs">
+                      <div class="flex items-center space-x-3">
+                        <div
+                          class="w-10 h-10 rounded-xl bg-blue-100 text-[#3557ff] flex items-center justify-center font-bold text-sm">
+                          🩺
+                        </div>
+                        <div class="flex-1">
+                          <h4 class="text-xs font-bold text-slate-900">Dr. Sarah Jenkins</h4>
+                          <span class="text-[10px] text-slate-500">Senior Cardiologist • 4.9 ★</span>
+                        </div>
+                        <span
+                          class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">Available</span>
+                      </div>
+
+                      <button onclick="simulateBooking()"
+                        class="w-full py-2 bg-[#3557ff] hover:bg-[#2544e6] text-white text-[11px] font-bold rounded-xl shadow-xs transition duration-150 active:scale-95">
+                        Book Consultation
+                      </button>
+                    </div>
+
+                    <!-- Doctor Card 2 -->
+                    <div
+                      class="mt-2.5 p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                      <div class="flex items-center space-x-3">
+                        <div
+                          class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">
+                          🧠
+                        </div>
+                        <div>
+                          <h4 class="text-xs font-bold text-slate-900">Dr. Michael Chen</h4>
+                          <span class="text-[10px] text-slate-500">Neurologist • 4.8 ★</span>
+                        </div>
+                      </div>
+                      <span
+                        class="text-[10px] font-semibold text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">Tomorrow</span>
+                    </div>
+
+                  </div>
+
+                  <!-- Tab Bar -->
+                  <div
+                    class="pt-2.5 border-t border-slate-100 flex items-center justify-around text-slate-400 text-[10px] font-bold">
+                    <span class="text-[#3557ff] flex flex-col items-center">
+                      <svg class="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                      Home
+                    </span>
+                    <span class="flex flex-col items-center hover:text-slate-600">
+                      <svg class="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      Schedule
+                    </span>
+                    <span class="flex flex-col items-center hover:text-slate-600">
+                      <svg class="w-4 h-4 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                      </svg>
+                      Chat AI
+                    </span>
+                  </div>
+
+                </div>
+
+                <!-- App View 2: OmniBot Vision (Hidden by default) -->
+                <div id="phone-app-omnibot" class="hidden flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center space-x-2 pb-2.5 border-b border-slate-100">
+                      <div class="w-7 h-7 rounded-lg bg-[#3557ff] flex items-center justify-center text-white text-xs">
+                        🤖</div>
+                      <div>
+                        <h4 class="text-xs font-bold text-slate-900">OmniBot AI Vision</h4>
+                        <span class="text-[9px] text-emerald-600 font-semibold">● Gemini 1.5 Pro Connected</span>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 space-y-2 text-[11px]">
+                      <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700">
+                        "Upload an image or ask any question to inspect with real-time multimodal reasoning."
+                      </div>
+                      <div class="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-[#3557ff] font-medium ml-4">
+                        "Analyze this chest X-Ray and summarize anomalies."
+                      </div>
+                      <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+                        <span class="font-bold text-[#3557ff]">Analysis:</span> No significant acute cardiopulmonary
+                        abnormality detected. Clear lung fields.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-2">
+                    <div class="flex items-center space-x-1.5 bg-slate-50 p-1.5 rounded-xl border border-slate-200">
+                      <input type="text" placeholder="Type prompt..."
+                        class="bg-transparent text-xs text-slate-900 px-2 py-1 flex-1 focus:outline-none">
+                      <button
+                        class="w-7 h-7 rounded-lg bg-[#3557ff] text-white flex items-center justify-center text-xs">➤</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- App View 3: SmartHome IoT (Hidden by default) -->
+                <div id="phone-app-smarthome" class="hidden flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <h4 class="text-xs font-bold text-slate-900">IoT Sensor Hub</h4>
+                      <span class="text-[9px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full">BLE
+                        Connected</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-slate-900">
+                      <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="text-[9px] text-slate-500 font-semibold">Temperature</span>
+                        <div class="text-base font-extrabold text-amber-600 mt-0.5">24.2 °C</div>
+                      </div>
+                      <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="text-[9px] text-slate-500 font-semibold">Humidity</span>
+                        <div class="text-base font-extrabold text-sky-600 mt-0.5">58 %</div>
+                      </div>
+                    </div>
+
+                    <div class="mt-3 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-800 space-y-2">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-semibold">Living Room AC</span>
+                        <span
+                          class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Active</span>
+                      </div>
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-semibold">Smart Lock BLE</span>
+                        <span class="text-[10px] font-bold text-[#3557ff] bg-blue-50 px-2 py-0.5 rounded">Secured</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="w-full py-2 bg-emerald-600 text-white text-[11px] font-bold rounded-xl shadow-xs">
+                    Run Auto-Diagnostics
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== BENTO GRID: CORE CAPABILITIES ==================== -->
+  <section id="features" class="py-24 sleek-grid-bg relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-xs font-extrabold uppercase tracking-widest text-[#3557ff] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+          Architecture & Power
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-4">
+          Everything You Need to Build <span class="text-[#3557ff]">True Native</span> Apps
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+          Not just a web wrapper. CreSuit compiles your visual logic and AI agents directly into high-speed native
+          mobile runtime with full hardware sensor access.
+        </p>
+      </div>
+
+      <!-- Bento Grid (6 Cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+        <!-- Card 1: Multi-Model AI Orchestrator -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 text-[#3557ff] flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Multi-Model AI Orchestrator</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Integrate ChatGPT (GPT-4o), Google Gemini 1.5, Claude 3.5, and DALL-E directly into your mobile workflows
+              with zero custom backend servers.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-[#3557ff] font-bold">
+            <span>Built-in Proxy & Token Auth</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Visual Event-Driven Block Logic -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200 text-sky-600 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Zero-Latency Visual Logic</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Snap together type-safe logic blocks for async API calls, database triggers, loops, algorithms, and
+              complex UI state management.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-sky-600 font-bold">
+            <span>Blockly 10 Engine</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Live Companion Wireless Hot Reload -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Real-Time Companion Reload</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Scan a 6-letter code or QR with the CreSuit Companion APK. Every UI tweak and logic block updates
+              instantly on your physical phone with zero build wait.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-emerald-600 font-bold">
+            <span>CreSuit_Companion.apk</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Full Native Hardware & Sensor Access -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Native Hardware & Sensors</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Direct access to Bluetooth LE, Accelerometer, Gyroscope, NFC, GPS location, Camera, Speech Recognition,
+              and Biometric authentication.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-violet-600 font-bold">
+            <span>100+ Built-in Components</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 5: CloudDB & Firebase Auth Engine -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">CloudDB & Firebase Auth</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Built-in realtime user authentication, email verification, cloud synchronization, offline caching, and
+              automated token management.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-amber-600 font-bold">
+            <span>Offline-First Sync</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 6: 1-Click APK & Google Play Export -->
+        <div class="sleek-card rounded-3xl p-7 flex flex-col justify-between">
+          <div>
+            <div
+              class="w-12 h-12 rounded-2xl bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center mb-6 shadow-xs">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Production Export & Store Ready</h3>
+            <p class="text-slate-600 text-sm mt-2.5 leading-relaxed font-normal">
+              Export standalone `.apk` files for direct testing, signed `.aab` bundles for Google Play publishing, and
+              complete `.aia` project archives.
+            </p>
+          </div>
+
+          <div
+            class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-rose-600 font-bold">
+            <span>Store Compliant</span>
+            <span>→</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== VISUAL LOGIC VS CODE COMPARATOR ==================== -->
+  <section id="comparator" class="py-20 bg-white border-y border-slate-200 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span
+          class="text-xs font-extrabold uppercase tracking-widest text-[#3557ff] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+          The Power of Visual Logic
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-4">
+          10x Faster Than Traditional Code
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+          See how a complete multimodal AI Vision & CloudDB sync workflow compares between traditional Kotlin/Swift
+          boilerplate and CreSuit Visual Logic.
+        </p>
+      </div>
+
+      <!-- Comparator Dual Box -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+
+        <!-- Left Box: Traditional Code -->
+        <div
+          class="sleek-card rounded-3xl p-6 border border-rose-200 bg-rose-50/20 flex flex-col justify-between shadow-xs">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                <span class="text-xs font-mono font-bold text-rose-700">Traditional Native (Kotlin / Swift)</span>
+              </div>
+              <span class="text-[11px] font-mono text-slate-500">~420 Lines Boilerplate</span>
+            </div>
+
+            <div
+              class="mt-4 font-mono text-xs text-slate-800 space-y-1.5 overflow-x-auto p-4 bg-slate-900 text-slate-100 rounded-2xl">
+              <div class="syntax-comment">// 1. Initialize HTTP Client & Dispatchers</div>
+              <div><span class="syntax-keyword">val</span> client = OkHttpClient.Builder().connectTimeout(30,
+                TimeUnit.SECONDS).build()</div>
+              <div><span class="syntax-keyword">val</span> jsonMediaType = <span class="syntax-str">"application/json;
+                  charset=utf-8"</span>.toMediaType()</div>
+              <div class="syntax-comment mt-2">// 2. Setup Multipart Coroutine for Vision Proxy</div>
+              <div><span class="syntax-keyword">suspend fun</span> <span
+                  class="syntax-func">sendAiVisionQuery</span>(bitmap: Bitmap, prompt: String): Result&lt;AiResponse&gt;
+                = withContext(Dispatchers.IO) {</div>
+              <div class="ml-4"><span class="syntax-keyword">val</span> byteArrayOutputStream = ByteArrayOutputStream()
+              </div>
+              <div class="ml-4">bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream)</div>
+              <div class="ml-4"><span class="syntax-keyword">val</span> base64Image =
+                Base64.encodeToString(byteArrayOutputStream.toByteArray(), Base64.NO_WRAP)</div>
+              <div class="ml-4"><span class="syntax-keyword">val</span> jsonBody = JSONObject().apply { put(<span
+                  class="syntax-str">"prompt"</span>, prompt); put(<span class="syntax-str">"image"</span>, base64Image)
+                }</div>
+              <div class="ml-4"><span class="syntax-keyword">val</span> request = Request.Builder().url(<span
+                  class="syntax-str">"https://api.cresuit.ai/v1/vision"</span>).post(jsonBody.toString().toRequestBody(jsonMediaType)).build()
+              </div>
+              <div class="ml-4"><span class="syntax-comment">// 15+ error exceptions, SSL pins, JSON parsing...</span>
+              </div>
+              <div>}</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-200 text-xs text-slate-500 flex items-center justify-between">
+            <span class="text-rose-600 font-bold">❌ Requires 3 days of debugging</span>
+            <span>Android Studio SDK 34</span>
+          </div>
+        </div>
+
+        <!-- Right Box: CreSuit Visual Logic -->
+        <div
+          class="sleek-card rounded-3xl p-6 border border-emerald-300 bg-emerald-50/20 flex flex-col justify-between shadow-soft">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                <span class="text-xs font-mono font-bold text-emerald-800">CreSuit AI Visual Logic</span>
+              </div>
+              <span
+                class="text-[11px] font-mono text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-full border border-emerald-200">3
+                Visual Blocks</span>
+            </div>
+
+            <div class="mt-4 space-y-3 font-mono text-xs">
+
+              <!-- Block 1 -->
+              <div class="p-3.5 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-950 shadow-xs">
+                <span class="font-bold text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded">WHEN</span> <span
+                  class="text-slate-900 font-bold">Camera1 .AfterPicture( image )</span> <span
+                  class="text-amber-700 font-semibold">do</span>
+                <div class="mt-2.5 ml-4 p-2.5 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-lg text-blue-900">
+                  <span class="font-bold text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">CALL</span> <span
+                    class="text-[#3557ff] font-bold">ChatBot_AI .AnalyzeImageWithPrompt</span>
+                  <div class="text-[11px] text-slate-700 ml-4 mt-1 font-medium">
+                    image: <span class="text-emerald-700 font-bold">get image</span> | prompt: <span
+                      class="text-amber-800 font-bold">"Explain this object"</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Block 2 -->
+              <div class="p-3.5 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-xl text-blue-950 shadow-xs">
+                <span class="font-bold text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">WHEN</span> <span
+                  class="text-slate-900 font-bold">ChatBot_AI .GotResponse( responseText )</span> <span
+                  class="text-blue-700 font-semibold">do</span>
+                <div
+                  class="mt-2.5 ml-4 p-2.5 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg text-emerald-900">
+                  <span class="font-bold text-[10px] bg-emerald-200 text-emerald-900 px-1.5 py-0.5 rounded">SET</span>
+                  <span class="text-slate-900 font-bold">Label_Result.Text</span> <span class="text-slate-500">to</span>
+                  <span class="text-[#3557ff] font-bold">get responseText</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-200 text-xs text-slate-500 flex items-center justify-between">
+            <span class="text-emerald-700 font-bold">✔ Built & tested in under 60 seconds</span>
+            <span class="text-[#3557ff] font-bold">Zero Runtime Crash Guarantee</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== COMPANION APP HUB & QR TESTING ==================== -->
+  <section id="companion" class="py-24 sleek-grid-bg relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="sleek-card rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-soft bg-white">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+          <!-- Left Info Column (7 cols) -->
+          <div class="lg:col-span-7 space-y-6">
+
+            <div
+              class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Wireless Live Companion v2.0</span>
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
+              Test on Your Physical Phone in <span class="text-[#3557ff]">Real-Time</span>
+            </h2>
+
+            <p class="text-slate-600 text-base leading-relaxed">
+              No USB cables required. Install the official <strong class="text-slate-900">CreSuit Companion APK</strong>
+              on any Android device, scan your project QR code, and watch your mobile apps execute natively as you
+              design them.
+            </p>
+
+            <!-- 3 Simple Steps -->
+            <div class="space-y-3.5 pt-2">
+              <div class="flex items-start space-x-3.5">
+                <div
+                  class="w-7 h-7 rounded-xl bg-blue-50 text-[#3557ff] font-bold text-xs flex items-center justify-center shrink-0 border border-blue-200">
+                  1</div>
+                <div>
+                  <h4 class="text-sm font-bold text-slate-900">Download & Install Companion APK</h4>
+                  <p class="text-xs text-slate-500">Free download directly from CreSuit Studio or your private instance.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3.5">
+                <div
+                  class="w-7 h-7 rounded-xl bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0 border border-indigo-200">
+                  2</div>
+                <div>
+                  <h4 class="text-sm font-bold text-slate-900">Click "Connect → AI Companion"</h4>
+                  <p class="text-xs text-slate-500">Generate an instant secure 6-character rendezvous code or QR code.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start space-x-3.5">
+                <div
+                  class="w-7 h-7 rounded-xl bg-emerald-50 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0 border border-emerald-200">
+                  3</div>
+                <div>
+                  <h4 class="text-sm font-bold text-slate-900">Scan & Test Live</h4>
+                  <p class="text-xs text-slate-500">All sensor inputs, camera captures, and AI block executions run
+                    directly on device.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-4 flex flex-wrap gap-4">
+              <a href="/CreSuit_Companion.apk" download
+                class="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-md shadow-emerald-500/20 transition duration-150 flex items-center space-x-2.5">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>Download Companion APK (18.5 MB)</span>
+              </a>
+
+              <a href="/login"
+                class="px-6 py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm border border-slate-200 transition duration-150 flex items-center space-x-2">
+                <span>Open Studio Web</span>
+                <span>→</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right Mockup Column: Simulated QR Code -->
+          <div class="lg:col-span-5 flex flex-col items-center">
+
+            <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-soft text-center max-w-sm w-full">
+              <div
+                class="flex items-center justify-between pb-3 border-b border-slate-200 text-xs font-semibold text-slate-500">
+                <span>Rendezvous Server: Online</span>
+                <span class="text-emerald-600">● 100% Encrypted</span>
+              </div>
+
+              <!-- Interactive Simulated QR Code -->
+              <div class="my-5 p-4 bg-white rounded-2xl inline-block shadow-sm border border-slate-200">
+                <svg class="w-44 h-44" viewBox="0 0 100 100" fill="#0f172a">
+                  <!-- QR Patterns -->
+                  <rect x="0" y="0" width="30" height="30" fill="#0f172a" />
+                  <rect x="5" y="5" width="20" height="20" fill="white" />
+                  <rect x="10" y="10" width="10" height="10" fill="#0f172a" />
+
+                  <rect x="70" y="0" width="30" height="30" fill="#0f172a" />
+                  <rect x="75" y="5" width="20" height="20" fill="white" />
+                  <rect x="80" y="10" width="10" height="10" fill="#0f172a" />
+
+                  <rect x="0" y="70" width="30" height="30" fill="#0f172a" />
+                  <rect x="5" y="75" width="20" height="20" fill="white" />
+                  <rect x="10" y="80" width="10" height="10" fill="#0f172a" />
+
+                  <!-- Data Dots -->
+                  <rect x="35" y="10" width="8" height="8" />
+                  <rect x="50" y="10" width="8" height="8" />
+                  <rect x="35" y="25" width="8" height="8" />
+                  <rect x="50" y="25" width="8" height="8" />
+                  <rect x="40" y="40" width="20" height="20" fill="#3557ff" rx="4" />
+                  <rect x="10" y="45" width="8" height="8" />
+                  <rect x="25" y="45" width="8" height="8" />
+                  <rect x="70" y="45" width="8" height="8" />
+                  <rect x="85" y="45" width="8" height="8" />
+                  <rect x="35" y="70" width="8" height="8" />
+                  <rect x="50" y="70" width="8" height="8" />
+                  <rect x="70" y="70" width="8" height="8" />
+                  <rect x="85" y="85" width="8" height="8" />
+                </svg>
+              </div>
+
+              <!-- 6-Character Pairing Code -->
+              <div class="space-y-1">
+                <span class="text-[11px] text-slate-500 uppercase font-semibold">Or enter 6-Character Code</span>
+                <div
+                  class="text-2xl font-mono font-extrabold text-[#3557ff] tracking-widest bg-white py-2 rounded-xl border border-slate-200 shadow-xs">
+                  CR-9482
+                </div>
+              </div>
+
+              <div class="mt-4 text-[11px] text-slate-500">
+                Scan with CreSuit Companion to test instantly.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PRE-BUILT APP TEMPLATES GALLERY ==================== -->
+  <section id="templates" class="py-24 bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span
+          class="text-xs font-extrabold uppercase tracking-widest text-[#3557ff] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+          Template Ecosystem
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-4">
+          Production-Ready <span class="text-[#3557ff]">AI App Blueprints</span>
+        </h2>
+        <p class="text-slate-600 text-base sm:text-lg mt-3">
+          Jumpstart your next mobile app with fully wired AI models, database schemas, and clean UI layouts ready to
+          clone and customize.
+        </p>
+
+        <!-- Template Filter Tabs -->
+        <div class="flex items-center justify-center gap-2 mt-8 flex-wrap">
+          <button onclick="filterTemplates('all')"
+            class="template-filter-btn px-4 py-1.5 rounded-full text-xs font-bold bg-[#3557ff] text-white shadow-xs transition">All
+            Templates</button>
+          <button onclick="filterTemplates('ai')"
+            class="template-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">AI
+            & Chatbots</button>
+          <button onclick="filterTemplates('health')"
+            class="template-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Healthcare</button>
+          <button onclick="filterTemplates('iot')"
+            class="template-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">IoT
+            & Sensors</button>
+          <button onclick="filterTemplates('social')"
+            class="template-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">Productivity</button>
+        </div>
+      </div>
+
+      <!-- Templates Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+
+        <!-- Template Card 1: DocSpot -->
+        <div class="template-card health ai sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100 border border-blue-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-white bg-[#3557ff] px-2.5 py-0.5 rounded-full shadow-xs">DocSpot
+                  Pro</span>
+                <span class="text-xs text-[#3557ff] font-mono font-bold">v2.1</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-blue-200 text-xs font-semibold text-slate-800 shadow-sm">
+                🩺 Doctor Directory, AI Triage & Appointment Scheduler
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Healthcare</span>
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-[#3557ff] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">AI
+                Assistant</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">DocSpot AI Medical Suite</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              Full telemedicine app featuring doctor specialty search, symptom AI triage, Firebase user auth, and
+              appointment date picker.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Beginner</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+        <!-- Template Card 2: SimpleChatbot AI -->
+        <div class="template-card ai sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-violet-50 to-purple-100 border border-violet-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-white bg-violet-600 px-2.5 py-0.5 rounded-full shadow-xs">OmniBot
+                  AI</span>
+                <span class="text-xs text-violet-700 font-mono font-bold">GPT-4o</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-violet-200 text-xs font-semibold text-slate-800 shadow-sm">
+                🤖 Multimodal Conversational Assistant & Code Explainer
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-violet-700 bg-violet-50 px-2 py-0.5 rounded border border-violet-200">AI
+                & LLM</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">SimpleChatbot Assistant</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              Plug-and-play conversational AI agent with voice speech-to-text, streaming message bubbles, and
+              customizable system prompts.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Beginner</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+        <!-- Template Card 3: TranslateApp Realtime -->
+        <div class="template-card ai social sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-sky-50 to-cyan-100 border border-sky-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-bold text-white bg-sky-600 px-2.5 py-0.5 rounded-full shadow-xs">TranslateApp</span>
+                <span class="text-xs text-sky-700 font-mono font-bold">60+ Langs</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-sky-200 text-xs font-semibold text-slate-800 shadow-sm">
+                🌍 Real-Time Speech Translator with TextToSpeech Audio
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-200">Voice
+                AI</span>
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2 py-0.5 rounded">Productivity</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">Global Speech Translator</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              Instant voice recognition, neural multi-lingual translation, and crystal clear text-to-speech audio
+              pronunciation.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Intermediate</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+        <!-- Template Card 4: MapTheMovement IoT -->
+        <div class="template-card iot social sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-100 border border-amber-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-bold text-white bg-amber-600 px-2.5 py-0.5 rounded-full shadow-xs">MapTracker</span>
+                <span class="text-xs text-amber-700 font-mono font-bold">GPS + BLE</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-amber-200 text-xs font-semibold text-slate-800 shadow-sm">
+                📍 Real-Time Location Mapping, Geofencing & Movement Sensor
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">IoT
+                & GPS</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">MapTheMovement Geo-Tracker</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              OpenStreetMap integration with interactive pins, geofenced triggers, speed telemetry, and route history
+              logging in CloudDB.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Intermediate</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+        <!-- Template Card 5: MoodRing Vision Classifier -->
+        <div class="template-card ai health sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-rose-50 to-pink-100 border border-rose-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-bold text-white bg-rose-600 px-2.5 py-0.5 rounded-full shadow-xs">MoodVision</span>
+                <span class="text-xs text-rose-700 font-mono font-bold">Teachable</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-rose-200 text-xs font-semibold text-slate-800 shadow-sm">
+                🎭 Real-time Facial Emotion Recognition & Mood Journal
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">Computer
+                Vision</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">MoodRing Emotion Classifier</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              Integrates on-device camera feeds with custom image classification models to classify user mood and
+              recommend tailored music and activities.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Advanced</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+        <!-- Template Card 6: DIYBookClub Community -->
+        <div class="template-card social sleek-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div
+              class="h-44 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-100 border border-emerald-200 p-4 flex flex-col justify-between relative overflow-hidden mb-5">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-bold text-white bg-emerald-600 px-2.5 py-0.5 rounded-full shadow-xs">BookClub</span>
+                <span class="text-xs text-emerald-700 font-mono font-bold">Full-Stack</span>
+              </div>
+              <div
+                class="p-3 bg-white/95 rounded-xl border border-emerald-200 text-xs font-semibold text-slate-800 shadow-sm">
+                📚 Collaborative Reading Club with Realtime Discussion Feed
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-2 mb-2">
+              <span
+                class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Community</span>
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-900">DIYBookClub Social Hub</h3>
+            <p class="text-slate-600 text-xs mt-1.5 leading-relaxed font-normal">
+              Social discussion forums, member profiles, book ratings, and real-time cloud data synchronization.
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Difficulty: Intermediate</span>
+            <a href="/login"
+              class="px-4 py-2 rounded-xl bg-[#3557ff] hover:bg-[#2544e6] text-white text-xs font-bold transition shadow-xs">
+              Clone in Studio →
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE ROI & VELOCITY CALCULATOR ==================== -->
+  <section id="calculator" class="py-24 sleek-grid-bg relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="sleek-card rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-soft bg-white relative">
+
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span
+            class="text-xs font-extrabold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+            Business Velocity & ROI
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight mt-3">
+            Calculate Your Time & Cost Savings
+          </h2>
+          <p class="text-slate-600 text-sm mt-2 font-normal">
+            See how much faster and more cost-effective native mobile delivery is with CreSuit AI.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+          <!-- Sliders -->
+          <div class="space-y-6">
+
+            <div>
+              <div class="flex justify-between items-center text-xs font-bold text-slate-700 mb-2">
+                <span>Mobile Apps Built Per Year:</span>
+                <span id="calc-apps-val" class="text-base font-mono font-bold text-[#3557ff]">4 Apps</span>
+              </div>
+              <input id="calc-apps-slider" type="range" min="1" max="20" value="4"
+                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#3557ff]"
+                oninput="updateCalculator()">
+            </div>
+
+            <div>
+              <div class="flex justify-between items-center text-xs font-bold text-slate-700 mb-2">
+                <span>Team Size (Engineers / Creators):</span>
+                <span id="calc-team-val" class="text-base font-mono font-bold text-[#3557ff]">3 Members</span>
+              </div>
+              <input id="calc-team-slider" type="range" min="1" max="15" value="3"
+                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#3557ff]"
+                oninput="updateCalculator()">
+            </div>
+
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
+              💡 <strong class="text-slate-900">Insight:</strong> CreSuit shrinks traditional 16-week mobile development
+              cycles down to 3 days per release with zero boilerplate overhead.
+            </div>
+
+          </div>
+
+          <!-- Computed Output Display -->
+          <div class="p-6 rounded-2xl bg-[#3557ff] text-white space-y-5 shadow-lg shadow-blue-500/20">
+
+            <div>
+              <span class="text-xs text-blue-100 font-semibold uppercase tracking-wider">Estimated Developer Days
+                Saved</span>
+              <div id="calc-days-saved" class="text-4xl font-extrabold text-white mt-1">
+                192 Days / yr
+              </div>
+            </div>
+
+            <div>
+              <span class="text-xs text-blue-100 font-semibold uppercase tracking-wider">Estimated Cost Reduction</span>
+              <div id="calc-cost-saved" class="text-4xl font-extrabold text-emerald-300 mt-1">
+                $76,800
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/20 flex items-center justify-between text-xs text-blue-100">
+              <span>Time-to-Market Acceleration:</span>
+              <span class="font-bold text-white text-sm">8.5x Faster</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FREQUENTLY ASKED QUESTIONS ==================== -->
+  <section id="faq" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span
+          class="text-xs font-extrabold uppercase tracking-widest text-[#3557ff] bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-200">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight mt-3">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- FAQ 1 -->
+        <div class="sleek-card rounded-2xl p-5 border border-slate-200 cursor-pointer" onclick="toggleFaq(1)">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-bold text-slate-900">Can I export and publish native APKs and Google Play AABs?
+            </h4>
+            <span id="faq-icon-1" class="text-[#3557ff] font-mono text-lg font-bold">+</span>
+          </div>
+          <div id="faq-answer-1"
+            class="hidden mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+            Yes! CreSuit compiles your visual logic into standard Android package files (`.apk`) for sideloading or
+            direct installation, as well as signed Android App Bundles (`.aab`) ready for submission to the Google Play
+            Store.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="sleek-card rounded-2xl p-5 border border-slate-200 cursor-pointer" onclick="toggleFaq(2)">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-bold text-slate-900">How does the generative AI prompt-to-app workflow work?</h4>
+            <span id="faq-icon-2" class="text-[#3557ff] font-mono text-lg font-bold">+</span>
+          </div>
+          <div id="faq-answer-2"
+            class="hidden mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+            Our multi-model engine analyzes your plain English prompt, synthesizes the complete screen layout (SCM),
+            generates the corresponding event-driven visual logic blocks (BKY), and binds them to AI and CloudDB
+            components automatically.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="sleek-card rounded-2xl p-5 border border-slate-200 cursor-pointer" onclick="toggleFaq(3)">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-bold text-slate-900">What is the CreSuit Companion APK?</h4>
+            <span id="faq-icon-3" class="text-[#3557ff] font-mono text-lg font-bold">+</span>
+          </div>
+          <div id="faq-answer-3"
+            class="hidden mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+            The CreSuit Companion is a live testing client for your phone. When connected over WiFi via a 6-character
+            code or QR scan, your app's screens and logic update on your physical device in real time with zero
+            packaging delay.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="sleek-card rounded-2xl p-5 border border-slate-200 cursor-pointer" onclick="toggleFaq(4)">
+          <div class="flex items-center justify-between">
+            <h4 class="text-base font-bold text-slate-900">Which AI models are supported out of the box?</h4>
+            <span id="faq-icon-4" class="text-[#3557ff] font-mono text-lg font-bold">+</span>
+          </div>
+          <div id="faq-answer-4"
+            class="hidden mt-3 text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+            CreSuit includes native components for OpenAI (GPT-4o, DALL-E), Google Gemini 1.5, Claude 3.5 Sonnet, Image
+            Classification (Teachable Machine), and custom REST endpoint proxies.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== HIGH CONVERSION CTA BANNER ==================== -->
+  <section class="py-20 sleek-grid-bg relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="relative rounded-3xl p-10 sm:p-16 bg-[#3557ff] text-white shadow-xl text-center overflow-hidden">
+
+        <!-- Subtle Pattern Overlay -->
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,_rgba(255,255,255,0.2),_transparent_70%)] pointer-events-none">
+        </div>
+
+        <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Ready to Build Next-Generation AI Apps Without Code?
+          </h2>
+          <p class="text-blue-100 text-base sm:text-lg font-normal">
+            Join thousands of developers, researchers, and creators building native apps in minutes.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/login"
+              class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-[#3557ff] hover:bg-slate-50 font-extrabold text-base shadow-lg transition-all duration-150 hover:scale-105 active:scale-95">
+              Get Started Free in Studio →
+            </a>
+            <a href="/CreSuit_Companion.apk" download
+              class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-base border border-blue-400/50 transition-all duration-150">
+              Download Companion APK
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-white border-t border-slate-200 py-12 text-slate-500 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+
+        <div class="col-span-2 space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-xl bg-[#3557ff] flex items-center justify-center text-white shadow-xs">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
+              </svg>
+            </div>
+            <span class="text-lg font-extrabold text-slate-900">CreSuit AI</span>
+          </div>
+          <p class="text-xs text-slate-500 max-w-sm font-normal">
+            The next-generation AI-native no-code platform. Empowering creators worldwide to synthesize, build, and
+            deploy production mobile apps with visual logic.
+          </p>
+          <div class="flex items-center space-x-2 text-xs text-emerald-600 font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>All Systems Operational</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">Product</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#ai-studio" class="hover:text-slate-900 transition">AI Studio</a></li>
+            <li><a href="#features" class="hover:text-slate-900 transition">Capabilities</a></li>
+            <li><a href="#companion" class="hover:text-slate-900 transition">Companion APK</a></li>
+            <li><a href="#templates" class="hover:text-slate-900 transition">Template Hub</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">Resources</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/login" class="hover:text-slate-900 transition">Web Studio</a></li>
+            <li><a href="https://github.com/aibaljose/CreSuit-v2" target="_blank"
+                class="hover:text-slate-900 transition">GitHub Repo</a></li>
+            <li><a href="#calculator" class="hover:text-slate-900 transition">ROI Calculator</a></li>
+            <li><a href="#faq" class="hover:text-slate-900 transition">Documentation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-900 mb-3">Account</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/login" class="hover:text-slate-900 transition">Sign In</a></li>
+            <li><a href="/login?view=register" class="hover:text-slate-900 transition">Create Account</a></li>
+            <li><a href="/login?view=forgot" class="hover:text-slate-900 transition">Reset Password</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div
+        class="pt-8 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400">
+        <p>&copy; <span id="year-span">2026</span> CreSuit AI Platform. All rights reserved.</p>
+        <div class="flex space-x-4 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-slate-600">Privacy Policy</a>
+          <span>•</span>
+          <a href="#" class="hover:text-slate-600">Terms of Service</a>
+          <span>•</span>
+          <a href="#" class="hover:text-slate-600">Security</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== COMPANION DOWNLOAD MODAL ==================== -->
+  <div id="companion-modal"
+    class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div
+      class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center relative">
+      <button onclick="closeCompanionModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div
+        class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-200 shadow-xs">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      </div>
+
+      <h3 class="text-xl font-extrabold text-slate-900">Download CreSuit Companion</h3>
+      <p class="text-xs text-slate-500 mt-1.5 font-medium">
+        Install the companion on your Android phone to test applications wirelessly in real-time.
+      </p>
+
+      <div class="my-5 p-4 bg-slate-50 rounded-2xl inline-block border border-slate-200">
+        <svg class="w-36 h-36" viewBox="0 0 100 100" fill="#0f172a">
+          <rect x="0" y="0" width="30" height="30" />
+          <rect x="5" y="5" width="20" height="20" fill="white" />
+          <rect x="10" y="10" width="10" height="10" />
+          <rect x="70" y="0" width="30" height="30" />
+          <rect x="75" y="5" width="20" height="20" fill="white" />
+          <rect x="80" y="10" width="10" height="10" />
+          <rect x="0" y="70" width="30" height="30" />
+          <rect x="5" y="75" width="20" height="20" fill="white" />
+          <rect x="10" y="80" width="10" height="10" />
+          <rect x="35" y="15" width="15" height="15" fill="#3557ff" />
+          <rect x="40" y="45" width="20" height="20" />
+          <rect x="70" y="70" width="20" height="20" />
+        </svg>
+      </div>
+
+      <div class="space-y-2.5">
+        <a href="/CreSuit_Companion.apk" download
+          class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm shadow-md block">
+          Download APK (CreSuit_Companion.apk)
+        </a>
+        <button onclick="closeCompanionModal()"
+          class="w-full py-2.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-semibold rounded-xl text-xs">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT LOGIC & INTERACTIVITY ==================== -->
+  <script>
+    // Set Year
+    document.getElementById('year-span').innerText = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Smooth Scroll Helper
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Modal Handlers
+    function openCompanionModal() {
+      document.getElementById('companion-modal').classList.remove('hidden');
+    }
+    function closeCompanionModal() {
+      document.getElementById('companion-modal').classList.add('hidden');
+    }
+
+    // Interactive Prompt Preset Handlers
+    const promptPresets = {
+      docspot: {
+        prompt: "Build DocSpot: Doctor booking app with AI triage chatbot and schedule picker",
+        appId: "phone-app-docspot",
+        blocks: `
+          <div class="p-3.5 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl text-amber-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">Button_BookAppointment .Click</span>
+              <span class="text-amber-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-3 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-lg text-blue-900 space-y-2 shadow-xs">
+              <div class="flex items-center space-x-2">
+                <span class="font-bold uppercase tracking-wider text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">CALL</span>
+                <span class="font-bold text-[#3557ff]">ChatBot_AI .GenerateConsultationSummary</span>
+              </div>
+              <div class="ml-4 text-[11px] text-slate-700 space-y-1 font-medium">
+                <div>patient_id : <span class="text-emerald-700 font-bold">UserAuth.CurrentUID</span></div>
+                <div>doctor_spec : <span class="text-emerald-700 font-bold">"Cardiologist"</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="p-3.5 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-xl text-blue-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">ChatBot_AI .GotResponse</span>
+              <span class="text-[#3557ff] font-semibold">( responseText )</span>
+              <span class="text-blue-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-2.5 bg-slate-100 border-l-4 border-slate-400 rounded-r-lg text-slate-800">
+              <span class="font-bold text-[10px] text-[#3557ff]">SET</span> Label_AITriageSummary.Text <span class="text-slate-500">to</span> <span class="text-[#3557ff] font-bold">get responseText</span>
+            </div>
+          </div>
+        `
+      },
+      omnibot: {
+        prompt: "Build OmniBot: Multi-Model AI Vision Assistant with Gemini 1.5 & Speech Recognition",
+        appId: "phone-app-omnibot",
+        blocks: `
+          <div class="p-3.5 bg-violet-50 border-l-4 border-violet-500 rounded-r-xl text-violet-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-violet-200 text-violet-900 px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">SpeechRecognizer1 .AfterGettingText( result )</span>
+              <span class="text-violet-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-3 bg-blue-50 border-l-4 border-[#3557ff] rounded-r-lg text-blue-900">
+              <span class="font-bold text-[10px] bg-blue-200 text-[#3557ff] px-1.5 py-0.5 rounded">CALL</span> <span class="text-[#3557ff] font-bold">ChatBot_AI .AskWithModel( "gemini-1.5-pro", result )</span>
+            </div>
+          </div>
+          <div class="p-3.5 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-xl text-emerald-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-emerald-200 text-emerald-900 px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">ChatBot_AI .GotResponse( responseText )</span>
+              <span class="text-emerald-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-2.5 bg-slate-100 border-l-4 border-slate-400 rounded-r-lg text-slate-800">
+              <span class="font-bold text-[10px] text-[#3557ff]">CALL</span> TextToSpeech1 .Speak( get responseText )
+            </div>
+          </div>
+        `
+      },
+      smarthome: {
+        prompt: "Build SmartHome IoT: Bluetooth Low Energy sensor telemetry & remote relay automation",
+        appId: "phone-app-smarthome",
+        blocks: `
+          <div class="p-3.5 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-sky-200 text-sky-900 px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">BluetoothLE1 .Connected</span>
+              <span class="text-sky-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-2.5 bg-slate-100 border-l-4 border-slate-400 rounded-r-lg text-slate-800">
+              <span class="font-bold text-[10px] text-emerald-700">CALL</span> BluetoothLE1 .RegisterForStrings( "0000FFE1-..." )
+            </div>
+          </div>
+        `
+      },
+      translate: {
+        prompt: "Build TranslateApp: Real-time neural voice translation across 60+ languages",
+        appId: "phone-app-omnibot",
+        blocks: `
+          <div class="p-3.5 bg-sky-50 border-l-4 border-sky-500 rounded-r-xl text-sky-900 shadow-xs">
+            <div class="flex items-center space-x-2">
+              <span class="font-bold uppercase tracking-wider text-[10px] bg-sky-200 text-sky-900 px-1.5 py-0.5 rounded">WHEN</span>
+              <span class="font-bold text-slate-900">YandexTranslate1 .GotTranslation( responseCode, translation )</span>
+              <span class="text-sky-700 font-semibold">do</span>
+            </div>
+            <div class="mt-2.5 ml-4 p-2.5 bg-slate-100 border-l-4 border-slate-400 rounded-r-lg text-slate-800">
+              <span class="font-bold text-[10px] text-[#3557ff]">CALL</span> TextToSpeech1 .Speak( get translation )
+            </div>
+          </div>
+        `
+      }
+    };
+
+    function setPrompt(key) {
+      const data = promptPresets[key];
+      if (!data) return;
+      document.getElementById('prompt-input').value = data.prompt;
+      runAiSynthesis(key);
+    }
+
+    function runAiSynthesis(presetKey = 'docspot') {
+      const btn = document.getElementById('generate-btn');
+      const btnText = document.getElementById('gen-btn-text');
+      const progressBar = document.getElementById('pipeline-progress');
+      const statusText = document.getElementById('pipeline-status-text');
+      const timerText = document.getElementById('pipeline-timer');
+
+      btnText.innerText = "Synthesizing...";
+      btn.disabled = true;
+      progressBar.style.width = '20%';
+      statusText.innerText = "Generating Neural UI Layout...";
+      statusText.className = "text-[#3557ff] font-semibold";
+
+      setTimeout(() => {
+        progressBar.style.width = '60%';
+        statusText.innerText = "Synthesizing Visual Block Logic...";
+      }, 350);
+
+      setTimeout(() => {
+        progressBar.style.width = '85%';
+        statusText.innerText = "Wiring AI API & CloudDB Endpoints...";
+      }, 700);
+
+      setTimeout(() => {
+        progressBar.style.width = '100%';
+        statusText.innerText = "Live Native Preview Updated!";
+        statusText.className = "text-emerald-600 font-semibold";
+        btnText.innerText = "Generate App";
+        btn.disabled = false;
+        timerText.innerText = "Latency: 0.14s";
+
+        // Update phone view
+        const targetAppId = promptPresets[presetKey]?.appId || 'phone-app-docspot';
+        ['phone-app-docspot', 'phone-app-omnibot', 'phone-app-smarthome'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            if (id === targetAppId) {
+              el.classList.remove('hidden');
+            } else {
+              el.classList.add('hidden');
+            }
+          }
+        });
+
+        // Update Blockly blocks
+        if (promptPresets[presetKey]?.blocks) {
+          document.getElementById('blockly-container').innerHTML = promptPresets[presetKey].blocks;
+        }
+
+      }, 1050);
+    }
+
+    // Phone Interactive Simulation Action
+    function simulateBooking() {
+      const triageText = document.getElementById('phone-triage-text');
+      if (triageText) {
+        triageText.innerText = "Appointment confirmed with Dr. Sarah Jenkins for Tomorrow at 10:00 AM! Calendar sync complete.";
+        triageText.className = "text-[11px] text-emerald-700 font-bold leading-snug";
+      }
+    }
+
+    // Template Filtering
+    function filterTemplates(cat) {
+      const cards = document.querySelectorAll('.template-card');
+      const btns = document.querySelectorAll('.template-filter-btn');
+
+      btns.forEach(b => {
+        b.className = "template-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition";
+      });
+      event.target.className = "template-filter-btn px-4 py-1.5 rounded-full text-xs font-bold bg-[#3557ff] text-white shadow-xs transition";
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.classList.contains(cat)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Interactive ROI Calculator
+    function updateCalculator() {
+      const apps = parseInt(document.getElementById('calc-apps-slider').value);
+      const team = parseInt(document.getElementById('calc-team-slider').value);
+
+      document.getElementById('calc-apps-val').innerText = `${apps} App${apps > 1 ? 's' : ''}`;
+      document.getElementById('calc-team-val').innerText = `${team} Member${team > 1 ? 's' : ''}`;
+
+      const daysSaved = apps * team * 16;
+      const costSaved = daysSaved * 400; // $400/day engineer standard
+
+      document.getElementById('calc-days-saved').innerText = `${daysSaved} Days / yr`;
+      document.getElementById('calc-cost-saved').innerText = `$${costSaved.toLocaleString()}`;
+    }
+
+    // FAQ Accordion Toggle
+    function toggleFaq(num) {
+      const answer = document.getElementById(`faq-answer-${num}`);
+      const icon = document.getElementById(`faq-icon-${num}`);
+      if (answer.classList.contains('hidden')) {
+        answer.classList.remove('hidden');
+        icon.innerText = '−';
+      } else {
+        answer.classList.add('hidden');
+        icon.innerText = '+';
+      }
+    }
+
+    // Interactive Ambient Background (Particles & Soft Cursor Light)
+    const canvas = document.getElementById('ambient-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let mouse = { x: -1000, y: -1000 };
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.35;
+        this.vy = (Math.random() - 0.5) * 0.35;
+        this.radius = Math.random() * 1.8 + 0.6;
+        this.alpha = Math.random() * 0.3 + 0.1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width || this.y < 0 || this.y > height) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(53, 87, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    const particles = Array.from({ length: 35 }, () => new Particle());
+
+    function animateCanvas() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Soft light radial glow on mouse
+      if (mouse.x > 0 && mouse.y > 0) {
+        const radGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 350);
+        radGrad.addColorStop(0, 'rgba(53, 87, 255, 0.04)');
+        radGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // Draw particles & light connecting lines
+      particles.forEach((p, idx) => {
+        p.update();
+        p.draw();
+
+        for (let j = idx + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(53, 87, 255, ${0.12 * (1 - dist / 100)})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      });
+
+      requestAnimationFrame(animateCanvas);
+    }
+    animateCanvas();
+  </script>
+
+</body>
+
+</html>

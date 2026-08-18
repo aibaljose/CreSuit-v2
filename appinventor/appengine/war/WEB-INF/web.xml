@@ -32,8 +32,23 @@
       <url-pattern>/about/*</url-pattern>
       <url-pattern>/b/*</url-pattern>
       <url-pattern>/remote_api/*</url-pattern>
+      <url-pattern>/landing.html</url-pattern>
+      <url-pattern>/landing.jsp</url-pattern>
+      <url-pattern>/landing/*</url-pattern>
+      <url-pattern>/landing</url-pattern>
+      <url-pattern>/CreSuit_Companion.apk</url-pattern>
     </web-resource-collection>
   </security-constraint>
+
+  <!-- Landing Page Servlet Mapping -->
+  <servlet>
+    <servlet-name>LandingJsp</servlet-name>
+    <jsp-file>/landing.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LandingJsp</servlet-name>
+    <url-pattern>/landing</url-pattern>
+  </servlet-mapping>
 
   <!-- Servlets -->
 
