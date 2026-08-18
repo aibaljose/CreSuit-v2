@@ -252,6 +252,9 @@ public class TopToolbar extends Composite {
   public static void indicateDisconnect() {
     TopToolbar instance = Ode.getInstance().getTopToolbar();
     instance.updateConnectToDropDownButton(false, false, false);
+    if (Ode.getInstance().getTopPanel() != null) {
+      Ode.getInstance().getTopPanel().updateCompanionIndicator();
+    }
   }
 
   /**
@@ -285,6 +288,9 @@ public class TopToolbar extends Composite {
     } else {
       updateConnectToDropDownButton(false, false, false);
     }
+    if (Ode.getInstance().getTopPanel() != null) {
+      Ode.getInstance().getTopPanel().updateCompanionIndicator();
+    }
   }
 
   public void replHardReset() {
@@ -297,6 +303,9 @@ public class TopToolbar extends Composite {
     Screen screen = currentProject.screens.get(currentProject.currentScreen);
     ((YaBlocksEditor)screen.blocksEditor).hardReset();
     updateConnectToDropDownButton(false, false, false);
+    if (Ode.getInstance().getTopPanel() != null) {
+      Ode.getInstance().getTopPanel().updateCompanionIndicator();
+    }
   }
 
   public void replUpdate() {

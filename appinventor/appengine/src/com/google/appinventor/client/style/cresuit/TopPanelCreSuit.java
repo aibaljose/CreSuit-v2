@@ -32,6 +32,8 @@ public class TopPanelCreSuit extends TopPanel {
   @UiField FlowPanel links;
   @UiField protected TextButton myProjects;
   @UiField protected TextButton viewTrash;
+  @UiField FlowPanel companionIndicator;
+  @UiField com.google.gwt.user.client.ui.HTML companionStatusHtml;
 
   @Override
   public void bindUI() {
@@ -47,5 +49,7 @@ public class TopPanelCreSuit extends TopPanel {
     super.links = links;
     super.myProjects = myProjects;
     super.viewTrash = viewTrash;
+    super.companionIndicator = companionIndicator;
+    super.companionStatusHtml = companionStatusHtml;
   }
 }

@@ -22,6 +22,12 @@
       <g:FlowPanel styleName="ode-TopPanelAccount flex items-center gap-2">
         <g:Label text="{messages.readOnlyMode}" styleName="ode-TopPanelWarningLabel text-xs text-red-600 font-semibold px-2.5 py-1 bg-red-50 rounded-full border border-red-200/80"
                  ui:field="readOnly"/>
+        <!-- Companion Connection Indicator -->
+        <g:FlowPanel ui:field="companionIndicator"
+                     styleName="ode-CompanionIndicator flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200/90 rounded-full text-xs font-semibold shadow-2xs transition duration-150 cursor-pointer"
+                     visible="false">
+          <g:HTML ui:field="companionStatusHtml"/>
+        </g:FlowPanel>
         <!-- Help Menu -->
         <ai:DropDownButton name="Help" caption="{messages.helpTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
                            ui:field="helpDropDown" align="right" icon="help">
