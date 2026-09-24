@@ -259,6 +259,11 @@ public class LocalProjectService implements ProjectServiceAsync {
 
   }
 
+  @Override
+  public void restoreProjectVersion(long projectId, String aiaPath, String newName, AsyncCallback<UserProject> callback) {
+
+  }
+
   public void renameProjects(List<Long> projectIds, List<String> projectNames,
       AsyncCallback<Void> callback) {
 

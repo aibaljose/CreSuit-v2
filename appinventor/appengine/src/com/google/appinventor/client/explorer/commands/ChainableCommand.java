@@ -62,6 +62,10 @@ public abstract class ChainableCommand {
     this.nextCommand = nextCommand;
   }
 
+  public ChainableCommand getNextCommand() {
+    return nextCommand;
+  }
+
   /**
    * Initializes the tracking information on each link in the chain
    *

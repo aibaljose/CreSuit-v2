@@ -33,6 +33,9 @@ Container for components that arranges them absolutely.
  restored. If an Image has been set, the color change will not be visible
  until the Image is removed.
 
+{:id="AbsoluteArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the AbsoluteArrangement is clickable.
+
 {:id="AbsoluteArrangement.Height" .number .bo} *Height*
 : Specifies the `AbsoluteArrangement`'s vertical height, measured in pixels.
 
@@ -65,8 +68,18 @@ Container for components that arranges them absolutely.
 ### Events  {#AbsoluteArrangement-Events}
 
 {:.events}
-None
 
+{:id="AbsoluteArrangement.Click"} Click()
+: Event raised when the AbsoluteArrangement is clicked.
+
+{:id="AbsoluteArrangement.LongClick"} LongClick()
+: Event raised when the AbsoluteArrangement is held down.
+
+{:id="AbsoluteArrangement.TouchDown"} TouchDown()
+: Event raised when the AbsoluteArrangement is pressed down.
+
+{:id="AbsoluteArrangement.TouchUp"} TouchUp()
+: Event raised when the AbsoluteArrangement is released.
 
 ### Methods  {#AbsoluteArrangement-Methods}
 
@@ -93,6 +106,9 @@ A container for components that arranges them in a Material Design card
 
 {:id="CardView.BackgroundColor" .color} *BackgroundColor*
 : Specifies the background color of the CardView. The background color will not be visible if an Image is being displayed.
+
+{:id="CardView.Clickable" .boolean} *Clickable*
+: Returns true if the CardView is clickable.
 
 {:id="CardView.CornerRadius" .number} *CornerRadius*
 : Sets the card corner radius.
@@ -132,8 +148,18 @@ A container for components that arranges them in a Material Design card
 ### Events  {#CardView-Events}
 
 {:.events}
-None
 
+{:id="CardView.Click"} Click()
+: Event raised when the CardView is clicked.
+
+{:id="CardView.LongClick"} LongClick()
+: Event raised when the CardView is held down.
+
+{:id="CardView.TouchDown"} TouchDown()
+: Event raised when the CardView is pressed down.
+
+{:id="CardView.TouchUp"} TouchUp()
+: Event raised when the CardView is released.
 
 ### Methods  {#CardView-Methods}
 
@@ -193,6 +219,9 @@ None
  integer.  If an Image has been set, the color change will not be visible
  until the Image is removed.
 
+{:id="HorizontalArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the HorizontalArrangement is clickable.
+
 {:id="HorizontalArrangement.Height" .number .bo} *Height*
 : Specifies the `HorizontalArrangement`'s vertical height, measured in pixels.
 
@@ -225,8 +254,18 @@ None
 ### Events  {#HorizontalArrangement-Events}
 
 {:.events}
-None
 
+{:id="HorizontalArrangement.Click"} Click()
+: Event raised when the HorizontalArrangement is clicked.
+
+{:id="HorizontalArrangement.LongClick"} LongClick()
+: Event raised when the HorizontalArrangement is held down.
+
+{:id="HorizontalArrangement.TouchDown"} TouchDown()
+: Event raised when the HorizontalArrangement is pressed down.
+
+{:id="HorizontalArrangement.TouchUp"} TouchUp()
+: Event raised when the HorizontalArrangement is released.
 
 ### Methods  {#HorizontalArrangement-Methods}
 
@@ -263,6 +302,9 @@ A formatting element in which to place components that should be displayed from 
  integer.  If an Image has been set, the color change will not be visible
  until the Image is removed.
 
+{:id="HorizontalScrollArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the HorizontalScrollArrangement is clickable.
+
 {:id="HorizontalScrollArrangement.Height" .number .bo} *Height*
 : Specifies the `HorizontalScrollArrangement`'s vertical height, measured in pixels.
 
@@ -295,8 +337,18 @@ A formatting element in which to place components that should be displayed from 
 ### Events  {#HorizontalScrollArrangement-Events}
 
 {:.events}
-None
 
+{:id="HorizontalScrollArrangement.Click"} Click()
+: Event raised when the HorizontalScrollArrangement is clicked.
+
+{:id="HorizontalScrollArrangement.LongClick"} LongClick()
+: Event raised when the HorizontalScrollArrangement is held down.
+
+{:id="HorizontalScrollArrangement.TouchDown"} TouchDown()
+: Event raised when the HorizontalScrollArrangement is pressed down.
+
+{:id="HorizontalScrollArrangement.TouchUp"} TouchUp()
+: Event raised when the HorizontalScrollArrangement is released.
 
 ### Methods  {#HorizontalScrollArrangement-Methods}
 
@@ -381,6 +433,9 @@ Use a table arrangement component to display a group of components in a tabular 
 
 {:.properties}
 
+{:id="TableArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the TableArrangement is clickable.
+
 {:id="TableArrangement.Columns" .number .do} *Columns*
 : Determines the number of columns in the table.
 
@@ -416,8 +471,18 @@ Use a table arrangement component to display a group of components in a tabular 
 ### Events  {#TableArrangement-Events}
 
 {:.events}
-None
 
+{:id="TableArrangement.Click"} Click()
+: Event raised when the TableArrangement is clicked.
+
+{:id="TableArrangement.LongClick"} LongClick()
+: Event raised when the TableArrangement is held down.
+
+{:id="TableArrangement.TouchDown"} TouchDown()
+: Event raised when the TableArrangement is pressed down.
+
+{:id="TableArrangement.TouchUp"} TouchUp()
+: Event raised when the TableArrangement is released.
 
 ### Methods  {#TableArrangement-Methods}
 
@@ -477,6 +542,9 @@ None
  integer.  If an Image has been set, the color change will not be visible
  until the Image is removed.
 
+{:id="VerticalArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the VerticalArrangement is clickable.
+
 {:id="VerticalArrangement.Height" .number .bo} *Height*
 : Specifies the `VerticalArrangement`'s vertical height, measured in pixels.
 
@@ -509,8 +577,18 @@ None
 ### Events  {#VerticalArrangement-Events}
 
 {:.events}
-None
 
+{:id="VerticalArrangement.Click"} Click()
+: Event raised when the VerticalArrangement is clicked.
+
+{:id="VerticalArrangement.LongClick"} LongClick()
+: Event raised when the VerticalArrangement is held down.
+
+{:id="VerticalArrangement.TouchDown"} TouchDown()
+: Event raised when the VerticalArrangement is pressed down.
+
+{:id="VerticalArrangement.TouchUp"} TouchUp()
+: Event raised when the VerticalArrangement is released.
 
 ### Methods  {#VerticalArrangement-Methods}
 
@@ -547,6 +625,9 @@ A formatting element in which to place components that should be displayed one b
  integer.  If an Image has been set, the color change will not be visible
  until the Image is removed.
 
+{:id="VerticalScrollArrangement.Clickable" .boolean} *Clickable*
+: Returns true if the VerticalScrollArrangement is clickable.
+
 {:id="VerticalScrollArrangement.Height" .number .bo} *Height*
 : Specifies the `VerticalScrollArrangement`'s vertical height, measured in pixels.
 
@@ -579,8 +660,18 @@ A formatting element in which to place components that should be displayed one b
 ### Events  {#VerticalScrollArrangement-Events}
 
 {:.events}
-None
 
+{:id="VerticalScrollArrangement.Click"} Click()
+: Event raised when the VerticalScrollArrangement is clicked.
+
+{:id="VerticalScrollArrangement.LongClick"} LongClick()
+: Event raised when the VerticalScrollArrangement is held down.
+
+{:id="VerticalScrollArrangement.TouchDown"} TouchDown()
+: Event raised when the VerticalScrollArrangement is pressed down.
+
+{:id="VerticalScrollArrangement.TouchUp"} TouchUp()
+: Event raised when the VerticalScrollArrangement is released.
 
 ### Methods  {#VerticalScrollArrangement-Methods}
 

@@ -4871,3 +4871,462 @@ div.dropdiv p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ======================================================================
+   CreSuit App Versions & Release Management Styling
+   ====================================================================== */
+
+.cresuit-versions-dialog {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.cresuit-versions-container {
+  padding: 24px;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.cresuit-versions-header {
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.cresuit-versions-apptitle {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cresuit-versions-appsubtitle {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin-top: 2px !important;
+  padding: 0 !important;
+}
+
+.cresuit-versions-headeractions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cresuit-btn-build {
+  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.cresuit-btn-build:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5) !important;
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.35) !important;
+  transform: translateY(-1px);
+}
+
+.cresuit-btn-close {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-close:hover {
+  background: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+.cresuit-versions-status {
+  font-size: 13px !important;
+  color: #6366f1 !important;
+  font-weight: 500 !important;
+  margin-bottom: 12px !important;
+  padding: 0 !important;
+}
+
+/* Latest Release Hero Card */
+.cresuit-latest-release-container {
+  margin-bottom: 24px;
+}
+
+.cresuit-release-card-hero {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  position: relative;
+}
+
+.cresuit-hero-tag {
+  display: inline-block !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #16a34a !important;
+  background: #dcfce7 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  margin-bottom: 8px !important;
+}
+
+.cresuit-hero-version {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+  margin: 0 0 4px 0 !important;
+  padding: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.cresuit-hero-meta {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.cresuit-hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cresuit-btn-download-hero {
+  background: #0ea5e9 !important;
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 9px 18px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px rgba(14, 165, 233, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.cresuit-btn-download-hero:hover {
+  background: #0284c7 !important;
+  transform: translateY(-1px);
+}
+
+.cresuit-btn-qr-hero {
+  background: #ffffff !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.cresuit-btn-qr-hero:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+
+/* History Section */
+.cresuit-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.cresuit-history-title {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  padding: 0 !important;
+}
+
+.cresuit-btn-refresh {
+  background: transparent !important;
+  border: none !important;
+  color: #6366f1 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  padding: 4px 8px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-refresh:hover {
+  background: #e0e7ff !important;
+}
+
+.cresuit-history-scroll {
+  max-height: 250px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.cresuit-history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.cresuit-history-row {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  align-items: center;
+  transition: background 0.15s ease;
+}
+
+.cresuit-history-row:last-child {
+  border-bottom: none;
+}
+
+.cresuit-history-row:hover {
+  background: #f8fafc;
+}
+
+.cresuit-history-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cresuit-history-vname {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  min-width: 55px;
+  padding: 0 !important;
+}
+
+.cresuit-history-bnum {
+  font-size: 12px !important;
+  color: #64748b !important;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600 !important;
+}
+
+.cresuit-type-badge {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 6px !important;
+}
+
+.badge-apk {
+  background: #dcfce7 !important;
+  color: #15803d !important;
+}
+
+.badge-aab {
+  background: #e0e7ff !important;
+  color: #4338ca !important;
+}
+
+.cresuit-history-date {
+  font-size: 12px !important;
+  color: #64748b !important;
+  padding: 0 !important;
+}
+
+.cresuit-history-size {
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+  padding: 0 !important;
+}
+
+.cresuit-history-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cresuit-btn-download-sm {
+  background: #f8fafc !important;
+  color: #0284c7 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 5px 12px !important;
+  border: 1px solid #bae6fd !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-download-sm:hover {
+  background: #e0f2fe !important;
+  border-color: #7dd3fc !important;
+}
+
+.cresuit-btn-qr-sm {
+  background: #ffffff !important;
+  color: #475569 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 5px 10px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-qr-sm:hover {
+  background: #f1f5f9 !important;
+}
+
+.cresuit-btn-delete-sm {
+  background: transparent !important;
+  border: none !important;
+  color: #ef4444 !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  padding: 4px 6px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-delete-sm:hover {
+  background: #fee2e2 !important;
+}
+
+.cresuit-empty-state {
+  text-align: center;
+  padding: 36px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px dashed #cbd5e1;
+}
+
+.cresuit-empty-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+  margin-bottom: 6px !important;
+  padding: 0 !important;
+}
+
+.cresuit-empty-desc {
+  font-size: 13px !important;
+  color: #64748b !important;
+  max-width: 440px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+}
+
+/* QR Code Modal */
+.cresuit-qr-modal {
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.cresuit-qr-image {
+  margin: 16px 0;
+}
+
+.cresuit-qr-hint {
+  font-size: 13px !important;
+  color: #64748b !important;
+  margin-bottom: 16px !important;
+  padding: 0 !important;
+}
+
+.cresuit-btn-close-modal {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 7px 20px !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  cursor: pointer !important;
+}
+
+/* Barcode Dialog Enhancements */
+.cresuit-barcode-header {
+  margin-bottom: 14px;
+}
+
+.cresuit-barcode-success-badge {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #15803d !important;
+  background: #dcfce7 !important;
+  padding: 3px 10px !important;
+  border-radius: 12px !important;
+  letter-spacing: 0.05em !important;
+  margin-bottom: 6px !important;
+}
+
+.cresuit-barcode-appname {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin-bottom: 2px !important;
+  padding: 0 !important;
+}
+
+.cresuit-barcode-versioninfo {
+  font-size: 13px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
+}
+
+.cresuit-barcode-bottom-panel {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cresuit-btn-version-history {
+  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-btn-version-history:hover {
+  background: linear-gradient(135deg, #4338ca, #4f46e5) !important;
+}
+
+.cresuit-btn-dismiss {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  border: 1px solid #cbd5e1 !important;
+  cursor: pointer !important;
+}

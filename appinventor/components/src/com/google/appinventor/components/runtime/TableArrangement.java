@@ -9,6 +9,7 @@ package com.google.appinventor.components.runtime;
 import com.google.appinventor.components.annotations.DesignerComponent;
 import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.PropertyCategory;
+import com.google.appinventor.components.annotations.SimpleEvent;
 import com.google.appinventor.components.annotations.SimpleObject;
 import com.google.appinventor.components.annotations.SimpleProperty;
 import com.google.appinventor.components.common.ComponentCategory;
@@ -17,6 +18,7 @@ import com.google.appinventor.components.common.YaVersion;
 import com.google.appinventor.components.runtime.util.ViewUtil;
 
 import android.app.Activity;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -59,6 +61,7 @@ public class TableArrangement extends AndroidViewComponent
 
   // Layout
   private final TableLayout viewLayout;
+  private boolean clickable = false;
 
   private List<Component> allChildren = new ArrayList<>();
 
@@ -74,6 +77,7 @@ public class TableArrangement extends AndroidViewComponent
     viewLayout = new TableLayout(context, 2, 2);
 
     container.$add(this);
+    Clickable(false);
   }
 
   /**
@@ -194,5 +198,105 @@ public class TableArrangement extends AndroidViewComponent
   @Override
   public View getView() {
     return viewLayout.getLayoutManager();
+  }
+
+  /**
+   * Specifies whether the %type% should be clickable or not.
+   *
+   * @param clickable true if the arrangement is clickable, false otherwise
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
+      defaultValue = "False")
+  @SimpleProperty(description = "Specifies whether the %type% should be clickable or not.",
+      category = PropertyCategory.BEHAVIOR)
+  public void Clickable(boolean clickable) {
+    this.clickable = clickable;
+    updateClickable();
+  }
+
+  /**
+   * Returns true if the %type% is clickable.
+   *
+   * @return true if the arrangement is clickable, false otherwise
+   */
+  @SimpleProperty(category = PropertyCategory.BEHAVIOR,
+      description = "Specifies whether the %type% should be clickable or not.")
+  public boolean Clickable() {
+    return this.clickable;
+  }
+
+  /**
+   * Event raised when the %type% is clicked.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is clicked.")
+  public void Click() {
+    EventDispatcher.dispatchEvent(this, "Click");
+  }
+
+  /**
+   * Event raised when the %type% is held down.
+   *
+   * @return true if the event was handled, false otherwise
+   */
+  @SimpleEvent(description = "Event raised when the %type% is held down.")
+  public boolean LongClick() {
+    return EventDispatcher.dispatchEvent(this, "LongClick");
+  }
+
+  /**
+   * Event raised when the %type% is pressed down.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is pressed down.")
+  public void TouchDown() {
+    EventDispatcher.dispatchEvent(this, "TouchDown");
+  }
+
+  /**
+   * Event raised when the %type% is released.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is released.")
+  public void TouchUp() {
+    EventDispatcher.dispatchEvent(this, "TouchUp");
+  }
+
+  private void updateClickable() {
+    View layoutManager = viewLayout.getLayoutManager();
+    if (layoutManager != null) {
+      layoutManager.setClickable(clickable);
+      layoutManager.setLongClickable(clickable);
+      if (clickable) {
+        layoutManager.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Click();
+          }
+        });
+        layoutManager.setOnLongClickListener(new View.OnLongClickListener() {
+          @Override
+          public boolean onLongClick(View v) {
+            return LongClick();
+          }
+        });
+        layoutManager.setOnTouchListener(new View.OnTouchListener() {
+          @Override
+          public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+              case MotionEvent.ACTION_DOWN:
+                TouchDown();
+                break;
+              case MotionEvent.ACTION_UP:
+              case MotionEvent.ACTION_CANCEL:
+                TouchUp();
+                break;
+            }
+            return false;
+          }
+        });
+      } else {
+        layoutManager.setOnClickListener(null);
+        layoutManager.setOnLongClickListener(null);
+        layoutManager.setOnTouchListener(null);
+      }
+    }
   }
 }

@@ -72,6 +72,16 @@ public interface ProjectService extends RemoteService {
   UserProject copyProject(long oldProjectId, String newName);
 
   /**
+   * Restores a saved project version from history as a new editable project.
+   *
+   * @param projectId the project ID
+   * @param aiaPath path to the archived .aia file in build history
+   * @param newName name of the restored project
+   * @return a {@link UserProject} for the restored project
+   */
+  UserProject restoreProjectVersion(long projectId, String aiaPath, String newName);
+
+  /**
    * Deletes a project.
    * @param projectId  project ID
    */

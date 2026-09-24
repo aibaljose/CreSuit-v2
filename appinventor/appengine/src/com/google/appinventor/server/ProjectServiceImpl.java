@@ -197,6 +197,38 @@ public class ProjectServiceImpl extends OdeRemoteServiceServlet implements Proje
   }
 
   /**
+   * Restores a saved project version from history as a new editable project.
+   *
+   * @param projectId the original project ID
+   * @param aiaPath path to the archived .aia file in build history
+   * @param newName name of the restored project
+   * @return a {@link UserProject} for the restored project
+   */
+  @Override
+  public UserProject restoreProjectVersion(long projectId, String aiaPath, String newName) {
+    final String userId = userInfoProvider.getUserId();
+    storageIo.assertUserHasProject(userId, projectId);
+
+    if (aiaPath == null || !aiaPath.startsWith("build/history/")) {
+      throw new IllegalArgumentException("Invalid version file path");
+    }
+
+    byte[] aiaBytes = storageIo.downloadRawFile(userId, projectId, aiaPath);
+    if (aiaBytes == null || aiaBytes.length == 0) {
+      throw new IllegalArgumentException("Version archive not found or empty");
+    }
+
+    FileImporter fileImporter = new FileImporterImpl();
+    try {
+      ByteArrayInputStream bais = new ByteArrayInputStream(aiaBytes);
+      return fileImporter.importProject(userId, newName, bais);
+    } catch (Exception e) {
+      LOG.log(Level.SEVERE, "Failed to restore project version from " + aiaPath, e);
+      throw new RuntimeException("Error restoring project version: " + e.getMessage(), e);
+    }
+  }
+
+  /**
    * Deletes a project.
    * @param projectId  project ID
    */

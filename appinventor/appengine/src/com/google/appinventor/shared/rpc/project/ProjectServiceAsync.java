@@ -45,6 +45,11 @@ public interface ProjectServiceAsync {
   void copyProject(long oldProjectId, String newName, AsyncCallback<UserProject> callback);
 
   /**
+   * @see ProjectService#restoreProjectVersion(long, String, String)
+   */
+  void restoreProjectVersion(long projectId, String aiaPath, String newName, AsyncCallback<UserProject> callback);
+
+  /**
    * @see ProjectService@loginToGallery()
    */
 

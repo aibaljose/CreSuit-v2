@@ -14,6 +14,7 @@ import android.os.Handler;
 
 import android.util.Log;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,6 +26,7 @@ import com.google.appinventor.components.annotations.Asset;
 import com.google.appinventor.components.annotations.DesignerProperty;
 import com.google.appinventor.components.annotations.Options;
 import com.google.appinventor.components.annotations.PropertyCategory;
+import com.google.appinventor.components.annotations.SimpleEvent;
 import com.google.appinventor.components.annotations.SimpleObject;
 import com.google.appinventor.components.annotations.SimpleProperty;
 
@@ -68,6 +70,7 @@ public class HVArrangement extends AndroidViewComponent implements Component, Co
   private VerticalAlignment verticalAlignment = VerticalAlignment.Top;
   // Backing for background color
   private int backgroundColor;
+  private boolean clickable = false;
   // This is the Drawable corresponding to the Image property.
   // If an Image has never been set or if the most recent Image could not be loaded, this is null.
   private Drawable backgroundImageDrawable;
@@ -132,6 +135,7 @@ public class HVArrangement extends AndroidViewComponent implements Component, Co
 
     container.$add(this);
     BackgroundColor(Component.COLOR_DEFAULT);
+    Clickable(false);
 
   }
 
@@ -436,6 +440,105 @@ public class HVArrangement extends AndroidViewComponent implements Component, Co
     } else {
       // If there is a background image
       ViewUtil.setBackgroundImage(viewLayout.getLayoutManager(), backgroundImageDrawable);
+    }
+  }
+
+  /**
+   * Specifies whether the %type% should be clickable or not.
+   *
+   * @param clickable true if the arrangement is clickable, false otherwise
+   */
+  @DesignerProperty(editorType = PropertyTypeConstants.PROPERTY_TYPE_BOOLEAN,
+      defaultValue = "False")
+  @SimpleProperty(description = "Specifies whether the %type% should be clickable or not.",
+      category = PropertyCategory.BEHAVIOR)
+  public void Clickable(boolean clickable) {
+    this.clickable = clickable;
+    updateClickable();
+  }
+
+  /**
+   * Returns true if the %type% is clickable.
+   *
+   * @return true if the arrangement is clickable, false otherwise
+   */
+  @SimpleProperty(category = PropertyCategory.BEHAVIOR,
+      description = "Specifies whether the %type% should be clickable or not.")
+  public boolean Clickable() {
+    return this.clickable;
+  }
+
+  /**
+   * Event raised when the %type% is clicked.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is clicked.")
+  public void Click() {
+    EventDispatcher.dispatchEvent(this, "Click");
+  }
+
+  /**
+   * Event raised when the %type% is held down.
+   *
+   * @return true if the event was handled, false otherwise
+   */
+  @SimpleEvent(description = "Event raised when the %type% is held down.")
+  public boolean LongClick() {
+    return EventDispatcher.dispatchEvent(this, "LongClick");
+  }
+
+  /**
+   * Event raised when the %type% is pressed down.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is pressed down.")
+  public void TouchDown() {
+    EventDispatcher.dispatchEvent(this, "TouchDown");
+  }
+
+  /**
+   * Event raised when the %type% is released.
+   */
+  @SimpleEvent(description = "Event raised when the %type% is released.")
+  public void TouchUp() {
+    EventDispatcher.dispatchEvent(this, "TouchUp");
+  }
+
+  private void updateClickable() {
+    if (frameContainer != null) {
+      frameContainer.setClickable(clickable);
+      frameContainer.setLongClickable(clickable);
+      if (clickable) {
+        frameContainer.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Click();
+          }
+        });
+        frameContainer.setOnLongClickListener(new View.OnLongClickListener() {
+          @Override
+          public boolean onLongClick(View v) {
+            return LongClick();
+          }
+        });
+        frameContainer.setOnTouchListener(new View.OnTouchListener() {
+          @Override
+          public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()) {
+              case MotionEvent.ACTION_DOWN:
+                TouchDown();
+                break;
+              case MotionEvent.ACTION_UP:
+              case MotionEvent.ACTION_CANCEL:
+                TouchUp();
+                break;
+            }
+            return false;
+          }
+        });
+      } else {
+        frameContainer.setOnClickListener(null);
+        frameContainer.setOnLongClickListener(null);
+        frameContainer.setOnTouchListener(null);
+      }
     }
   }
 

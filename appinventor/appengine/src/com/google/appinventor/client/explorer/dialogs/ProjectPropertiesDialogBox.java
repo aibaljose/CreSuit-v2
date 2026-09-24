@@ -21,6 +21,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.ChangeEvent; 
 import com.google.gwt.event.dom.client.ChangeHandler; 
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.FocusEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -77,6 +78,7 @@ public class ProjectPropertiesDialogBox {
     projectCategories.put("Theming", MESSAGES.projectPropertyThemingCategoryTitle());
     projectCategories.put("Publishing", MESSAGES.projectPropertyPublishingCategoryTitle());
     projectCategories.put("iOS Settings", MESSAGES.projectPropertyIosSettingsCategoryTitle());
+    projectCategories.put("Build Versions", "Build Versions");
   }
 
   /**
@@ -254,6 +256,36 @@ public class ProjectPropertiesDialogBox {
       pkgContainer.add(pkgDesc);
       pkgContainer.add(pkgBox);
       propertiesContainer.add(pkgContainer);
+    }
+
+    if ("Build Versions".equals(category)) {
+      FlowPanel buildVersionsContainer = new FlowPanel();
+      buildVersionsContainer.setStyleName("ode-propertyDialogPropertyContainer");
+
+      Label title = new Label("Build Versions & Release History");
+      title.setStyleName("ode-propertyDialogPropertyTitle");
+
+      HTML desc = new HTML("Manage and download all past builds (APK/AAB) archived for this project.");
+      desc.setStyleName("ode-propertyDialogPropertyDescription");
+
+      Button openVersionsBtn = new Button("Open Versions Screen");
+      openVersionsBtn.setStyleName("cresuit-btn-build");
+      openVersionsBtn.getElement().getStyle().setProperty("marginTop", "12px");
+      openVersionsBtn.addClickHandler(new ClickHandler() {
+        @Override
+        public void onClick(ClickEvent event) {
+          projectProperties.hide();
+          Project project = (projectEditor != null) ? projectEditor.getProject() : null;
+          if (project != null) {
+            new VersionsDialogBox(project.getProjectId(), project.getProjectName()).center();
+          }
+        }
+      });
+
+      buildVersionsContainer.add(title);
+      buildVersionsContainer.add(desc);
+      buildVersionsContainer.add(openVersionsBtn);
+      propertiesContainer.add(buildVersionsContainer);
     }
     
     return propertiesContainer;

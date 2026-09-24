@@ -89,6 +89,10 @@ public class WaitForBuildResultCommand extends ChainableCommand {
                             node.getName(), getElapsedMillis());
         if (result.succeeded()) {
           ode.getTopToolbar().updateKeystoreFileMenuButtons();
+          ChainableCommand next = getNextCommand();
+          if (next instanceof ShowBarcodeCommand) {
+            ((ShowBarcodeCommand) next).setBuildResultExtra(result.getExtra());
+          }
           executeNextCommand(node);
         } else if (result.getResult() == 1) {
           // General build error

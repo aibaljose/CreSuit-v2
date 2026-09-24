@@ -67,6 +67,7 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Maps;
 import com.google.common.io.CharStreams;
 import java.util.Locale;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -544,9 +545,11 @@ public final class YoungAndroidProjectService extends CommonProjectService {
     List<String> buildOutputFiles = storageIo.getProjectOutputFiles(userId, projectId);
 
     // Delete the existing build output files, if any, so that future attempts to get it won't get
-    // old versions.
+    // old versions (preserving build version history).
     for (String buildOutputFile : buildOutputFiles) {
-      storageIo.deleteFile(userId, projectId, buildOutputFile);
+      if (!buildOutputFile.startsWith("build/history/")) {
+        storageIo.deleteFile(userId, projectId, buildOutputFile);
+      }
     }
     URL buildServerUrl = null;
     ProjectSourceZip zipFile = null;
@@ -902,13 +905,30 @@ public final class YoungAndroidProjectService extends CommonProjectService {
         String outputStr = storageIo.downloadFile(userId, projectId, outputFile, "UTF-8");
         try {
           JSONObject buildResultJsonObj = new JSONObject(outputStr);
+          if (buildResultJsonObj.getInt("result") == 0) {
+            storageIo.updateProjectBuiltDate(userId, projectId, System.currentTimeMillis());
+            try {
+              String historyStr = storageIo.downloadFile(userId, projectId, "build/history/history.json", "UTF-8");
+              if (historyStr != null && !historyStr.trim().isEmpty()) {
+                JSONArray historyArr = new JSONArray(historyStr);
+                if (historyArr.length() > 0) {
+                  JSONObject latest = historyArr.getJSONObject(historyArr.length() - 1);
+                  buildResultJsonObj.put("versionName", latest.optString("versionName", "1.0"));
+                  buildResultJsonObj.put("versionCode", latest.optString("versionCode", "1"));
+                  buildResultJsonObj.put("buildNumber", latest.optInt("buildNumber", 1));
+                  buildResultJsonObj.put("buildType", latest.optString("buildType", "APK"));
+                  buildResultJsonObj.put("historyFilePath", latest.optString("filePath", ""));
+                  outputStr = buildResultJsonObj.toString();
+                }
+              }
+            } catch (Exception e) {
+              LOG.log(java.util.logging.Level.WARNING, "Error reading build history for getBuildResult", e);
+            }
+          }
           buildResult = new RpcResult(buildResultJsonObj.getInt("result"),
                                       buildResultJsonObj.getString("output"),
                                       buildResultJsonObj.getString("error"),
                                       outputStr);
-          if (buildResultJsonObj.getInt("result") == 0) {
-            storageIo.updateProjectBuiltDate(userId, projectId, System.currentTimeMillis());
-          }
         } catch (JSONException e) {
           buildResult = new RpcResult(1, "", "");
         }

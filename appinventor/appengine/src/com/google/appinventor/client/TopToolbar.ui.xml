@@ -136,6 +136,10 @@
       <ai:DropDownItem name="Yail" caption="{messages.generateYailMenuItem}">
         <actions:GenerateYailAction/>
       </ai:DropDownItem>
+      <hr/>
+      <ai:DropDownItem name="Versions" caption="Versions &amp; Releases">
+        <actions:VersionsAction/>
+      </ai:DropDownItem>
     </ai:DropDownButton>
 
     <!-- Settings Menu -->

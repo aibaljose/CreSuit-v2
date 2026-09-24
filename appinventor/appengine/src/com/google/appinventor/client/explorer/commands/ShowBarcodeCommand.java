@@ -10,6 +10,7 @@ import static com.google.appinventor.client.Ode.MESSAGES;
 
 import com.google.appinventor.client.Ode;
 import com.google.appinventor.client.editor.blocks.BlocklyPanel;
+import com.google.appinventor.client.explorer.dialogs.VersionsDialogBox;
 import com.google.appinventor.shared.rpc.project.ProjectNode;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
@@ -17,6 +18,11 @@ import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.json.client.JSONNumber;
+import com.google.gwt.json.client.JSONObject;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
@@ -24,6 +30,7 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import java.util.logging.Logger;
 
@@ -47,6 +54,7 @@ public class ShowBarcodeCommand extends ChainableCommand {
   // The build target
   private String target;
   private BuildFormat format;
+  private String buildResultExtra;
 
   /**
    * Creates a new command for showing a barcode for the target of a project.
@@ -61,6 +69,10 @@ public class ShowBarcodeCommand extends ChainableCommand {
     this.format = format;
   }
 
+  public void setBuildResultExtra(String extra) {
+    this.buildResultExtra = extra;
+  }
+
   @Override
   public boolean willCallExecuteNextCommand() {
     return false;
@@ -72,6 +84,33 @@ public class ShowBarcodeCommand extends ChainableCommand {
       new AppStoreDialogBox(node.getName()).center();
       return;
     }
+
+    String versionName = "1.0";
+    String versionCode = "1";
+    int buildNumber = 1;
+    if (buildResultExtra != null && !buildResultExtra.trim().isEmpty()) {
+      try {
+        JSONValue val = JSONParser.parseStrict(buildResultExtra);
+        JSONObject obj = val.isObject();
+        if (obj != null) {
+          if (obj.containsKey("versionName")) {
+            JSONString vn = obj.get("versionName").isString();
+            if (vn != null) versionName = vn.stringValue();
+          }
+          if (obj.containsKey("versionCode")) {
+            JSONString vc = obj.get("versionCode").isString();
+            if (vc != null) versionCode = vc.stringValue();
+          }
+          if (obj.containsKey("buildNumber")) {
+            JSONNumber bn = obj.get("buildNumber").isNumber();
+            if (bn != null) buildNumber = (int) bn.doubleValue();
+          }
+        }
+      } catch (Exception e) {
+        LOG.warning("Error parsing buildResultExtra: " + e.getMessage());
+      }
+    }
+
     // Display a barcode for an url pointing at our server's download servlet
     String barcodeUrl;
     if (format == BuildFormat.IPA) {
@@ -82,7 +121,8 @@ public class ShowBarcodeCommand extends ChainableCommand {
           + "b/" + Ode.getInstance().getNonce();
       LOG.info("Barcode url is: " + barcodeUrl);
     }
-    new BarcodeDialogBox(node.getName(), barcodeUrl, format == BuildFormat.AAB, format == BuildFormat.IPA).center();
+    new BarcodeDialogBox(node.getProjectId(), node.getName(), barcodeUrl, format == BuildFormat.AAB,
+        format == BuildFormat.IPA, versionName, versionCode, buildNumber).center();
   }
 
   static class AppStoreDialogBox extends DialogBox {
@@ -116,12 +156,12 @@ public class ShowBarcodeCommand extends ChainableCommand {
 
   static class BarcodeDialogBox extends DialogBox {
 
-    BarcodeDialogBox(String projectName, final String appInstallUrl, boolean isAab, boolean isIos) {
+    BarcodeDialogBox(final long projectId, final String projectName, final String appInstallUrl,
+        boolean isAab, boolean isIos, String versionName, String versionCode, int buildNumber) {
       super(false, true);
       setStylePrimaryName("ode-DialogBox");
-      setText(isIos ? MESSAGES.downloadIpaDialogTitle(projectName) :
-          isAab ? MESSAGES.downloadAabDialogTitle(projectName) :
-              MESSAGES.downloadApkDialogTitle(projectName));
+      addStyleName("cresuit-barcode-dialog");
+      setText("Build Successful - " + projectName);
 
       final String downloadUrl;
       if (isIos) {
@@ -133,6 +173,25 @@ public class ShowBarcodeCommand extends ChainableCommand {
       // Main layout panel
       VerticalPanel contentPanel = new VerticalPanel();
       contentPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
+
+      // Header summary
+      VerticalPanel headerPanel = new VerticalPanel();
+      headerPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
+      headerPanel.setStyleName("cresuit-barcode-header");
+
+      Label successBadge = new Label("BUILD SUCCESSFUL");
+      successBadge.setStyleName("cresuit-barcode-success-badge");
+
+      Label appLabel = new Label(projectName);
+      appLabel.setStyleName("cresuit-barcode-appname");
+
+      Label versionLabel = new Label("Version " + versionName + " · Build #" + buildNumber);
+      versionLabel.setStyleName("cresuit-barcode-versioninfo");
+
+      headerPanel.add(successBadge);
+      headerPanel.add(appLabel);
+      headerPanel.add(versionLabel);
+      contentPanel.add(headerPanel);
 
       // Container
       HorizontalPanel container = new HorizontalPanel();
@@ -206,21 +265,43 @@ public class ShowBarcodeCommand extends ChainableCommand {
         warningLabel.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
         warningPanel.add(warningLabel);
         contentPanel.add(warningPanel);
+      } else {
+        HorizontalPanel aabInfoPanel = new HorizontalPanel();
+        aabInfoPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_LEFT);
+        Label aabInfo = new Label("📦 A complete snapshot of this project has been archived as a version. You can restore and edit it anytime from Version History.");
+        aabInfo.setStyleName("cresuit-aab-info-note");
+        aabInfo.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
+        aabInfoPanel.add(aabInfo);
+        contentPanel.add(aabInfoPanel);
       }
 
-      // OK button
-      ClickHandler buttonHandler = new ClickHandler() {
+      // Bottom Button panel
+      HorizontalPanel buttonPanel = new HorizontalPanel();
+      buttonPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
+      buttonPanel.setStyleName("cresuit-barcode-bottom-panel");
+      buttonPanel.setWidth("100%");
+
+      Button historyButton = new Button("Version History");
+      historyButton.setStyleName("cresuit-btn-version-history");
+      historyButton.addClickHandler(new ClickHandler() {
+        @Override
+        public void onClick(ClickEvent event) {
+          hide();
+          new VersionsDialogBox(projectId, projectName).center();
+        }
+      });
+      buttonPanel.add(historyButton);
+
+      Button okButton = new Button(MESSAGES.dismissButton());
+      okButton.setStyleName("cresuit-btn-dismiss");
+      okButton.addClickHandler(new ClickHandler() {
         @Override
         public void onClick(ClickEvent event) {
           hide();
         }
-      };
-      HorizontalPanel buttonPanel = new HorizontalPanel();
-      buttonPanel.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
-      Button okButton = new Button(MESSAGES.dismissButton());
-      okButton.addClickHandler(buttonHandler);
+      });
       buttonPanel.add(okButton);
-      buttonPanel.setSize("100%", "24px");
+
       contentPanel.add(buttonPanel);
 
       add(contentPanel);
