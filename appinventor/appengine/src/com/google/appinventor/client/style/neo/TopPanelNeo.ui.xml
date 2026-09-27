@@ -13,7 +13,7 @@
   <ui:with field="config" type="com.google.appinventor.client.OdeMessages"/>
   <ui:with field="myProjects" type="com.google.appinventor.client.widgets.TextButton"/>
   <ui:with field="viewTrash" type="com.google.appinventor.client.widgets.TextButton"/>
-  <g:FlowPanel styleName="ode-TopPanel flex items-center justify-between px-4 py-2  border-b border-slate-200/80 shadow-2xs w-full text-slate-800 font-sans h-14">
+  <g:FlowPanel styleName="ode-TopPanel flex items-center justify-between px-6 py-2.5 bg-white border-b border-slate-200/80 shadow-2xs w-full text-slate-700 font-sans h-16">
     <g:HTML styleName="flex items-center">
       <img srcset="" class="ode-Logo h-7 w-auto cursor-pointer transition hover:opacity-90" ui:field="logo" />
     </g:HTML>
@@ -29,7 +29,7 @@
           <g:HTML ui:field="companionStatusHtml"/>
         </g:FlowPanel>
         <!-- Help Menu -->
-        <ai:DropDownButton name="Help" caption="{messages.helpTabName}" styleName="ode-TopPanelButton px-3 py-1.5 rounded-lg text-sm font-medium text-[#4f46e5] hover:text-indigo-800 hover:bg-indigo-50/80 active:bg-indigo-100/70 transition duration-150 cursor-pointer border-0 bg-transparent outline-none flex items-center gap-1"
+        <ai:DropDownButton name="Help" caption="{messages.helpTabName}" styleName="ode-TopPanelButton px-3.5 py-1.5 rounded-xl text-xs font-medium text-slate-700 hover:text-slate-900 bg-slate-50/80 hover:bg-slate-100 border border-slate-200/70 transition-all duration-150 cursor-pointer outline-none flex items-center gap-1.5 shadow-2xs"
                            ui:field="helpDropDown" align="right" icon="help">
           <ai:DropDownItem name="About" caption="{messages.aboutMenuItem}">
             <actions:AboutAction/>
@@ -68,9 +68,9 @@
         </ai:DropDownButton>
 
         <g:FlowPanel styleName="ode-TopPanelLinks flex items-center gap-2" ui:field="links">
-          <ai:DropDownButton styleName="ode-TopPanelButton px-3 py-1.5 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-[#4f46e5] text-xs font-medium transition cursor-pointer" rightAlign="true"
+          <ai:DropDownButton styleName="ode-TopPanelButton px-3 py-1.5 rounded-xl border border-slate-200/90 bg-slate-50/80 hover:bg-slate-100 text-slate-700 text-xs font-medium transition cursor-pointer flex items-center gap-1.5 shadow-2xs" rightAlign="true"
                              ui:field="languageDropDown" icon="language"/>
-          <ai:DropDownButton styleName="ode-TopPanelButton p-2 rounded-full border border-indigo-100 bg-indigo-50/60 hover:bg-indigo-100/80 text-[#4f46e5] transition cursor-pointer" rightAlign="true"
+          <ai:DropDownButton styleName="ode-TopPanelButton p-2 rounded-xl border border-blue-100 bg-blue-50/60 hover:bg-blue-100/80 text-blue-600 transition cursor-pointer flex items-center justify-center shadow-2xs" rightAlign="true"
                              ui:field="accountButton" icon="account_circle">
             <ai:DropDownItem name="Signout" caption="{messages.signOutLink}">
               <actions:SignOutAction/>

@@ -37,6 +37,7 @@ public class ProjectListItemNeo extends ProjectListItem {
   @UiField CheckBox checkBox;
   @UiField FocusPanel projectnameFocusPanel;
   @UiField FocusPanel exportButton;
+  @UiField FocusPanel duplicateButton;
   @UiField FocusPanel moveButton;
   @UiField FocusPanel deleteButton;
 
@@ -133,6 +134,29 @@ public class ProjectListItemNeo extends ProjectListItem {
         + com.google.appinventor.shared.rpc.ServerLayout.DOWNLOAD_SERVLET_BASE
         + com.google.appinventor.shared.rpc.ServerLayout.DOWNLOAD_PROJECT_SOURCE + "/" + getProject().getProjectId();
     com.google.gwt.user.client.Window.open(downloadUrl, "_self", "");
+  }
+
+  @UiHandler("duplicateButton")
+  protected void onDuplicateClicked(ClickEvent e) {
+    e.stopPropagation();
+    final Project p = getProject();
+    if (p != null) {
+      if (p.getRootNode() != null) {
+        new com.google.appinventor.client.explorer.commands.CopyYoungAndroidProjectCommand(false)
+            .execute(p.getRootNode());
+      } else {
+        com.google.appinventor.client.Ode.getInstance().getProjectService().getProject(
+            p.getProjectId(),
+            new com.google.appinventor.client.OdeAsyncCallback<com.google.appinventor.shared.rpc.project.ProjectRootNode>(
+                com.google.appinventor.client.Ode.MESSAGES.projectLoadError()) {
+              @Override
+              public void onSuccess(com.google.appinventor.shared.rpc.project.ProjectRootNode result) {
+                new com.google.appinventor.client.explorer.commands.CopyYoungAndroidProjectCommand(false)
+                    .execute(result);
+              }
+            });
+      }
+    }
   }
 
   @UiHandler("moveButton")

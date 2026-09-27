@@ -10,7 +10,7 @@
              ui:generatedKeys="com.google.gwt.i18n.server.keygen.MethodNameKeyGenerator"
              ui:generateLocales="default">
   <ui:with field="messages" type="com.google.appinventor.client.OdeMessages"/>
-  <g:FlowPanel styleName="ode-TopPanel flex items-center justify-between px-4 py-2 bg-white border-b border-slate-200/80 shadow-2xs w-full text-slate-800 font-sans h-14" ui:field="header">
+  <g:FlowPanel styleName="ode-TopPanel flex items-center justify-between px-6 py-2.5 bg-white border-b border-slate-200/80 shadow-2xs w-full text-slate-700 font-sans h-16" ui:field="header">
     <!-- Left Brand Logo & Toolbar Links -->
     <g:FlowPanel styleName="flex items-center gap-6">
       <g:HTML styleName="flex items-center">
@@ -46,11 +46,11 @@
         </g:FlowPanel>
 
         <!-- Language Selector Pill -->
-        <ai:DropDownButton styleName="ode-TopPanelButton px-3 py-1.5 rounded-full border border-slate-200/90 bg-white hover:bg-slate-50 text-[#4f46e5] text-xs font-medium transition cursor-pointer shadow-2xs" rightAlign="true"
+        <ai:DropDownButton styleName="ode-TopPanelButton px-3 py-1.5 rounded-xl border border-slate-200/90 bg-slate-50/80 hover:bg-slate-100 text-slate-700 text-xs font-medium transition cursor-pointer shadow-2xs" rightAlign="true"
                            ui:field="languageDropDown"/>
 
         <!-- Account Profile Dropdown -->
-        <ai:DropDownButton styleName="ode-TopPanelButton p-2 rounded-full border border-indigo-100 bg-indigo-50/60 hover:bg-indigo-100/80 text-[#4f46e5] transition cursor-pointer" rightAlign="true"
+        <ai:DropDownButton styleName="ode-TopPanelButton p-2 rounded-xl border border-blue-100 bg-blue-50/60 hover:bg-blue-100/80 text-blue-600 transition cursor-pointer flex items-center justify-center shadow-2xs" rightAlign="true"
                            ui:field="accountButton">
           <ai:DropDownItem name="Signout" caption="{messages.signOutLink}">
             <actions:SignOutAction/>

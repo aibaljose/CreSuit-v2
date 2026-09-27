@@ -491,6 +491,12 @@ public class LocalProjectService implements ProjectServiceAsync {
   }
 
   @Override
+  public void createScreenWithAi(long projectId, String formFileId, String prompt,
+      AsyncCallback<Long> callback) {
+    callback.onFailure(new UnsupportedOperationException("AI screen generation is not supported in local offline mode"));
+  }
+
+  @Override
   public void importMedia(String sessionId, long projectId, String url, boolean save,
       AsyncCallback<TextFile> odeAsyncCallback) {
 

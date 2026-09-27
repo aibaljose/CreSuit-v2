@@ -177,6 +177,11 @@ public class BlocklyPanel extends HTMLPanel {
     listeners.remove(listener);
   }
 
+  public String getScreenName() {
+    int idx = formName.indexOf('_');
+    return idx >= 0 ? formName.substring(idx + 1) : formName;
+  }
+
   /**
    * Notify listeners that an event has occurred in the Blockly workspace.
    *
@@ -192,7 +197,7 @@ public class BlocklyPanel extends HTMLPanel {
       if (editor != null) {
         editor.setDamaged(true);
       }
-      ErrorReporter.reportError(MESSAGES.blocksNotSaved(formName));
+      ErrorReporter.reportError(MESSAGES.blocksNotSaved(getScreenName()));
     } else {
       for (BlocklyWorkspaceChangeListener listener : listeners) {
         listener.onWorkspaceChange(this, event);
@@ -240,7 +245,7 @@ public class BlocklyPanel extends HTMLPanel {
       doLoadBlocksContent(formJson, blocksContent, upgrade);
     } catch (JavaScriptException e) {
       loadError = true;
-      ErrorReporter.reportError(MESSAGES.blocksLoadFailure(formName));
+      ErrorReporter.reportError(MESSAGES.blocksLoadFailure(getScreenName()));
       LOG.log(Level.SEVERE, "Error loading blocks for screen " + formName, e);
       throw new LoadBlocksException(e, formName);
     } finally {

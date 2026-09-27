@@ -2418,37 +2418,46 @@ path.ode-SimpleMockMapFeature-selected {
 /* Component Help */
 
 .ode-ComponentHelpPopup {
-  background-color: white;
-  border-left: 4px solid #8fc202;
-  border-right: 4px solid #8fc202;
-  border-bottom: 4px solid #8fc202;
-  width: 20%;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.065);
-  z-index: 1000;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.08) !important;
+  width: 280px !important;
+  z-index: 10000 !important;
+  overflow: hidden !important;
 }
 
 .ode-ComponentHelpPopup-TitleBar {
-  background-color: #8fc202;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-  padding: 5px 10px;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  font-size: 13.5px !important;
+  padding: 10px 14px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
 }
 
 .ode-ComponentHelpPopup-Body {
-  color: #555;
-  font-size: 12px;
-  width: 250px;
+  color: #475569 !important;
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+  width: auto !important;
+  padding: 10px 14px !important;
 }
 
 .ode-ComponentHelpPopup-Link {
-  padding: 0 10px 10px 0;
-  font-size: 12px;
-
+  padding: 0 14px 12px 14px !important;
+  font-size: 12px !important;
 }
 
 .ode-ComponentHelpPopup-Link a {
-  color: #8fc202;
+  color: #2563eb !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.ode-ComponentHelpPopup-Link a:hover {
+  text-decoration: underline !important;
+  color: #1d4ed8 !important;
 }
 
 .ode-ComponentHelpPopup>.popupContent>table {
@@ -2473,29 +2482,37 @@ path.ode-SimpleMockMapFeature-selected {
   background-color: #D6E9F8;
 }
 
+.ode-RpcStatusMessage {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.2) !important;
+  overflow: hidden !important;
+  z-index: 10002 !important;
+}
+
 .ode-RpcStatusMessage .popupMiddleCenterInner {
-  font-weight: bold;
-  font-size: small;
-  padding: 2px 2px 0 2px;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  padding: 6px 18px !important;
+  color: #f8fafc !important;
+  letter-spacing: 0.01em !important;
 }
 
 .ode-RpcStatusMessage .popupMiddleLeft,
 .ode-RpcStatusMessage .popupMiddleCenter,
 .ode-RpcStatusMessage .popupMiddleRight,
-.ode-RpcStatusMessage .popupBottomCenter {
-  background-color: #FFF1A8;
-}
-
-.ode-RpcStatusMessage .popupBottomLeft {
-  width: 4px;
-  height: 4px;
-  background: url(../images/rpcMessageCorners.png) no-repeat 0 -4px;
-}
-
-.ode-RpcStatusMessage .popupBottomRight {
-  width: 4px;
-  height: 4px;
-  background: url(../images/rpcMessageCorners.png) no-repeat -4px -4px;
+.ode-RpcStatusMessage .popupBottomCenter,
+.ode-RpcStatusMessage .popupBottomLeft,
+.ode-RpcStatusMessage .popupBottomRight,
+.ode-RpcStatusMessage .popupTopLeft,
+.ode-RpcStatusMessage .popupTopCenter,
+.ode-RpcStatusMessage .popupTopRight {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .ode-ErrorMessage {
@@ -2688,57 +2705,63 @@ path.ode-SimpleMockMapFeature-selected {
 }
 
 .ode-tutorialButton {
-  background-color: white;
-  border: 1px #8fc202 solid;
-  padding: 5px 8px;
-  border-radius: 5px;
-  color: #8fc202;
-  text-transform: uppercase;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 7px 14px;
+  border-radius: 8px;
+  color: #2563eb;
+  font-weight: 500;
   font-size: 13px;
+  transition: all 0.15s ease;
+  cursor: pointer;
 }
 
 .ode-tutorialButton:hover {
-  background-color: rgba(143, 194, 2, 0.616);
-  color: white;
-  cursor: pointer;
+  background-color: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
 }
 
 .ode-closeDialogBox {
-  background-color: white;
-  border: 1px #837d7d solid;
-  width: 25%;
-  padding: 5px 8px;
-  border-radius: 5px;
-  color: #837d7d;
-  text-transform: uppercase;
-  font-size: 12px;
-  text-align: center;
-  margin: 0 10px;
+  background-color: #2563eb !important;
+  border: 1px solid #1d4ed8 !important;
+  min-width: 100px;
+  padding: 8px 20px !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  margin: 0 10px !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.28) !important;
+  transition: all 0.15s ease !important;
+  cursor: pointer !important;
 }
 
 .ode-closeDialogBox:hover {
-  background-color: rgba(131, 125, 125, 0.1);
-  cursor: pointer;
+  background-color: #1d4ed8 !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35) !important;
 }
 
 .ode-noDialogNewProject {
-  text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   text-decoration: none;
   text-align: center;
-  padding: 5px 8px;
-  width: 25%;
-  background-color: white;
-  border: 1px #8fc202 solid;
-  border-radius: 5px;
-  color: #8fc202;
+  padding: 7px 14px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #2563eb;
   margin: 0 10px;
+  transition: all 0.15s ease;
+  cursor: pointer;
 }
 
 .ode-noDialogNewProject:hover {
-  background-color: rgba(143, 194, 2, 0.616);
-  color: white;
-  cursor: pointer;
+  background-color: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
 }
 
 .ode-noDialogExampleDivs {
@@ -2809,21 +2832,23 @@ path.ode-SimpleMockMapFeature-selected {
 }
 
 .ode-projectPropertyCategoryTitlePanel {
-  margin-top: 18px;
+  margin-top: 12px;
   width: 180px;
-  border-radius: 0px;
-  border: 0px;
-  border-right: 2px solid black;
-  padding-right: 20px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-right: 1px solid #cbd5e1;
+  padding: 8px;
   outline: none;
   overflow: auto;
+  background: #f8fafc;
+  color: #334155;
+  font-family: inherit;
 }
 
 .ode-propertyDialogPropertiesScrollPanel {
   height: 400px;
   width: 600px;
-  padding-bottom: 40px;
-  padding-right: 30px;
+  padding: 0 24px 24px 20px;
 }
 
 .ode-propertyDialogPropertyContainer {
@@ -2833,36 +2858,38 @@ path.ode-SimpleMockMapFeature-selected {
 }
 
 .ode-propertyDialogPropertyTitle {
-  font-size: 16px;
-  font-weight: bold;
-  color: #413f3f;
-  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-top: 16px;
 }
 
 .ode-propertyDialogPropertyDescription {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
-  color: #797575;
-  margin-top: 18px;
+  color: #64748b;
+  margin-top: 4px;
+  line-height: 1.45;
 }
 
 .ode-propertyDialogPropertyEditor {
-  min-height: 30px;
-  height: 10%;
+  min-height: 32px;
   width: 100%;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .ode-projectPropertyCategoryTitlePanel option {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .ode-projectPropertyCategoryTitlePanel:focus {
   outline: none;
+  border-color: #2563eb;
 }
 
 .ode-propertyDialogVerticalPanel {
@@ -2872,130 +2899,320 @@ path.ode-SimpleMockMapFeature-selected {
 
 /* End of Project ProjectPropertiesDialogBox. */
 
-.ode-DialogBox {
-  background-color: white;
-  border-left: 4px solid #8fc202;
-  border-right: 4px solid #8fc202;
-  border-bottom: 4px solid #8fc202;
-  z-index: 1000;
+.ode-DialogBox,
+.gwt-DialogBox {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25),
+              0 0 0 1px rgba(15, 23, 42, 0.05),
+              0 10px 15px -3px rgba(15, 23, 42, 0.08) !important;
+  overflow: hidden !important;
+  z-index: 10000 !important;
   min-height: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  animation: odeModalPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes odeModalPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Remove legacy GWT 9-slice table borders */
+.ode-DialogBox table,
+.gwt-DialogBox table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.ode-DialogBox .dialogTopLeft,
+.ode-DialogBox .dialogTopRight,
+.ode-DialogBox .dialogMiddleLeft,
+.ode-DialogBox .dialogMiddleRight,
+.ode-DialogBox .dialogBottomLeft,
+.ode-DialogBox .dialogBottomCenter,
+.ode-DialogBox .dialogBottomRight,
+.gwt-DialogBox .dialogTopLeft,
+.gwt-DialogBox .dialogTopRight,
+.gwt-DialogBox .dialogMiddleLeft,
+.gwt-DialogBox .dialogMiddleRight,
+.gwt-DialogBox .dialogBottomLeft,
+.gwt-DialogBox .dialogBottomCenter,
+.gwt-DialogBox .dialogBottomRight {
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.ode-DialogBox .dialogTopCenter,
+.ode-DialogBox .dialogMiddleCenter,
+.gwt-DialogBox .dialogTopCenter,
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 .DialogBox-message {}
 
-.ode-DialogBox .gwt-CheckBox {
-  font-size: 12px;
+.ode-DialogBox .gwt-CheckBox,
+.gwt-DialogBox .gwt-CheckBox {
+  font-size: 13px !important;
+  color: #334155 !important;
 }
 
-.ode-DialogBox .gwt-CheckBox label {
-  padding-left: 4px;
+.ode-DialogBox .gwt-CheckBox label,
+.gwt-DialogBox .gwt-CheckBox label {
+  padding-left: 6px;
+  cursor: pointer;
 }
 
-.ode-DialogBox .gwt-Label {
-  padding-left: 10px;
-  font-size: 12px;
-  color: #555;
+.ode-DialogBox .gwt-Label,
+.gwt-DialogBox .gwt-Label {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
 }
 
 .ode-TreeLabel {
   margin-left: 10px;
 }
 
-.ode-DialogBox .gwt-Tree {
-  border: thin solid #CCCCCC;
-  border-radius: 3px;
-  font-size: 12px;
-  margin-left: 10px;
+.ode-DialogBox .gwt-Tree,
+.gwt-DialogBox .gwt-Tree {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  padding: 6px !important;
 }
 
-.ode-DialogBox .gwt-CheckBox input[type="checkbox"] {
+.ode-DialogBox .gwt-CheckBox input[type="checkbox"],
+.ode-DialogBox .gwt-RadioButton input[type="radio"],
+.gwt-DialogBox .gwt-CheckBox input[type="checkbox"],
+.gwt-DialogBox .gwt-RadioButton input[type="radio"] {
   margin: 0;
-  padding-left: 4px;
+  accent-color: #2563eb !important;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
 }
 
 .ode-DialogRow {
   display: inline-flex;
-  gap: 5px;
+  gap: 8px;
   align-items: center;
   width: 100%;
 }
 
 .ode-DialogRow .gwt-Label {
-  color: #000;
-  font-weight: 500;
-  font-size: 1.2em;
-  padding-bottom: 2px;
+  color: #0f172a !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
   text-shadow: none;
 }
 
-.ode-DialogRow .gwt-RadioButton input[type="radio"] {
-  margin-right: 5px;
+.ode-DialogBox .dialogTop,
+.gwt-DialogBox .dialogTop {
+  background-color: transparent !important;
 }
 
-.ode-DialogBox .dialogTop {
-  background-color: #8fc202;
+.ode-DialogBox .Caption,
+.gwt-DialogBox .Caption {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  font-size: 15px !important;
+  letter-spacing: -0.01em !important;
+  padding: 16px 22px 14px 22px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  box-shadow: none !important;
+  cursor: move;
+  user-select: none;
 }
 
-.ode-DialogBox .Caption {
-  background-color: #8fc202;
-  color: white;
-  font-weight: bold;
-  font-size: 13px;
-  padding: 5px 10px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.065);
-
+.ode-DialogBox .dialogContent,
+.gwt-DialogBox .dialogContent {
+  padding: 18px 22px 16px 22px !important;
+  color: #334155 !important;
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  background: #ffffff !important;
 }
 
-.ode-DialogBox .dialogContent {
-  padding: 5px 10px;
-  color: #555;
+.ode-DialogBox .dialogContent td,
+.gwt-DialogBox .dialogContent td {
+  padding: 4px 6px !important;
+  font-size: 13.5px !important;
+  color: #334155 !important;
 }
 
-.ode-DialogBox .dialogContent td {
-  padding: 2px 2px;
-  font-size: 12px;
-  color: #555;
+.ode-DialogBox input[type="text"],
+.ode-DialogBox input[type="password"],
+.ode-DialogBox textarea,
+.ode-DialogBox select,
+.gwt-DialogBox input[type="text"],
+.gwt-DialogBox input[type="password"],
+.gwt-DialogBox textarea,
+.gwt-DialogBox select {
+  font-family: inherit !important;
+  font-size: 13.5px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  color: #0f172a !important;
+  background-color: #f8fafc !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease !important;
 }
 
-.ode-DialogBox .gwt-Button {
-  margin: 10px;
+.ode-DialogBox input[type="text"]:focus,
+.ode-DialogBox input[type="password"]:focus,
+.ode-DialogBox textarea:focus,
+.ode-DialogBox select:focus,
+.gwt-DialogBox input[type="text"]:focus,
+.gwt-DialogBox input[type="password"]:focus,
+.gwt-DialogBox textarea:focus,
+.gwt-DialogBox select:focus {
+  background-color: #ffffff !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16) !important;
 }
 
-.ode-DialogBox .ode-LabeledTextBox {
-  margin-bottom: 0;
-  padding: 5px 10px;
+.ode-DialogBox .gwt-Button,
+.gwt-DialogBox .gwt-Button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 7px 16px !important;
+  min-height: 34px !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+  outline: none !important;
+  margin: 6px 4px !important;
 }
 
-.ode-DialogBox .settings-labeled-textbox td:first-child {
+.ode-DialogBox .gwt-Button:hover,
+.gwt-DialogBox .gwt-Button:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+.ode-DialogBox .gwt-Button:active,
+.gwt-DialogBox .gwt-Button:active {
+  background: #e2e8f0 !important;
+}
+
+/* Primary / Confirm Action Button (e.g. OK / Submit / Add Screen) */
+.ode-DialogBox .gwt-Button.ode-PrimaryButton,
+.ode-DialogBox button.ode-PrimaryButton,
+.ode-DialogBox .buttonRow .gwt-Button:last-child,
+.ode-DialogBox td:last-child > .gwt-Button,
+.ode-DialogBox div[style*="HorizontalPanel"] .gwt-Button:last-child,
+.ode-DialogBox table tr:last-child td:last-child .gwt-Button,
+.gwt-DialogBox .gwt-Button.ode-PrimaryButton,
+.gwt-DialogBox button.ode-PrimaryButton,
+.gwt-DialogBox .buttonRow .gwt-Button:last-child,
+.gwt-DialogBox td:last-child > .gwt-Button,
+.gwt-DialogBox div[style*="HorizontalPanel"] .gwt-Button:last-child,
+.gwt-DialogBox table tr:last-child td:last-child .gwt-Button {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #1d4ed8 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.28) !important;
+}
+
+.ode-DialogBox .gwt-Button.ode-PrimaryButton:hover,
+.ode-DialogBox button.ode-PrimaryButton:hover,
+.ode-DialogBox .buttonRow .gwt-Button:last-child:hover,
+.ode-DialogBox td:last-child > .gwt-Button:hover,
+.ode-DialogBox div[style*="HorizontalPanel"] .gwt-Button:last-child:hover,
+.ode-DialogBox table tr:last-child td:last-child .gwt-Button:hover,
+.gwt-DialogBox .gwt-Button.ode-PrimaryButton:hover,
+.gwt-DialogBox button.ode-PrimaryButton:hover,
+.gwt-DialogBox .buttonRow .gwt-Button:last-child:hover,
+.gwt-DialogBox td:last-child > .gwt-Button:hover,
+.gwt-DialogBox div[style*="HorizontalPanel"] .gwt-Button:last-child:hover,
+.gwt-DialogBox table tr:last-child td:last-child .gwt-Button:hover {
+  background: #1d4ed8 !important;
+  border-color: #1e40af !important;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35) !important;
+  color: #ffffff !important;
+}
+
+.ode-DialogBox .ode-LabeledTextBox,
+.gwt-DialogBox .ode-LabeledTextBox {
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+}
+
+.ode-DialogBox .ode-LabeledTextBox td:first-child,
+.gwt-DialogBox .ode-LabeledTextBox td:first-child {
+  font-weight: 500 !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  padding-right: 8px !important;
+}
+
+.ode-DialogBox .settings-labeled-textbox td:first-child,
+.gwt-DialogBox .settings-labeled-textbox td:first-child {
   width: 60%;
 }
 
-.ode-DialogBox .uploadDialogContent {
+.ode-DialogBox .uploadDialogContent,
+.gwt-DialogBox .uploadDialogContent {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.ode-DialogBox .buttonRow {
+.ode-DialogBox .buttonRow,
+.gwt-DialogBox .buttonRow {
   display: inline-flex;
-  justify-content: space-around;
-  width: 95%;
-  margin-top: 10px;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
 }
 
-.ode-DialogBox .contentRow {
+.ode-DialogBox .contentRow,
+.gwt-DialogBox .contentRow {
   display: inline-flex;
   width: 95%;
   margin-left: 20px;
   padding-bottom: 10px;
 }
 
-.ode-DialogBox .contentImage {
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: inset;
-  border-color: lightgray;
-  box-shadow: 0 0 2px #aaa;
+.ode-DialogBox .contentImage,
+.gwt-DialogBox .contentImage {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 /* AI2 Extensions Styles */
@@ -3037,46 +3254,50 @@ a.ode-ExtensionAnchor:hover {
 }
 
 .ode-Android-caption {
-  background-color: #8fc202;
+  background-color: #2563eb;
   color: white;
-  font-size: medium;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
 }
 
 .ode-Android-body {
-  font-size: medium;
+  font-size: 13.5px;
 }
 
 .ode-Android-footer {
-  height: 12px;
-  font-size: x-small;
+  height: 14px;
+  font-size: 12px;
   text-align: center;
-  background-color: #D6E9F8;
-  color: black;
-  padding: 4px;
+  background-color: #f1f5f9;
+  color: #475569;
+  padding: 6px;
 }
 
 .gwt-ProgressBar-shell {
-  border: 2px solid #faf9f7;
-  border-right: 2px solid #848280;
-  border-bottom: 2px solid #848280;
-  background-color: #AAAAAA;
-  height: 30pt;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  height: 20px;
   width: 100%;
+  overflow: hidden;
 }
 
 .gwt-ProgressBar-shell .gwt-ProgressBar-bar {
-  background-color: #8fc202;
+  background-color: #2563eb;
+  border-radius: 9999px;
 }
 
 .gwt-ProgressBar-shell .gwt-ProgressBar-text {
   position: absolute;
   top: 0;
   left: 0;
-  padding-top: 10px;
+  padding-top: 2px;
   color: #fff;
   text-align: center;
   width: 100%;
-  font-size: large;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 /*
@@ -3089,26 +3310,35 @@ a.ode-ExtensionAnchor:hover {
   left: 0;
   z-index: 1000;
   float: left;
-  padding: 5px 0;
-  margin: 2px 0 0;
+  padding: 6px 0;
+  margin: 4px 0 0;
   list-style: none;
   background-color: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  *border-right-width: 2px;
-  *border-bottom-width: 2px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.08);
   background-clip: padding-box;
 }
 
-.gwt-PopupPanelGlass {
-  z-index: 1000;
+/* Blurred Glass Backdrop for All Modal Popups */
+.gwt-PopupPanelGlass,
+.gwt-DialogBox-GlassPanel,
+.ode-DialogGlassPanel {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(8px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+  z-index: 9998 !important;
+  animation: odeGlassFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes odeGlassFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /*
@@ -5330,3 +5560,290 @@ div.dropdiv p {
   border: 1px solid #cbd5e1 !important;
   cursor: pointer !important;
 }
+
+/* ==========================================================================
+   CreSuit SaaS Dashboard Redesign:
+   1. Left Sidebar Navigation
+   2. Reskinned Top Header Toolbar
+   3. Information-Dense Project Cards
+   ========================================================================== */
+
+/* Main Projects View Layout with Persistent Left Sidebar */
+.ode-Project-FlexColumn {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  background-color: #f8fafc !important;
+}
+
+/* 1. Left Sidebar Navigation (~220-240px wide, clean SaaS aesthetic) */
+.cresuit-sidebar {
+  width: 230px !important;
+  min-width: 230px !important;
+  max-width: 230px !important;
+  height: 100% !important;
+  background-color: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  user-select: none !important;
+  z-index: 20 !important;
+  transition: width 0.2s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.cresuit-sidebar.collapsed {
+  width: 68px !important;
+  min-width: 68px !important;
+  max-width: 68px !important;
+}
+
+.cresuit-sidebar.collapsed .sidebar-label,
+.cresuit-sidebar.collapsed .sidebar-header-text,
+.cresuit-sidebar.collapsed .sidebar-footer-card {
+  display: none !important;
+}
+
+.cresuit-sidebar.collapsed .sidebar-nav-item {
+  justify-content: center !important;
+  padding: 10px 0 !important;
+}
+
+.sidebar-section-title {
+  padding: 8px 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: #94a3b8 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.sidebar-collapse-trigger {
+  cursor: pointer !important;
+  color: #94a3b8 !important;
+  transition: color 0.15s ease !important;
+}
+
+.sidebar-collapse-trigger:hover {
+  color: #475569 !important;
+}
+
+.sidebar-nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease-in-out !important;
+  text-decoration: none !important;
+  margin-bottom: 2px !important;
+  border: 1px solid transparent !important;
+}
+
+.sidebar-nav-item:hover {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Rounded active-state highlight behind selected item */
+.sidebar-nav-item.active {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  font-weight: 600 !important;
+  border-color: #dbeafe !important;
+  box-shadow: 0 1px 2px 0 rgba(37, 99, 235, 0.05) !important;
+}
+
+.sidebar-nav-item.active .material-icons {
+  color: #2563eb !important;
+}
+
+.sidebar-nav-item .material-icons {
+  font-size: 20px !important;
+  color: #94a3b8 !important;
+  transition: color 0.15s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.sidebar-nav-item:hover .material-icons {
+  color: #64748b !important;
+}
+
+.sidebar-footer {
+  padding: 14px !important;
+  border-top: 1px solid #f1f5f9 !important;
+}
+
+.sidebar-footer-card {
+  padding: 12px !important;
+  border-radius: 12px !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* 2. Top Header Toolbar Reskinning (Clean SaaS aesthetic) */
+.ode-TopPanel {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+  height: 60px !important;
+  min-height: 60px !important;
+  padding: 0 24px !important;
+  box-sizing: border-box !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+.ode-TopPanelButton,
+.ode-TopToolbar .ode-TopPanelButton,
+.ode-TopPanel .ode-TopPanelButton {
+  border-radius: 10px !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 7px 13px !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.15s ease !important;
+  cursor: pointer !important;
+  outline: none !important;
+}
+
+.ode-TopPanelButton:hover,
+.ode-TopToolbar .ode-TopPanelButton:hover,
+.ode-TopPanel .ode-TopPanelButton:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Project Toolbar Search Affordance */
+.ya-ProjectToolbar {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 16px 24px 8px 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: wrap !important;
+}
+
+.cresuit-project-search-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 6px 12px !important;
+  width: 240px !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-project-search-bar:focus-within {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* 3. Improved Project Card Design */
+.cresuit-project-card,
+.ode-ProjectRowList > div {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+}
+
+.cresuit-project-card:hover,
+.ode-ProjectRowList > div:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03) !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Framed App Icon Avatar Tile */
+.cresuit-app-icon-frame {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  background-color: #f8fafc !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Platform Badge (Android App pill/tag) */
+.cresuit-platform-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+  background-color: #ecfdf5 !important;
+  color: #047857 !important;
+  border: 1px solid #a7f3d0 !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Status Indicator */
+.cresuit-status-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  padding: 2px 8px !important;
+  border-radius: 9999px !important;
+  background-color: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #bfdbfe !important;
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+}
+
+/* Project Card Action Buttons Footer */
+.cresuit-card-action-btn {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 9px !important;
+  border: 1px solid #e2e8f0 !important;
+  background-color: #ffffff !important;
+  color: #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.15s ease !important;
+}
+
+.cresuit-card-action-btn:hover {
+  background-color: #f8fafc !important;
+  color: #2563eb !important;
+  border-color: #cbd5e1 !important;
+}
+
+.cresuit-card-action-btn.delete-action:hover {
+  background-color: #fff1f2 !important;
+  color: #e11d48 !important;
+  border-color: #fecdd3 !important;
+}

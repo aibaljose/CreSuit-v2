@@ -189,6 +189,10 @@ public abstract class ProjectEditor extends Composite {
     }
   }
 
+  public final boolean isEditorInDeck(FileEditor fileEditor) {
+    return fileEditor != null && deckPanel.getWidgetIndex(fileEditor) != -1;
+  }
+
   /**
    * Selects the given file editor in the deck panel and calls its onShow()
    * method. Calls onHide() for a previously selected file editor if there was
@@ -202,16 +206,17 @@ public abstract class ProjectEditor extends Composite {
    * @param fileEditor  file editor to select
    */
   public final void selectFileEditor(FileEditor fileEditor) {
+    if (fileEditor == null) {
+      LOG.warning("Not expecting selectFileEditor(null)");
+      return;
+    }
     int index = deckPanel.getWidgetIndex(fileEditor);
     if (index == -1) {
-      if (fileEditor != null) {
-        LOG.warning("Can't find widget for fileEditor " + fileEditor.getFileId());
-      } else {
-        LOG.warning("Not expecting selectFileEditor(null)");
-      }
+      LOG.warning("Can't find widget for fileEditor " + fileEditor.getFileId());
+      return;
     }
     LOG.info("ProjectEditor: got selectFileEditor for "
-        + ((fileEditor == null) ? null : fileEditor.getFileId())
+        + fileEditor.getFileId()
         +  " selectedFileEditor is "
         + ((selectedFileEditor == null) ? null : selectedFileEditor.getFileId()));
     if (selectedFileEditor != null && selectedFileEditor != fileEditor) {

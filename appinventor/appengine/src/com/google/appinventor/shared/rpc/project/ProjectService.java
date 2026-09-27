@@ -372,4 +372,14 @@ public interface ProjectService extends RemoteService {
    */
   void log(String message);
 
+  /**
+   * Creates a new screen using Gemini AI to generate UI and blocks.
+   *
+   * @param projectId project id
+   * @param formFileId file id of the form to create
+   * @param prompt natural language prompt describing screen and blocks
+   * @return modification date for project
+   */
+  long createScreenWithAi(long projectId, String formFileId, String prompt);
+
 }

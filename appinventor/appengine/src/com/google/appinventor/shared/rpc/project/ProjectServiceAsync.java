@@ -194,4 +194,9 @@ public interface ProjectServiceAsync {
    */
   void log(String message, AsyncCallback<Void> callback);
 
+  /**
+   * @see ProjectService#createScreenWithAi(long, String, String)
+   */
+  void createScreenWithAi(long projectId, String formFileId, String prompt, AsyncCallback<Long> callback);
+
 }

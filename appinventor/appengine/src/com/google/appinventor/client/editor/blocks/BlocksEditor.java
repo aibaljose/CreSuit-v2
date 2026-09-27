@@ -250,7 +250,7 @@ public abstract class BlocksEditor<S extends SourceNode, T extends DesignerEdito
           blocksArea.addChangeListener(BlocksEditor.this);
         } catch(LoadBlocksException e) {
           setDamaged(true);
-          ErrorReporter.reportError(MESSAGES.blocksNotSaved(entityName));
+          ErrorReporter.reportError(MESSAGES.blocksNotSaved(blocksNode.getEntityName()));
         }
         loadComplete = true;
         selectedDrawer = null;

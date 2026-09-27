@@ -88,7 +88,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.TreeSet;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.appinventor.server.ai.GeminiClient;
+import com.google.appinventor.server.ai.AIResponseSanitizer;
+import com.google.appinventor.server.ai.AIResponseSanitizer.SanitizedResult;
 
 /**
  * Provides support for Young Android projects.
@@ -270,6 +274,26 @@ public final class YoungAndroidProjectService extends CommonProjectService {
 
     String blocklyFileName = YoungAndroidBlocksNode.getBlocklyFileId(qualifiedFormName);
     String blocklyFileContents = getInitialBlocklySourceFileContents(qualifiedFormName);
+
+    if (youngAndroidParams.getAiPrompt() != null && !youngAndroidParams.getAiPrompt().trim().isEmpty()) {
+      try {
+        final int lastDotPos = qualifiedFormName.lastIndexOf('.');
+        String packageName = qualifiedFormName.split("\\.")[2];
+        String formName = qualifiedFormName.substring(lastDotPos + 1);
+
+        GeminiClient geminiClient = new GeminiClient();
+        JSONObject rawAiResponse = geminiClient.generateScreenAndBlocks(formName, youngAndroidParams.getAiPrompt());
+        SanitizedResult result = AIResponseSanitizer.sanitize(rawAiResponse, formName, packageName);
+        formFileContents = result.getScmContent();
+        blocklyFileContents = result.getBkyContent();
+        if (blocklyFileContents == null || blocklyFileContents.trim().isEmpty() || !blocklyFileContents.contains("<block")) {
+          blocklyFileContents = getInitialBlocklySourceFileContents(qualifiedFormName);
+        }
+      } catch (Exception e) {
+        LOG.log(Level.SEVERE, "Failed to generate project with Gemini AI for: " + projectName, e);
+        throw new RuntimeException("AI Project Generation Failed: " + e.getMessage(), e);
+      }
+    }
 
     String yailFileName = YoungAndroidYailNode.getYailFileId(qualifiedFormName);
     String yailFileContents = "";
@@ -461,6 +485,58 @@ public final class YoungAndroidProjectService extends CommonProjectService {
     } else {
       return super.addFile(userId, projectId, fileId);
     }
+  }
+
+  @Override
+  public long createScreenWithAi(String userId, long projectId, String formFileId, String prompt) {
+    if (!formFileId.endsWith(FORM_PROPERTIES_EXTENSION)) {
+      throw new IllegalArgumentException("formFileId must end with " + FORM_PROPERTIES_EXTENSION);
+    }
+
+    String qualifiedFormName = YoungAndroidSourceNode.getQualifiedName(formFileId);
+    String formFileName = YoungAndroidFormNode.getFormFileId(qualifiedFormName);
+    String blocklyFileName = YoungAndroidBlocksNode.getBlocklyFileId(qualifiedFormName);
+    String yailFileName = YoungAndroidYailNode.getYailFileId(qualifiedFormName);
+
+    List<String> sourceFiles = storageIo.getProjectSourceFiles(userId, projectId);
+    if (sourceFiles.contains(formFileName) ||
+        sourceFiles.contains(blocklyFileName) ||
+        sourceFiles.contains(yailFileName)) {
+      throw new IllegalStateException("One or more files to be added already exists.");
+    }
+
+    final int lastDotPos = qualifiedFormName.lastIndexOf('.');
+    String packageName = qualifiedFormName.split("\\.")[2];
+    String formName = qualifiedFormName.substring(lastDotPos + 1);
+
+    String formFileContents;
+    String blocklyFileContents;
+
+    try {
+      GeminiClient geminiClient = new GeminiClient();
+      JSONObject rawAiResponse = geminiClient.generateScreenAndBlocks(formName, prompt);
+      SanitizedResult result = AIResponseSanitizer.sanitize(rawAiResponse, formName, packageName);
+      formFileContents = result.getScmContent();
+      blocklyFileContents = result.getBkyContent();
+      if (blocklyFileContents == null || blocklyFileContents.trim().isEmpty() || !blocklyFileContents.contains("<block")) {
+        blocklyFileContents = getInitialBlocklySourceFileContents(qualifiedFormName);
+      }
+    } catch (Exception e) {
+      LOG.log(Level.SEVERE, "Failed to generate screen with Gemini AI for: " + formName, e);
+      throw new RuntimeException("AI Screen Generation Failed: " + e.getMessage(), e);
+    }
+
+    storageIo.addSourceFilesToProject(userId, projectId, false, formFileName);
+    storageIo.uploadFileForce(projectId, formFileName, userId, formFileContents,
+        StorageUtil.DEFAULT_CHARSET);
+
+    storageIo.addSourceFilesToProject(userId, projectId, false, blocklyFileName);
+    storageIo.uploadFileForce(projectId, blocklyFileName, userId, blocklyFileContents,
+        StorageUtil.DEFAULT_CHARSET);
+
+    storageIo.addSourceFilesToProject(userId, projectId, false, yailFileName);
+    return storageIo.uploadFileForce(projectId, yailFileName, userId, "",
+        StorageUtil.DEFAULT_CHARSET);
   }
 
   @Override

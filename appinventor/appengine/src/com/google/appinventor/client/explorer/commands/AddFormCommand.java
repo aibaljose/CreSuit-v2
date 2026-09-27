@@ -29,10 +29,15 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 import java.util.HashSet;
@@ -75,6 +80,12 @@ public final class AddFormCommand extends ChainableCommand {
   private class NewFormDialog extends DialogBox {
     // UI elements
     private final LabeledTextBox newNameTextBox;
+    private final CheckBox aiCheckBox;
+    private final VerticalPanel aiPromptPanel;
+    private final TextArea promptArea;
+    private final Label statusLabel;
+    private final Button okButton;
+    private final Button cancelButton;
 
     private final Set<String> otherFormNames;
 
@@ -124,6 +135,47 @@ public final class AddFormCommand extends ChainableCommand {
       });
       contentPanel.add(newNameTextBox);
 
+      aiCheckBox = new CheckBox(" ✨ Generate with Gemini AI");
+      aiCheckBox.setStyleName("ode-CheckBox");
+      aiCheckBox.getElement().getStyle().setProperty("margin", "10px 0 6px 0");
+      aiCheckBox.getElement().getStyle().setProperty("fontWeight", "bold");
+      contentPanel.add(aiCheckBox);
+
+      aiPromptPanel = new VerticalPanel();
+      aiPromptPanel.setWidth("100%");
+      aiPromptPanel.setVisible(false);
+
+      Label promptLabel = new Label("Describe screen UI and blocks logic:");
+      promptLabel.getElement().getStyle().setProperty("fontSize", "12px");
+      promptLabel.getElement().getStyle().setProperty("marginBottom", "4px");
+      aiPromptPanel.add(promptLabel);
+
+      promptArea = new TextArea();
+      promptArea.setVisibleLines(4);
+      promptArea.getElement().setAttribute("placeholder", "e.g., A doctor profile screen with doctor details, specialties, appointment booking button, and notification alerts.");
+      promptArea.setWidth("100%");
+      promptArea.getElement().getStyle().setProperty("boxSizing", "border-box");
+      promptArea.getElement().getStyle().setProperty("resize", "vertical");
+      promptArea.getElement().getStyle().setProperty("padding", "6px");
+      aiPromptPanel.add(promptArea);
+
+      contentPanel.add(aiPromptPanel);
+
+      aiCheckBox.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+        @Override
+        public void onValueChange(ValueChangeEvent<Boolean> event) {
+          aiPromptPanel.setVisible(event.getValue());
+          if (event.getValue()) {
+            promptArea.setFocus(true);
+          }
+        }
+      });
+
+      statusLabel = new Label();
+      statusLabel.getElement().getStyle().setProperty("fontSize", "12px");
+      statusLabel.getElement().getStyle().setProperty("margin", "6px 0");
+      contentPanel.add(statusLabel);
+
       String cancelText = MESSAGES.cancelButton();
       String okText = MESSAGES.okButton();
 
@@ -138,12 +190,9 @@ public final class AddFormCommand extends ChainableCommand {
 
         okText = MESSAGES.addScreenButton();
         cancelText = MESSAGES.cancelScreenButton();
-
-        // okText = "Add";
-        // cancelText = "Don't Add";
       }
 
-      Button cancelButton = new Button(cancelText);
+      cancelButton = new Button(cancelText);
       cancelButton.addClickHandler(new ClickHandler() {
         @Override
         public void onClick(ClickEvent event) {
@@ -151,7 +200,7 @@ public final class AddFormCommand extends ChainableCommand {
           executionFailedOrCanceled();
         }
       });
-      Button okButton = new Button(okText);
+      okButton = new Button(okText);
       okButton.addClickHandler(new ClickHandler() {
         @Override
         public void onClick(ClickEvent event) {
@@ -163,7 +212,7 @@ public final class AddFormCommand extends ChainableCommand {
       buttonPanel.add(okButton);
       buttonPanel.setSize("100%", "24px");
       contentPanel.add(buttonPanel);
-      contentPanel.setSize("320px", "100%");
+      contentPanel.setSize("360px", "100%");
 
       add(contentPanel);
     }
@@ -171,8 +220,22 @@ public final class AddFormCommand extends ChainableCommand {
     private void handleOkClick(YoungAndroidProjectNode projectRootNode) {
       String newFormName = newNameTextBox.getText();
       if (validate(newFormName)) {
-        hide();
-        addFormAction(projectRootNode, newFormName);
+        if (aiCheckBox.getValue()) {
+          String prompt = promptArea.getText().trim();
+          if (prompt.isEmpty()) {
+            Window.alert("Please provide a prompt describing your screen and blocks.");
+            promptArea.setFocus(true);
+            return;
+          }
+          okButton.setEnabled(false);
+          cancelButton.setEnabled(false);
+          statusLabel.getElement().getStyle().setProperty("color", "#1a73e8");
+          statusLabel.setText("Generating screen and blocks with Gemini AI... Please wait.");
+          addFormActionWithAi(projectRootNode, newFormName, prompt, this, okButton, cancelButton, statusLabel);
+        } else {
+          hide();
+          addFormAction(projectRootNode, newFormName);
+        }
       } else {
         newNameTextBox.setFocus(true);
       }
@@ -241,7 +304,7 @@ public final class AddFormCommand extends ChainableCommand {
                   ode.getEditorManager().getOpenProjectEditor(project.getProjectId());
               FileEditor formEditor = projectEditor.getFileEditor(formFileId);
               FileEditor blocksEditor = projectEditor.getFileEditor(blocksFileId);
-              if (formEditor != null && blocksEditor != null && !ode.screensLocked()) {
+              if (formEditor != null && blocksEditor != null && projectEditor.isEditorInDeck(formEditor) && projectEditor.isEditorInDeck(blocksEditor) && !ode.screensLocked()) {
                 DesignToolbar designToolbar = Ode.getInstance().getDesignToolbar();
                 long projectId = formEditor.getProjectId();
                 designToolbar.addScreen(projectId, formName, formEditor, 
@@ -267,6 +330,71 @@ public final class AddFormCommand extends ChainableCommand {
       // Create the new form on the backend. The backend will create the form (.scm) and blocks
       // (.blk) files.
       ode.getProjectService().addFile(projectRootNode.getProjectId(), formFileId, callback);
+    }
+
+    /**
+     * Adds a new form to the project using Gemini AI to generate UI and blocks.
+     *
+     * @param projectRootNode the project root node
+     * @param formName the new form name
+     * @param prompt natural language description of screen and blocks
+     * @param dialog the dialog box
+     * @param okBtn the ok button to re-enable on error
+     * @param cancelBtn the cancel button to re-enable on error
+     * @param statusLbl status label to show progress/errors
+     */
+    protected void addFormActionWithAi(final YoungAndroidProjectNode projectRootNode,
+        final String formName, final String prompt, final DialogBox dialog,
+        final Button okBtn, final Button cancelBtn, final Label statusLbl) {
+      final Ode ode = Ode.getInstance();
+      final YoungAndroidPackageNode packageNode = projectRootNode.getPackageNode();
+      String qualifiedFormName = packageNode.getPackageName() + '.' + formName;
+      final String formFileId = YoungAndroidFormNode.getFormFileId(qualifiedFormName);
+      final String blocksFileId = YoungAndroidBlocksNode.getBlocklyFileId(qualifiedFormName);
+
+      OdeAsyncCallback<Long> callback = new OdeAsyncCallback<Long>("Failed to generate screen with Gemini AI") {
+        @Override
+        public void onSuccess(Long modDate) {
+          dialog.hide();
+          final Ode ode = Ode.getInstance();
+          ode.updateModificationDate(projectRootNode.getProjectId(), modDate);
+
+          // Add the new form and blocks nodes to the project
+          final Project project = ode.getProjectManager().getProject(projectRootNode);
+          project.addNode(packageNode, new YoungAndroidFormNode(formFileId));
+          project.addNode(packageNode, new YoungAndroidBlocksNode(blocksFileId));
+
+          Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
+            @Override
+            public void execute() {
+              ProjectEditor projectEditor =
+                  ode.getEditorManager().getOpenProjectEditor(project.getProjectId());
+              FileEditor formEditor = projectEditor.getFileEditor(formFileId);
+              FileEditor blocksEditor = projectEditor.getFileEditor(blocksFileId);
+              if (formEditor != null && blocksEditor != null && projectEditor.isEditorInDeck(formEditor) && projectEditor.isEditorInDeck(blocksEditor) && !ode.screensLocked()) {
+                DesignToolbar designToolbar = Ode.getInstance().getDesignToolbar();
+                long projectId = formEditor.getProjectId();
+                designToolbar.addScreen(projectId, formName, formEditor, blocksEditor);
+                designToolbar.switchToScreen(projectId, formName, View.DESIGNER);
+                executeNextCommand(projectRootNode);
+              } else {
+                Scheduler.get().scheduleDeferred(this);
+              }
+            }
+          });
+        }
+
+        @Override
+        public void onFailure(Throwable caught) {
+          okBtn.setEnabled(true);
+          cancelBtn.setEnabled(true);
+          statusLbl.getElement().getStyle().setProperty("color", "#d93025");
+          statusLbl.setText("Error: " + caught.getMessage());
+          executionFailedOrCanceled();
+        }
+      };
+
+      ode.getProjectService().createScreenWithAi(projectRootNode.getProjectId(), formFileId, prompt, callback);
     }
 
     @Override

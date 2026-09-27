@@ -27,6 +27,8 @@ public final class NewYoungAndroidProjectParameters implements NewProjectParamet
   private String theme;
 
   private String toolkit;
+
+  private String aiPrompt;
   /**
    * Creates new parameters for creating Young Android projects
    *
@@ -51,9 +53,21 @@ public final class NewYoungAndroidProjectParameters implements NewProjectParamet
     this.toolkit = toolkit;
   }
 
+  public NewYoungAndroidProjectParameters(String packageName, String theme, String toolkit, String aiPrompt) {
+    this.packageName = packageName;
+    formName = YOUNG_ANDROID_FORM_NAME;
+    this.theme = theme;
+    this.toolkit = toolkit;
+    this.aiPrompt = aiPrompt;
+  }
+
   // For serialization only
   @SuppressWarnings("unused")
   private NewYoungAndroidProjectParameters() {
+  }
+
+  public String getAiPrompt() {
+    return aiPrompt;
   }
 
   /**

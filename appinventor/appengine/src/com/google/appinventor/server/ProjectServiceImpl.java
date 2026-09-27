@@ -680,6 +680,12 @@ public class ProjectServiceImpl extends OdeRemoteServiceServlet implements Proje
   }
 
   @Override
+  public long createScreenWithAi(long projectId, String formFileId, String prompt) {
+    final String userId = userInfoProvider.getUserId();
+    return getProjectRpcImpl(userId, projectId).createScreenWithAi(userId, projectId, formFileId, prompt);
+  }
+
+  @Override
   public TextFile importMedia(String sessionId, long projectId, String url, boolean save)
       throws InvalidSessionException, IOException {
     validateSessionId(sessionId);

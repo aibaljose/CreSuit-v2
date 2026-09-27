@@ -33,6 +33,8 @@
     <include path="/CreSuit_Companion.apk" expiration="1d" />
     <include path="/*.html" expiration="0s" />
     <include path="/*.apk" expiration="1d" />
+    <include path="/*.gif" expiration="1d" />
+    <include path="/mobile-apps.gif" expiration="1d" />
 
     <include path="/ode/**.cache.*" expiration="365d" />
     <exclude path="/ode/**.gwt.rpc" />

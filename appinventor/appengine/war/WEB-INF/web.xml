@@ -124,6 +124,20 @@
     <servlet-name>projectService</servlet-name>
   </filter-mapping>
 
+  <!-- AI project creation -->
+  <servlet>
+    <servlet-name>aiProjectServlet</servlet-name>
+    <servlet-class>com.google.appinventor.server.ai.AiProjectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>aiProjectServlet</servlet-name>
+    <url-pattern>/ode/ai/create-project</url-pattern>
+  </servlet-mapping>
+  <filter-mapping>
+    <filter-name>odeAuthFilter</filter-name>
+    <servlet-name>aiProjectServlet</servlet-name>
+  </filter-mapping>
+
   <!-- upload -->
   <servlet>
     <servlet-name>uploadServlet</servlet-name>

@@ -86,6 +86,7 @@ class YoungAndroidComponentFactory extends BaseComponentFactory {
     bundledImages.put("images/firebaseDB.png", images.firebaseDB());
     bundledImages.put("images/twitter.png", images.twitterComponent());
     bundledImages.put("images/vertical.png", images.vertical());
+    bundledImages.put("images/space.png", images.space());
     bundledImages.put("images/videoPlayer.png", images.videoplayer());
     bundledImages.put("images/voting.png", images.voting());
     bundledImages.put("images/web.png", images.web());

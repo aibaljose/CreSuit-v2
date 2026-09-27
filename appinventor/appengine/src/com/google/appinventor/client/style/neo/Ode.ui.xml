@@ -19,9 +19,85 @@
     <g:FlowPanel styleName="ode-TutorialWrapper" ui:field="overDeckPanel">
       <ed:TutorialPanel ui:field="tutorialPanel" width="100%" height="100%" visible="false" />
       <g:DeckPanel ui:field="deckPanel" animationEnabled="false" styleName="ode-DeckPanel">
-        <g:FlowPanel width="100%" height="100%" styleName="ode-Project-FlexColumn">
-          <neo:ProjectToolbarNeo ui:field="projectToolbar" />
-          <box:ProjectListBox ui:field="projectListbox" styleName="ode-Box ode-Box-projectlist" />
+        <g:FlowPanel width="100%" height="100%" styleName="ode-Project-FlexColumn flex flex-row w-full h-full overflow-hidden bg-slate-50/70">
+          <!-- Persistent Left Sidebar Navigation -->
+          <g:FlowPanel styleName="cresuit-sidebar w-[230px] h-full bg-white border-r border-slate-200/90 flex flex-col justify-between shrink-0 select-none z-10 transition-all duration-200">
+            <g:FlowPanel styleName="p-3.5 flex flex-col gap-1">
+              <g:HTML styleName="sidebar-section-title px-2.5 pt-1.5 pb-2 mb-1 flex items-center justify-between text-[10.5px] font-semibold text-slate-400 uppercase tracking-wider">
+                <span>Navigation</span>
+                <span class="sidebar-collapse-trigger material-icons text-sm text-slate-400 hover:text-slate-600 transition-colors cursor-pointer" title="Collapse sidebar">menu_open</span>
+              </g:HTML>
+
+              <!-- 1. Dashboard -->
+              <g:FocusPanel styleName="sidebar-nav-item sidebar-item-dashboard flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer" title="Dashboard">
+                <g:HTML>
+                  <div class="flex items-center gap-3">
+                    <span class="material-icons text-lg text-slate-400 shrink-0">space_dashboard</span>
+                    <span class="sidebar-label">Dashboard</span>
+                  </div>
+                </g:HTML>
+              </g:FocusPanel>
+
+              <!-- 2. Account -->
+              <g:FocusPanel styleName="sidebar-nav-item sidebar-item-account flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer" title="Account">
+                <g:HTML>
+                  <div class="flex items-center gap-3">
+                    <span class="material-icons text-lg text-slate-400 shrink-0">person_outline</span>
+                    <span class="sidebar-label">Account</span>
+                  </div>
+                </g:HTML>
+              </g:FocusPanel>
+
+              <!-- 3. Projects (Active State) -->
+              <g:FocusPanel styleName="sidebar-nav-item sidebar-item-projects active flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-blue-600 bg-blue-50/90 border border-blue-100 shadow-2xs cursor-pointer" title="Projects">
+                <g:HTML>
+                  <div class="flex items-center gap-3">
+                    <span class="material-icons text-lg text-blue-600 shrink-0">folder_open</span>
+                    <span class="sidebar-label font-semibold text-blue-700">Projects</span>
+                  </div>
+                </g:HTML>
+              </g:FocusPanel>
+
+              <!-- 4. Documentation -->
+              <g:FocusPanel styleName="sidebar-nav-item sidebar-item-docs flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer" title="Documentation">
+                <g:HTML>
+                  <div class="flex items-center gap-3">
+                    <span class="material-icons text-lg text-slate-400 shrink-0">menu_book</span>
+                    <span class="sidebar-label">Documentation</span>
+                  </div>
+                </g:HTML>
+              </g:FocusPanel>
+
+              <!-- 5. Help -->
+              <g:FocusPanel styleName="sidebar-nav-item sidebar-item-help flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors cursor-pointer" title="Help">
+                <g:HTML>
+                  <div class="flex items-center gap-3">
+                    <span class="material-icons text-lg text-slate-400 shrink-0">help_outline</span>
+                    <span class="sidebar-label">Help</span>
+                  </div>
+                </g:HTML>
+              </g:FocusPanel>
+            </g:FlowPanel>
+
+            <!-- Bottom Workspace Card -->
+            <g:FlowPanel styleName="sidebar-footer p-3.5 border-t border-slate-100">
+              <g:HTML>
+                <div class="sidebar-footer-card p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-[11px] text-slate-500">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-semibold text-slate-700">CreSuit Cloud</span>
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+                  </div>
+                  <div class="text-[10px] text-slate-400">Workspace connected</div>
+                </div>
+              </g:HTML>
+            </g:FlowPanel>
+          </g:FlowPanel>
+
+          <!-- Main Content Area: Toolbar + Project Cards Grid -->
+          <g:FlowPanel styleName="flex-1 h-full flex flex-col overflow-hidden">
+            <neo:ProjectToolbarNeo ui:field="projectToolbar" />
+            <box:ProjectListBox ui:field="projectListbox" styleName="ode-Box ode-Box-projectlist flex-1 overflow-y-auto" />
+          </g:FlowPanel>
         </g:FlowPanel>
         <g:FlowPanel styleName="ode-ProjectEditor" ui:field="projectEditor">
           <neo:DesignToolbarNeo ui:field="designToolbar" />

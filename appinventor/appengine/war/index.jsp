@@ -30,7 +30,12 @@
       return;
   }
   final String gatag = Flag.createFlag("google.analytics", "").get();
-  String cachePostfix = "@blocklyeditor_isRelease@".equals("true") ? "cache" : "nocache";
+  String isRelease = "@blocklyeditor_isRelease@";
+  String cachePostfix = "true".equals(isRelease) ? "cache" : "nocache";
+  String blocklyChecksum = "@blocklyeditor_BlocklyChecksum@";
+  if (blocklyChecksum.startsWith("@") || blocklyChecksum.isEmpty()) {
+    blocklyChecksum = "0.nocache";
+  }
   String locale = request.getParameter("locale");
   if (locale == null || locale.isEmpty() || !i18n.mapping.containsKey(locale)) {
     locale = "en";
@@ -101,6 +106,56 @@
 
   <!-- ODE scripts -->
   <body class="gwt-bodyRob">
+    <!-- CreSuit Main Workspace Loading Screen -->
+    <div id="cresuit-app-loader" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #0b1120; color: #ffffff; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; transition: opacity 0.35s ease, visibility 0.35s ease;">
+      <div style="display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 420px; padding: 24px;">
+        <div style="width: 130px; height: 130px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.12); margin-bottom: 20px; background-color: #111827;">
+          <img src="/static/images/mobile-apps.gif" alt="CreSuit Loading" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='/mobile-apps.gif';" />
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 9999px; background-color: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #60a5fa; margin-bottom: 10px;">
+          <span style="width: 6px; height: 6px; border-radius: 9999px; background-color: #3b82f6;"></span>
+          <span>CreSuit Studio</span>
+        </div>
+        <h2 style="font-size: 20px; font-weight: 600; color: #f8fafc; margin: 0 0 6px 0; letter-spacing: -0.02em;">Loading your workspace...</h2>
+        <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.5;">Initializing visual components and designer canvas</p>
+        <div style="width: 160px; height: 3px; background-color: #1e293b; border-radius: 9999px; margin-top: 22px; overflow: hidden; position: relative;">
+          <div style="position: absolute; left: 0; top: 0; width: 60%; height: 100%; background: linear-gradient(90deg, #2563eb, #38bdf8); border-radius: 9999px; animation: cresuitBar 1.4s infinite ease-in-out;"></div>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes cresuitBar {
+        0% { left: -60%; }
+        100% { left: 100%; }
+      }
+    </style>
+    <script type="text/javascript">
+      (function() {
+        var loader = document.getElementById('cresuit-app-loader');
+        var dismissed = false;
+        function hideLoader() {
+          if (dismissed || !loader) return;
+          dismissed = true;
+          loader.style.opacity = '0';
+          loader.style.visibility = 'hidden';
+          setTimeout(function() {
+            if (loader && loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, 400);
+        }
+        var checkTimer = setInterval(function() {
+          if (document.querySelector('.ode-RootPanel') || document.querySelector('.ode-DeckPanel') || document.querySelector('.ode-Box') || (window.Blockly && window.Blockly.mainWorkspace)) {
+            clearInterval(checkTimer);
+            hideLoader();
+          }
+        }, 150);
+        setTimeout(function() {
+          clearInterval(checkTimer);
+          hideLoader();
+        }, 15000);
+      })();
+    </script>
     <div class="floatingBox" style="display:none" id="unsupported">
       <h2> Your browser might not be compatible. </h2>
       To use App Inventor, you must use a compatible browser.<br>
@@ -131,7 +186,7 @@
     </script>
     <script src="static/js/tutorial.js"></script>
     <script type="text/javascript" src="static/closure-compiler/base.js"></script>
-    <script type="text/javascript" src="<%= odeBase %>ode/aiblockly-@blocklyeditor_BlocklyChecksum@.js"></script>
+    <script type="text/javascript" src="<%= odeBase %>ode/aiblockly-<%= blocklyChecksum %>.js"></script>
     <script type="text/javascript" src="static/js/scroll-options-6.0.16.min.js"></script>
     <script type="text/javascript" src="static/js/workspace-search-9.1.10.min.js"></script>
     <script type="text/javascript" src="static/js/block-dynamic-connection-0.7.16.min.js"></script>
@@ -168,5 +223,6 @@
           document.getElementById("unsupported").style.display = 'block';
       }
     </script>
+    <script type="text/javascript" src="static/js/cresuit-dashboard.js"></script>
   </body>
 </html>

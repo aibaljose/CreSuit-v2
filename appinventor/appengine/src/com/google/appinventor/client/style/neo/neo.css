@@ -1730,23 +1730,64 @@ a.ode-ExtensionAnchor:hover {
 
 /* End of NoProjectsDialogBox. */
 
-.ode-DialogBox {
-  /*all: unset;*/
-  border-radius: 10px;
-  border-left: unset;
-  border-right: unset;
-  border-bottom: unset;
-  z-index: 1000;
+.ode-DialogBox,
+.gwt-DialogBox {
+  border-radius: 16px !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  z-index: 10000;
   background-color: v-white;
-  box-shadow: 4px 4px 20px 7px container-shadow;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.05) !important;
   overflow: hidden !important;
+  animation: odeModalPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Remove legacy GWT 9-slice table borders */
+.ode-DialogBox table,
+.gwt-DialogBox table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+}
+
+.ode-DialogBox .dialogTopLeft,
+.ode-DialogBox .dialogTopRight,
+.ode-DialogBox .dialogMiddleLeft,
+.ode-DialogBox .dialogMiddleRight,
+.ode-DialogBox .dialogBottomLeft,
+.ode-DialogBox .dialogBottomCenter,
+.ode-DialogBox .dialogBottomRight,
+.gwt-DialogBox .dialogTopLeft,
+.gwt-DialogBox .dialogTopRight,
+.gwt-DialogBox .dialogMiddleLeft,
+.gwt-DialogBox .dialogMiddleRight,
+.gwt-DialogBox .dialogBottomLeft,
+.gwt-DialogBox .dialogBottomCenter,
+.gwt-DialogBox .dialogBottomRight {
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.ode-DialogBox .dialogTopCenter,
+.ode-DialogBox .dialogMiddleCenter,
+.gwt-DialogBox .dialogTopCenter,
+.gwt-DialogBox .dialogMiddleCenter {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 .DialogBox-message {}
 
-.ode-DialogBox .gwt-Label {
+.ode-DialogBox .gwt-Label,
+.gwt-DialogBox .gwt-Label {
   padding-left: unset;
-  font-size: 14px;
+  font-size: 13.5px;
   color: gray-700;
 }
 
@@ -1760,44 +1801,69 @@ a.ode-ExtensionAnchor:hover {
   margin-right: 5px;
 }
 
-.ode-DialogBox .Caption {
-  padding: 10px 20px;
-  text-align: center;
+.ode-DialogBox .Caption,
+.gwt-DialogBox .Caption {
+  padding: 16px 22px 14px 22px;
   border-bottom: 1px solid gray-300;
-  margin-bottom: 10px;
-  font-size: 18px;
-  font-family: "Poppins";
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   background-color: v-white;
   color: gray-700;
 }
 
-.ode-DialogBox .dialogTop {
+.ode-DialogBox .dialogTop,
+.gwt-DialogBox .dialogTop {
   background-color: v-white;
 }
 
-.ode-DialogBox .dialogContent {
-  padding: 5px 20px;
+.ode-DialogBox .dialogContent,
+.gwt-DialogBox .dialogContent {
+  padding: 18px 22px;
+  color: gray-700;
+  font-size: 13.5px;
+}
+
+.ode-DialogBox .dialogContent td,
+.gwt-DialogBox .dialogContent td {
+  padding: 3px 6px;
   color: gray-700;
 }
 
-.ode-DialogBox .dialogContent td {
-  padding: 2px 5px;
-  color: gray-700;
-}
-
-.ode-DialogBox .gwt-FileUpload {
+.ode-DialogBox .gwt-FileUpload,
+.gwt-DialogBox .gwt-FileUpload {
   padding: 2px 35px;
   font-size: 12px;
   color: gray-700;
 }
 
-.ode-DialogBox .buttonRow {
-  padding: 10px;
+.ode-DialogBox .buttonRow,
+.gwt-DialogBox .buttonRow {
+  padding: 14px 10px 6px 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
-.ode-DialogBox .gwt-Button:hover {
+.ode-DialogBox .gwt-Button:hover,
+.gwt-DialogBox .gwt-Button:hover {
   color: gray-800;
+}
+
+/* Glass backdrop */
+.gwt-PopupPanelGlass,
+.gwt-DialogBox-GlassPanel,
+.ode-DialogGlassPanel {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(15, 23, 42, 0.45) !important;
+  backdrop-filter: blur(8px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(140%) !important;
+  z-index: 9998 !important;
+  animation: odeGlassFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* AI2 Extensions Styles */
