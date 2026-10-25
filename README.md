@@ -1,279 +1,252 @@
-# Welcome to MIT App Inventor
+# CreSuit
 
-## Introduction
+**An AI-Assisted Visual Application Development and Native Mobile Compilation Platform**
 
-Learn more about [MIT App Inventor](http://appinventor.mit.edu).
+CreSuit is a web-based platform concept for building mobile applications through a visual designer, block-based logic, and optional AI assistance. It aims to let users move from an app idea to an editable project and, where the required build infrastructure is configured, a native Android package.
 
-This code is designed to be run in Google's App Engine. MIT runs a
-public instance that all are welcome to use to build App Inventor
-Applications. You do not need to compile or use this code if you wish
-to build MIT App Inventor applications.
+> **Project status:** This document describes the intended architecture and capabilities. Mark each feature as implemented, in progress, or planned according to the current repository before using this README as a public status statement.
 
-We provide this code for reference and for experienced people who wish
-to operate their own App Inventor instance and/or contribute to the project.
+## Table of contents
 
-This code is tested and known to work with Java 11.
+- [Overview](#overview)
+- [Goals](#goals)
+- [Core modules](#core-modules)
+- [Typical workflow](#typical-workflow)
+- [Technology and project formats](#technology-and-project-formats)
+- [AI-assisted development](#ai-assisted-development)
+- [Architecture](#architecture)
+- [Security considerations](#security-considerations)
+- [Development status](#development-status)
+- [Getting started](#getting-started)
+- [Roadmap](#roadmap)
+- [Acknowledgements and foundation](#acknowledgements-and-foundation)
 
-## Contributors
+## Overview
 
-The best way to go about integrating changes in App Inventor is to start a conversation in the [Open Source forum](https://community.appinventor.mit.edu/c/open-source-development/10) about whatever you intend to change or add.
+CreSuit combines a visual mobile UI editor, a block-based programming environment, AI-assisted generation, device testing, and a native build pipeline. Users should be able to inspect and modify generated interfaces and logic rather than being locked into a one-shot AI result.
 
-We use ***very brief and informal*** design documents with descriptions of the proposed changes and screenshots of how the functionality would look like and behave, in order to gather as much feedback from the community, as early as possible. We generally use shared Google docs for this (with permissions to add comments), but any format that is accessible from a web browser (and allows comments) would do.
+AI is an optional assistant: the visual editor and block environment should remain useful without an AI request or an external model connection.
 
-If you have skipped this step and have gone ahead and made your changes already, feel free to open a pull request, but don't be too surprised if we ask you to go back and document it in a design document. Remember that the main goal of doing this is ***to gather as much feedback, as early as possible***. We will also possibly ask you to put an instance with your changes on [appspot](http://appspot.com), and provide a modified Companion app (if that applies) so that reviewers can play with the changes before looking at the source.
+## Goals
 
-Check out our open source [site](http://appinventor.mit.edu/appinventor-sources/) to find a lot more information about the project and how to contribute to it.
+- Make mobile app creation more accessible to beginners and experienced developers.
+- Build editable interfaces through drag-and-drop visual components.
+- Create app behavior with event-driven, block-based logic.
+- Use natural-language prompts to suggest or generate UI and logic.
+- Keep generated results understandable and manually editable.
+- Support preview and testing on a physical Android device.
+- Provide a path to export native Android builds when compilation services are configured.
+- Keep credentials and build operations on trusted server-side infrastructure.
 
-## Setup Instructions (Manual)
+## Core modules
 
-This is a quick guide to get started with the sources. More detailed instructions can be found [here](https://docs.google.com/document/pub?id=1Xc9yt02x3BRoq5m1PJHBr81OOv69rEBy8LVG_84j9jc), a slide show can be seen [here](http://josmas.github.io/contributingToAppInventor2/#/), and all the [documentation](http://appinventor.mit.edu/appinventor-sources/#documentation) for the project is available in our [site](http://appinventor.mit.edu/appinventor-sources/).
+### 1. Studio and visual designer
 
-### Dependencies
+A WYSIWYG workspace for composing screens with layout containers, UI controls, images, text, and other supported components.
 
-You will need a full Java JDK (version 11, OpenJDK preferred; JRE is not enough) and [ant](http://ant.apache.org/) (version 1.10) to compile the sources.
+Expected capabilities:
 
-You will also need a copy of the [Google Cloud SDK](https://cloud.google.com/appengine/docs/standard/java/download) to run the development servers. When setting up the gcloud cli you might be asked if you'd like to install Python 3.11, as the cli depends on it. In case of any issues with Python versions, check the value of the CLOUDSDK_PYTHON environment variable, which the cli can use to point to the right version.
+- Drag-and-drop component placement.
+- Property inspector for text, dimensions, colors, alignment, and assets.
+- Screen/component hierarchy.
+- Mobile preview.
+- Serialization of screen layouts into a structured schema such as `.scm`.
 
-If you want to make changes to the sources, you will have to run an automated test suite, and for that you will also need
-a recent version of NodeJS (node 20+ works) and the Firefox browser installed on your machine. Have a look at the testing section for more information.
+### 2. Visual logic and block engine
 
-Finally, if you want to make changes to the markdown docs you will need Ruby (versions 2.6 or 2.7).
+A block-based environment for defining application behavior without manually writing every line of code.
 
-### Forking or cloning
+Expected logic features include:
 
-Consider ***forking*** the project if you want to make changes to the sources. If you simply want to run it locally, you can simply ***clone*** it.
+- Component events and handlers.
+- Setters and getters.
+- Conditions and loops.
+- Variables, lists, and procedures.
+- Web/API requests and asynchronous operations.
+- Validation of block connections and types.
 
-#### Forking
+In an App Inventor-style pipeline, visual block projects may use `.bky` files and be translated into Young Android Intermediate Language (YAIL) before compilation.
 
-If you decide to fork, follow the [instructions](https://help.github.com/articles/fork-a-repo) given by GitHub. After that you can clone your own copy of the sources with:
+### 3. AI co-pilot
 
-    $ git clone https://github.com/YOUR_USER_NAME/appinventor-sources.git
+The AI layer can help translate a natural-language description into an initial UI structure and relevant block logic.
 
-Make sure you change *YOUR_USER_NAME* to your user name.
+Potential capabilities:
 
-Configuring a remote pointing to this repository is also a good idea if you are forking:
+- Prompt-to-UI generation.
+- Suggestions for component properties and layout.
+- Draft block-logic generation.
+- Explanations of selected blocks.
+- Help diagnosing missing connections or likely logic errors.
+- Iterative refinement based on user instructions.
 
-    $ cd appinventor-sources
-    $ git remote add upstream https://github.com/mit-cml/appinventor-sources.git
+AI-generated output should be validated before it is added to the project. Users should be able to review, edit, or reject generated changes. AI output must not silently overwrite existing work.
 
-Finally, you will also have to make sure that you are ignoring files that need ignoring:
+### 4. Live companion and device preview
 
-    $ cp sample-.gitignore .gitignore
+A companion application can connect a development studio to a physical Android device for preview and testing.
 
-### Checkout dependencies
+A possible design uses a pairing code or QR code over a local network. Live updates depend on the companion implementation, transport protocol, and backend support; do not describe hot reload as available until it has been verified.
 
-App Inventor uses the [Picrin](https://picrin.readthedocs.io/en/latest/) Scheme implementation. It is unlikely that most contributors will need to make changes to this dependency, but it is necessary for local compilation, so you must initialize and track this library as a submodule. The first time after forking or cloning the repository, you can perform the following command:
+### 5. Build and export pipeline
 
-    $ git submodule update --init
+The build system is intended to transform project definitions and assets into installable Android outputs.
 
-If you need to switch back to a branch that does not contain the dependency in the tree, you will need to run the command:
+Possible exports, depending on the configured toolchain:
 
-    $ git submodule deinit --all
+- Android Package (`.apk`)
+- Android App Bundle (`.aab`)
+- Portable project archive (`.aia`), if compatible with the project format
 
-to clear out the submodules ___before switching branches___. When switching back, you will need to repeat the initialization and update procedure above.
+Native compilation requires a functioning build server and compatible Android build tools. Export formats and supported Android versions should be documented from actual build tests.
 
-[Blockly](https://github.com/google/blockly) is also a dependency, currently being used as a slightly modified version 10 that can be found at [mit-cml/blockly](https://github.com/mit-cml/blockly/tree/rc/10.5.0).
+### 6. Authentication and project management
 
-### Troubleshooting common installation issues
+This module manages user sessions, projects, project metadata, and access permissions. Authentication and application-data storage are separate concerns: using Firebase Authentication does not imply that Firebase is used to store project data.
 
-Run this command to run a self-diagnosis of your environment. This command tries to figure out common installation issues and offers you a solution to fix them yourself. Make sure this passes all the checks before you proceed further.
+## Typical workflow
 
-#### Linux and macOS
+1. Create a project and add a screen.
+2. Design the screen using visual components.
+3. Configure component properties in the inspector.
+4. Add behavior using visual blocks.
+5. Optionally ask the AI co-pilot to draft or refine UI and logic.
+6. Inspect and manually adjust the generated result.
+7. Preview and test the app.
+8. Build and export a native package when the build service is available.
 
-```bash
-./buildtools doctor
+## Technology and project formats
+
+The exact stack depends on the current implementation. The following technologies are relevant to an App Inventor-style architecture:
+
+| Area | Technology or format | Purpose |
+|---|---|---|
+| Visual logic | Google Blockly | Block-based programming workspace |
+| Screen definitions | `.scm` | Structured screen/component definitions |
+| Block definitions | `.bky` | Serialized visual logic |
+| Intermediate representation | YAIL | Intermediate language in an App Inventor-style compilation flow |
+| AI integration | Google Gemini API | Optional natural-language assistance |
+| Native build | Android build toolchain | Package application output |
+| Authentication | Firebase Authentication, if configured | User sign-in and identity |
+
+Do not assume every item in this table is already integrated. Update it to match the code and deployment environment.
+
+## AI-assisted development
+
+The AI system should return structured, validated project changes rather than arbitrary text that is directly executed.
+
+Recommended safeguards:
+
+- Validate generated schemas and block structures.
+- Sanitize and constrain model output.
+- Keep a preview or diff before applying changes.
+- Preserve undo/recovery options.
+- Handle API failures and rate limits gracefully.
+- Keep API keys on the server; never embed secret keys in browser code or mobile packages.
+- Keep manual editing available when AI is unavailable.
+
+## Architecture
+
+A logical high-level architecture is:
+
+```text
+Web Studio
+  ├── Visual Designer ──> Screen Schema (.scm)
+  ├── Block Editor ─────> Block Project (.bky)
+  ├── AI Co-pilot ──────> Validated UI / Logic Suggestions
+  └── Project Manager
+             │
+             ▼
+       Backend Services
+         ├── Authentication and authorization
+         ├── Project and asset storage
+         ├── AI provider adapter
+         └── Build job orchestration
+                    │
+                    ▼
+             Build Worker
+         ├── Convert / generate sources
+         ├── Compile and package
+         └── Return build artifacts
+                    │
+                    ▼
+              APK / AAB
 ```
 
-#### Windows
+This is a conceptual architecture. Replace it with a repository-specific diagram once the actual services and data flows are confirmed.
 
-```bash
-buildtools doctor
-```
+## Security considerations
 
-## Compiling
+- Store model API keys and signing credentials in server-side secret storage.
+- Authenticate and authorize every project and build request.
+- Isolate build jobs and restrict their file-system access.
+- Validate uploaded assets and project archives.
+- Apply rate limits to AI and compilation endpoints.
+- Avoid logging secrets, access tokens, or sensitive project contents.
+- Treat AI output and imported project files as untrusted input.
+- Define retention and deletion policies for projects, logs, and generated artifacts.
 
-Before compiling the code, an [auth key](https://docs.google.com/document/pub?id=1Xc9yt02x3BRoq5m1PJHBr81OOv69rEBy8LVG_84j9jc#h.yikyg2e1rfut) is needed. You can create one by running the following commands:
+## Development status
 
-    $ cd appinventor
-    $ ant MakeAuthKey
+Use this table to report only verified implementation status.
 
-Once the key is in place, type the following to compile (from the appinventor folder):
+| Feature | Status | Evidence / notes |
+|---|---|---|
+| Visual screen designer | Update status | Link to implementation or test |
+| Component property inspector | Update status | Link to implementation or test |
+| Block-based logic editor | Update status | Link to implementation or test |
+| AI UI generation | Update status | Provider, supported prompts, and tests |
+| AI block generation | Update status | Validation and supported blocks |
+| Authentication | Update status | Actual configured provider |
+| Project persistence | Update status | Actual storage backend |
+| Live companion | Update status | Device and network test results |
+| Android compilation | Update status | Build logs and successful artifacts |
+| APK/AAB export | Update status | Tested output formats |
 
-    $ ant
+## Getting started
 
-You will see a lot of stuff in the terminal and after a few minutes (it can take from 2 to 10 minutes, depending on your machine specs) you should see a message saying something like *Build Successful*.
+Because setup varies by repository revision, use the current project instructions as the source of truth.
 
-### Notes on compiling for iOS
+1. Clone the repository.
+2. Install the versions of Java, Node.js, build tools, and other dependencies required by that revision.
+3. Configure local environment variables using a local, untracked environment file.
+4. Configure authentication and storage services, if required.
+5. Configure the AI provider only if you intend to use AI features.
+6. Start the frontend and backend using the repository's documented commands.
+7. Run the available tests and verify a complete project save/load cycle.
+8. Verify native compilation separately; a running editor does not guarantee that the build pipeline is configured.
 
-If you are compiling on a Mac and **are not** interested in building
-the companion for iOS, you must set the property `skip.ios` to `true`,
-for example:
+Never commit real API keys, signing keys, passwords, or production credentials.
 
-```bash
-ant -Dskip.ios=true
-```
+## Roadmap
 
-iOS builds will automatically be skipped on other operating systems.
+Potential next steps:
 
-## Setup Instructions (iOS Support)
+- Improve visual editor usability and responsive previews.
+- Expand the supported component and block libraries.
+- Add reliable project versioning, undo, and recovery.
+- Make AI changes reviewable and reversible.
+- Strengthen schema validation and error reporting.
+- Improve device pairing and preview reliability.
+- Add reproducible build jobs and clear build logs.
+- Document deployment, backup, privacy, and security procedures.
+- Add automated tests for save/load, generation, and compilation.
 
-We generally use Xcode for iOS development. Open the
-AppInventor.xcworkspace file to view the Xcode workspace. This
-workspace includes three projects:
+## Acknowledgements and foundation
 
-* SchemeKit: A Scheme implementation for iOS built on Picrin with
-  additions to support foreign function calls to Objective-C and
-  Swift. This also implements some basic types from App Inventor
-  including YailList and YailDictionary.
-* AIComponentKit: App Inventor component implementations, mostly
-  written in Swift.
-* AICompanionApp: The App Inventor companion written in Swift.
+CreSuit draws on the broader idea of visual, block-based mobile development and an App Inventor-style workflow. The upstream foundation and the CreSuit-specific work should be described separately.
 
-In Xcode you can run the AICompanionApp on your device by selecting
-the AICompanionApp target's Debug scheme (top of window) and pressing the Run button.
+When documenting the repository, clearly identify:
 
+- Upstream components and their licenses.
+- CreSuit-specific code, UI, integrations, adaptations, and original features.
+- Third-party libraries and their license obligations.
+- Which capabilities are implemented versus proposed.
 
+Do not imply that upstream code was authored by the CreSuit team, and do not reduce CreSuit's contribution to its upstream foundation alone. Review the repository's license files and notices before distributing the project.
 
-For more information about iOS support and running from the command line (vs within XCode), please see
-[README.ios.md](README.ios.md).
+---
 
+## License
 
-
-Building MIT App Inventor Companion for iOS requires an Apple
-Macintosh computer running macOS 12 or later with Xcode 14 or later
-installed. While earlier versions may work we provide no support for
-building on versions below the ones stated. To install on a device,
-you **must** have a valid Apple Developer account license and have
-added the relevant mobile provisioning profiles from the Developer
-portal to your Xcode organizer (see Apple's website on instructions on
-how to do this).
-
-To build the MIT App Inventor companion, you will need to copy the `AICompanionApp.xcconfig.sample` a
-file called `AICompanionApp.xcconfig` in the components-ios directory
-that sets your development team. The easiest way to do this is to copy
-the AICompanionApp.xcconfig.sample file and edit it. Alternatively,
-create a file with the following line:
-
-
-
-```conf
-DEVELOPMENT_TEAM = #ID
-BUNDLE_IDENTIFIER = edu.mit.appinventor.aicompanion3
-```
-
-where ID is the development team ID shown in the *Apple Developer
-Portal.* This ID is unique to your developer account (individual or
-organization).
-
-
-## Running the Server(s)
-
-There are two servers in App Inventor, the main server that deals with project information, and the build server that creates apk files. More detailed information can be found in the [App Inventor Developer Overview](https://docs.google.com/document/d/1hIvAtbNx-eiIJcTA2LLPQOawctiGIpnnt0AvfgnKBok/pub) document.
-
-### Running the main server
-
-    $ your-google-cloud-SDK-folder/bin/java_dev_appserver.sh --port=8888 --address=0.0.0.0 appengine/build/war/
-
-Make sure you change *your-google-cloud-SDK-folder* to wherever in your hard drive you have placed the Google Cloud SDK.
-
-### Running the build server
-
-The build server can be run from the terminal by typing:
-
-    $ cd appinventor/buildserver
-    $ ant RunLocalBuildServer
-
-Note that you will only need to run the build server if you are going to build an app as an apk. You can do all the layout and programming without having the build server running, but you will need it to download the apk.
-
-### Accessing your local server
-
-You should now be up and running; you can test this by pointing your browser to:
-
-    http://localhost:8888
-
-Before entering or scanning the QR code in the Companion, check the box labeled "Use Legacy Connection".
-
-### Running tests
-
-The automated tests depend on NodeJS (version 20+) and Firefox, which will be used in headless mode. After that, you can run all tests by typing the following in a terminal window (note you can optionally skip iOS tests with -Dskip.ios=true):
-
-    $ ant tests
-
-### Building Release Code
-
-Release builds with optimizations turned on for the web components of the system can be done by passing `-Drelease=true` to `ant`, e.g.:
-
-```
-ant -Drelease=true noplay
-```
-
-The release configuration sets the following additional options:
-
-- Blockly Editor is compiled with SIMPLE optimizations (instead of RAW)
-- App Engine YaClient module is compiled without `<collapse-all-properties/>` to create per-language/browser builds
-- App Engine YaClient module is compiled with optimization tuned to 9 and with 8 threads
-
-### Hot-reloading GWT code with 'Super Dev Mode'
-
-1. Run `ant devmode`
-2. [Run the main server](#running-the-main-server).
-3. Open http://localhost:9876 (*GWT CodeServer*) and drag the two bookmarklets (*Dev Mode On & Off*) to the bookmarks bar.
-4. Open http://localhost:8888 (*App Engine server*)
-5. To see changes "live":
-   1. Save your changes in file.
-   2. Click on the *"Dev Mode On"* bookmarklet.
-   3. A popup will be shown with a button to compile `ode` module.
-   4. Press that button to compile. (That button is actually a bookmarklet. So you can drag this button to the bookmarks bar as well. This will come handy for subsequent compilations)
-   5. After that, *GWT CodeServer* will compile the module incrementally.
-   6. Refresh the page and that's it! The changes are live.
-
-Logs can be found at http://localhost:9876/log/ode and SourceMaps at http://localhost:9876/sourcemaps/ode
-
-## Setup Instructions (Vagrant)
-
-Using Vagrant for App Inventor development is a method of last resort to get a development environment up and running. To begin, install [Vagrant](https://vagrantup.com) and open a terminal in the root directory of this repository. Run the following commands:
-
-```bash
-vagrant plugin install vagrant-vbguest  # optionally for virtualbox users, and only once
-vagrant up                              # initializes the VM
-```
-
-It may take a few minutes for Vagrant to initialize as it will pull down a virtual machine image from the Internet and configure it with all of the App Inventor dependencies. Subsequent start-ups will be faster. Next, enter the virtual machine by running:
-
-```bash
-vagrant ssh
-```
-
-This should open up a terminal within the virtual machine in the directory `/vagrant/appinventor`. This directory is the same as the `appinventor` directory in this repository, shared between your host machine and the virtual machine. Any changes made on one side will be visible in the other. This allows you to edit files on your host machine with your preferred editor, while keeping the build environment relegated to the virtual machine.
-
-Before you can build App Inventor, you will need to also obtain the dependency as described [above](#checkout-dependencies) using `git submodule` command:
-
-```bash
-git submodule update --init
-```
-
-Now, you are ready to build App Inventor, you may now run:
-
-```bash
-ant
-```
-
-and to run App Inventor:
-
-```bash
-start_appinventor
-```
-
-Press Ctrl+C to quit the server. Enter exit at the prompt to leave the virtual machine. To reclaim resources when you are not actively developing, you can run `vagrant halt` to stop the virtual machine. To completely remove the virtual machine, run `vagrant destroy`. If you destroy the VM, you will need to start these instructions from the top.
-
-Note 1: For macOS users, if you are using VirtualBox and get any error while initializing the VM it may be due to security restrictions in System Preferences, consider reading [this](https://medium.com/@Aenon/mac-virtualbox-kernel-driver-error-df39e7e10cd8) article.
-
-Note 2: If it seems like none of the dependencies are installed in the VM, run ```vagrant provision```.
-
-For better performance, consider using the manual instructions above.
-
-## Need Help?
-
-Join [our community](https://community.appinventor.mit.edu/).
-#   C r e S u i t - v 2  
- 
+Add the license that actually applies to this repository. If the project contains upstream code, preserve its copyright and license notices and verify that the selected distribution terms are compatible with those obligations.
